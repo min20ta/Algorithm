@@ -12,7 +12,7 @@ public class Main {
     static boolean [] isDeleted;
     static int [] dist;
     
-    static int ans;
+    static int ans = 0;
     static int [][] lenArray ;
 
     static int [] arr;
@@ -22,7 +22,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
 
-        arr = new int[51];
+        arr = new int[50];
 
         for (int i = 0 ; i < n ; i++) {
             arrayList.add(new ArrayList<>());
@@ -53,21 +53,11 @@ public class Main {
         }
 
 
-        isDeleted = new boolean[51];
+        isDeleted = new boolean[50];
 
         isDeleted[deleteNode] = true;
 
         dfs(root);
-
-
-
-
-
-
-        // 51 - 1 - 3
-        //        - 4
-        //    - 2
-
 
         System.out.println(ans);
     }
