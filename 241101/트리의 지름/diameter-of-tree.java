@@ -21,7 +21,7 @@ public class Main {
         for (int i = 0; i <= n; i++) {
             arrayList.add(new ArrayList<>());
         }
-        lenArray = new int[n + 1][100001];
+        lenArray = new int[n+1][n+1];
 
         for (int i = 0; i < n - 1; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
