@@ -42,15 +42,10 @@ public class Main {
             }
 
             arr[i] = node;
+            arrayList.get(arr[i]).add(i);
         }
 
         int deleteNode = Integer.parseInt(br.readLine());
-
-
-
-        for (int i = 1 ; i < n ; i++) {
-            arrayList.get(arr[i]).add(i);
-        }
 
 
         isDeleted = new boolean[50];
