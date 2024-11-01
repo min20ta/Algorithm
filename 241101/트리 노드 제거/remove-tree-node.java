@@ -83,8 +83,9 @@ public class Main {
             if (isDeleted[next])  //실제로 진짜 삭제하는게 아니라 스킵!
                 continue;
 
-            isLeaf = false;
+           
             dfs(next);
+            isLeaf = false;
         }
 
         if (isLeaf)
