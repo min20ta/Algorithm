@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.*;
 import java.io.*;
 
@@ -13,8 +12,7 @@ public class Main {
     static int [] dist;
     static int longestV =Integer.MIN_VALUE;
     static int [][] lenArray ;
-    static int line;
-    static int [] lineArray;
+    
     public static void main(String[] args) throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
