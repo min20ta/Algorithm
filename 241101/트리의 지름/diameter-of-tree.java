@@ -39,8 +39,8 @@ public class Main {
             lenArray[b][a] = len;
         }
 
-        visit = new boolean[n+1];
-        dist = new int[n+1];
+        visit = new boolean[100001];
+        dist = new int[100001];
 
         //가장 멀리있는 정점정보찾기
        visit[1] = true;
@@ -56,8 +56,8 @@ public class Main {
        }
 
 
-        visit = new boolean[n+1];
-        dist = new int[n+1];
+        visit = new boolean[100001];
+        dist = new int[100001];
         visit[longestV] = true;
         dist[longestV] = 0;
        dfs(longestV,0);
