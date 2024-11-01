@@ -11,7 +11,7 @@ public class Main {
     static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     static boolean [] isDeleted;
     static int [] dist;
-    static int longestV =Integer.MIN_VALUE;
+    
     static int ans;
     static int [][] lenArray ;
 
@@ -22,7 +22,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
 
-        arr = new int[n];
+        arr = new int[51];
 
         for (int i = 0 ; i < n ; i++) {
             arrayList.add(new ArrayList<>());
