@@ -52,7 +52,7 @@ public class Main {
 
         dist = new int[n+1];
         visit = new boolean[n+1];
-        visit[1] = true;
+        visit[longestV] = true;
         dfs(longestV,0 );
         longest = 0;
 
