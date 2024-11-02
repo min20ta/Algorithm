@@ -6,13 +6,14 @@ import java.io.*;
 
 public class Main {
     static int n;
-    static int m;
+
 
     static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     static boolean [] visit;
+    static int [] dist;
     static int length;
-    static int [][] answer;
 
+    // 부모노드로 올라올때 부모노드가 밑으로 내려가는게 아니라 옆에 같이 선다
     public static void main(String[] args) throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,19 +32,14 @@ public class Main {
             arrayList.get(b).add(a);
         }
 
-        // 노드의 부모노드로 말 옮기기
-        // 루트노드도착시 그노드 제거 . 루트노드는 1번
-
-        // 더 이상 옮길말 없음+ 내 차례 = 패배
-        // a가 승리할 수 있는지
-
         visit = new boolean[n+1];
         visit[1] = true;
+        dist =new int[n+1];
         length = 0;
         dfs(1);
-        length++;
 
-        if (length%2 == 0)
+
+        if (length%2 == 1)
             System.out.println(1);
         else
             System.out.println(0);
@@ -51,16 +47,25 @@ public class Main {
 
     }
 
+
+
+    //리프노드의 거리구하기
     static void dfs(int node) {
+
+        boolean isLeaf = true;
 
         for (int next : arrayList.get(node)) {
             if (!visit[next]) {
                 visit[next] = true;
-                length++;
+                isLeaf = false;
+                dist[next] = dist[node]+1;
                 dfs(next);
 
             }
         }
+
+        if (isLeaf)
+            length += dist[node];
     }
 
 }
