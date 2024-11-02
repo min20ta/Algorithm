@@ -77,7 +77,7 @@ public class Main {
 
                 if (next.node == end) {
                     length = distance + next.distance;
-                    break;
+                    return;
                 }else
                     dfs(next.node, end, distance+next.distance);
             }
