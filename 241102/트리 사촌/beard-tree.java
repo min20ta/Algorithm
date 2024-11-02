@@ -45,7 +45,8 @@ public class Main {
         //사촌수 구하기
         //부모가 형제, 다른 부모
         for (int i = 1 ; i <= n ;i++) {
-
+            if(tree[tree[i]] == 0 || tree[tree[find]] == 0)
+                continue;
             if (tree[tree[i]] == tree[tree[find]] && tree[i] != tree[find])
                 ans++;
         }
