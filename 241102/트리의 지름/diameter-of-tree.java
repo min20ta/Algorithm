@@ -11,7 +11,7 @@ public class Main {
     static boolean [] visit;
     static int [] dist;
     static int longestV =Integer.MIN_VALUE;
-    static int [][] lenArray ;
+ 
 
     public static void main(String[] args) throws Exception {
 
@@ -21,7 +21,7 @@ public class Main {
         for (int i = 0; i <= n; i++) {
             arrayList.add(new ArrayList<>());
         }
-        lenArray = new int[n+1][n+1];
+       
 
         for (int i = 0; i < n - 1; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
