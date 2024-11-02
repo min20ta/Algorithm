@@ -47,8 +47,8 @@ public class Main {
         //tree 0,1은 루트다음으로 건너뛴것
         // 
         for (int i = 2 ; i <= n ;i++) {
-            if(tree[tree[i]] == 0 || tree[tree[find]] == 0)
-                continue;
+            // if(tree[tree[i]] == 0 || tree[tree[find]] == 0)
+            //     continue;
             if (tree[tree[i]] == tree[tree[find]] && tree[i] != tree[find])
                 ans++;
         }
