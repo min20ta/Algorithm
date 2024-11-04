@@ -10,7 +10,7 @@ public class Main {
     static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     static boolean isTree = true;
     static int [] dist;
-    static int root;
+    static int longest;
 
     static int [] arr;
     static boolean [] visit;
@@ -44,12 +44,10 @@ public class Main {
 
             visit[i] = true;
             dist[i] = 0;
+            longest = 0;
             dfs(i,0);
-            int longest = 0;
+          
 
-            for (int j = 1 ; j <= n ; j++) {
-                longest = Math.max(longest, dist[j]);
-            }
             min = Math.min(min, longest);
          }
 
@@ -62,6 +60,7 @@ public class Main {
             if (!visit[next]) {
                 visit[next] = true;
                 dist[next] = distance+1;
+                longest = Math.max(longest, dist[next]);
                 dfs(next, dist[next]);
             }
         }
