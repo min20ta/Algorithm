@@ -10,7 +10,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
 
         List<ArrayList<Integer>> list = new ArrayList<>();
-        for (int i= 0 ; i <= n ; i++) {
+        for (int i= 1 ; i <= 10 ; i++) {
             list.add(new ArrayList<>());
         }
 
