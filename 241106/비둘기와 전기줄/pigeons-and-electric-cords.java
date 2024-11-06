@@ -24,7 +24,7 @@ public class Main {
 
         int answer = 0;
         for (int i = 1 ; i <= n ; i++) {
-            for (int j = 1 ; j < list.get(i).size() ; j++) {
+            for (int j = 0 ; j < list.get(i).size() ; j++) {
                 if(list.get(i).get(j) != list.get(i).get(j-1))
                     answer++;
             }
