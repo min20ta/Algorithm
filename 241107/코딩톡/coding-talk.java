@@ -34,8 +34,23 @@ public class Main {
             set.remove(name);
         }
 
-        for (Character c : set) {
-            System.out.print(c+" ");
+
+        if (arr[p][1] == 0) {
+            System.out.println();
+        }else {
+            char [] cArr = new char[set.size()];
+            int j = 0;
+
+            for (Character c : set) {
+                cArr[j] = c;
+                j++;
+            }
+
+            Arrays.sort(cArr);
+
+            for (char c : cArr) {
+                System.out.print(c+" ");
+            }
         }
 
 
