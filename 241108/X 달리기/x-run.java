@@ -14,48 +14,34 @@ public class Main {
         int v = 1;
         int distance = 1;
         int min = Integer.MAX_VALUE;
-        int time = 0;
+        int time = 1;
         boolean flag = false ;
 
 
 
-        for(int t = 1; t <=x ; t++) {
-            v = 1;
-            distance = 1;
-            flag = false;
-            int j = 1;
-
-           for (j = 2 ; j <= x ; j++) { //초
-
-
-                if (j >= t) {
-                    if(v > 1) {
-                        v--;
-                        distance += v;
-                    }
-                    else
-                        distance += v;
-                } else {
-                    v++;
-                    distance += v;
-                }
-                
-                if (v == 0)
-                    break;
-
-                if (distance == x) {
-                    if (v == 1) {
-                        flag = true;
-                        break;
-                    }
-                }
-            }
-
-            if (flag)
-                min = Math.min(min, j);
-
+        while((x-distance-(v+1)) >= (v+1)*(v)/2){
+                v++;
+                distance += v;
+                time++;
         }
 
-        System.out.println(min);
+      
+
+
+        while(!(distance ==x && v == 1)){
+
+            if ((x-distance-v) >= (v-1)*(v)/2)
+                distance += v;
+            else{
+                v--;
+                distance += v;
+            }
+            time++;
+        }
+
+
+
+
+        System.out.println(time);
     }
 }
