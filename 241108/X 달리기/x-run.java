@@ -19,13 +19,13 @@ public class Main {
 
 
 
-        for(int t = 1; t <=10000 ; t++) {
+        for(int t = 1; t <=x ; t++) {
             v = 1;
             distance = 1;
             flag = false;
             int j = 1;
 
-           for (j = 2 ; j <= 10000 ; j++) { //초
+           for (j = 2 ; j <= x ; j++) { //초
 
 
                 if (j >= t) {
