@@ -24,7 +24,7 @@ public class Main {
         int min = Integer.MAX_VALUE;
         int timeOne = Math.abs(a-x) + Math.abs(b-y);
         int timeTwo = Math.abs(a-y) + Math.abs(b-x);
-        int timeThree = Math.abs(x-y);
+        int timeThree = Math.abs(a-b);
 
         min = Math.min(timeOne, Math.min(timeThree, timeTwo));
 
