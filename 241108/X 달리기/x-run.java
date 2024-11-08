@@ -28,7 +28,7 @@ public class Main {
            for (j = 2 ; j <= 10000 ; j++) { //초
 
 
-                if (j >= 4) {
+                if (j >= t) {
                     if(v > 1) {
                         v--;
                         distance += v;
