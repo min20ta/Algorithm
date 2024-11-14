@@ -72,8 +72,25 @@ public class Main {
 
 
         if (flagFist == 1 && min < temp) {
+            arrayList.remove(startidx);
+
+            for (int i = 1; i < arrayList.size(); i++) {
+                int size = arrayList.get(i) - arrayList.get(i - 1);
+                if (temp > size) {
+                     temp = size;
+                }
+            }
+
             System.out.println(temp);
         } else if (flagSecond == 1 && min < temp) {
+            arrayList.remove(startidx);
+            for (int i = 1; i < arrayList.size(); i++) {
+                int size = arrayList.get(i) - arrayList.get(i - 1);
+                if (temp > size) {
+                    temp = size;
+                }
+            }
+
             System.out.println(temp);
         }else {
             System.out.println(min);
