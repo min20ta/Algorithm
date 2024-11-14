@@ -35,31 +35,27 @@ public class Main {
 
         }
 
+        int temp = 0;
         int flagFist = 0;
         if (str.charAt(0) == '0') {
-            if (max < arrayList.get(0)) {
-                max = arrayList.get(0);
+                temp = arrayList.get(0);
                 flagFist = 1;
             }
-        }
 
-        System.out.println(max);
+
+
         int flagSecond = 0;
+
         if (str.charAt(n - 1) == '0') {
-            System.out.println((n-1)-arrayList.get(arrayList.size() - 1));
-            if (max < (n-1)-arrayList.get(arrayList.size() - 1)) {
-                max = (n-1)-arrayList.get(arrayList.size() - 1);
+            if(temp<(n-1)-arrayList.get(arrayList.size() - 1)) {
+                temp = (n-1)-arrayList.get(arrayList.size() - 1);
                 flagSecond = 1;
                 flagFist = 0;
             }
         }
 
         //이거 둘을 밑으로 보내야함
-        if (flagFist == 1) {
-            System.out.println(max);
-        } else if (flagSecond == 1) {
-            System.out.println(max);
-        } else {
+
             //10101
 
             int index = start + max / 2;
@@ -68,18 +64,22 @@ public class Main {
 
             int min = max;
             for (int i = 1; i < arrayList.size(); i++) {
-                System.out.println(arrayList.get(i));
                 int size = arrayList.get(i) - arrayList.get(i - 1);
                 if (min > size) {
                     min = size;
                 }
             }
 
+
+        if (flagFist == 1 && min < temp) {
+            System.out.println(temp);
+        } else if (flagSecond == 1 && min < temp) {
+            System.out.println(temp);
+        }else {
             System.out.println(min);
         }
 
-
     }
-    }
+}
 
 
