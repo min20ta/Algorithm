@@ -23,15 +23,27 @@ public class Main {
         //최소
 
         //a d b c
-        // a b d c
+        //A D E C B
+        // ADEBC ADBEC ABDEC ABDCE ABCDE
         int count = 0;
-        for (int i = 1; i < n; i++) {
-            if (arr2[i] < arr2[i-1]) {
-                int temp = arr2[i-1];
-                arr2[i-1] = arr2[i];
-                arr2[i] = temp;
-                count++;
-            }
+        while(true) {
+                boolean flag = false;
+
+                for (int i = 1; i < n; i++) {
+                    flag = false;
+
+                    if (arr2[i] < arr2[i - 1]) {
+                        int temp = arr2[i - 1];
+                        arr2[i - 1] = arr2[i];
+                        arr2[i] = temp;
+                        count++;
+                        flag = true;
+                        break;
+                    }
+                }
+
+                if (!flag)
+                    break;
         }
 
         System.out.println(count);
