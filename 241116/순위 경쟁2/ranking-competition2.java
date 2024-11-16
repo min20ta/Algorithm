@@ -25,7 +25,7 @@ public class Main {
 
             if(aScore == bScore) {
                 if (!what.equals("AB")) {
-                    System.out.println(aScore+ " "+bScore + what);
+                  
                     ans++;
                     what = "AB";
 
@@ -33,14 +33,12 @@ public class Main {
             }
             else if(aScore < bScore) {
                 if (!what.equals("B")) {
-                    System.out.println(aScore+ " "+bScore + what);
                     ans++;
                     what = "B";
                 }
                 }
             else if(aScore > bScore) {
                 if (!what.equals("A")) {
-                    System.out.println(aScore+ " "+bScore + what);
                     ans++;
                     what = "A";
                 }
