@@ -20,6 +20,7 @@ public class Main {
         Arrays.sort(arr);
         int min = 1;
         int num = 0;
+        int same = 0;
         int idx = 0;
 
         for (int i = 1 ;i < n ; i++) {
@@ -40,10 +41,14 @@ public class Main {
             for (int i = 0; i < n; i++) {
                 if (arr2[i] == num) {
                     idx = i + 1;
-                    break;
+                    same++;
                 }
             }
-            System.out.println(idx);
+            
+            if(same > 1)
+                System.out.println(-1);
+            else
+                System.out.println(idx);
         }
 
 
