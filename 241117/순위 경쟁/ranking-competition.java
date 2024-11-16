@@ -1,4 +1,4 @@
-
+import java.sql.SQLOutput;
 import java.util.*;
 import java.io.*;
 
@@ -33,36 +33,43 @@ public class Main {
                 if (!what.equals("ABC")) {
                     ans++;
                     what = "ABC";
+//                    System.out.println("ABC");
                 }
-            }else if (aScore == bScore) {
+            }else if (aScore == bScore && aScore == max) {
                 if (!what.equals("AB")) {
                     ans++;
                     what = "AB";
+//                    System.out.println("AB");
                 }
-            }else if (aScore == cScore) {
+            }else if (aScore == cScore && aScore == max) {
                 if (!what.equals("AC")) {
                     ans++;
                     what = "AC";
+//                    System.out.println("AC");
                 }
-            }else if (bScore == cScore) {
+            }else if (bScore == cScore && bScore == max) {
                 if (!what.equals("BC")) {
                     ans++;
                     what = "BC";
+//                    System.out.println("BC");
                 }
             }else if (aScore == max) {
                 if (!what.equals("A")) {
                     ans++;
                     what = "A";
+//                    System.out.println("A");
                 }
             }else if (bScore == max) {
                 if (!what.equals("B")) {
                     ans++;
                     what = "B";
+//                    System.out.println("B");
                 }
             } else if (cScore == max) {
                 if (!what.equals("C")) {
                     ans++;
                     what = "C";
+//                    System.out.println("C");
                 }
             }
         }
@@ -70,5 +77,8 @@ public class Main {
 
     }
 }
+
+
+
 
 
