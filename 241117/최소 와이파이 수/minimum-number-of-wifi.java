@@ -44,7 +44,7 @@ public class Main {
                     leftSum += arr[j];
                     arr[j] = 0;
                 }
-                for (int j = i+1 ; j <= i+m ; j++) {
+                for (int j = i+1 ; j <= i+m && j < n ; j++) {
                     arr[j] = 0;
                 }
 
