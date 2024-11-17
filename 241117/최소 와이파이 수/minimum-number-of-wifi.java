@@ -26,7 +26,12 @@ public class Main {
                     ans++;
             }
         } else if (m >= n) {
-            ans = 1;
+            for (int i = 0; i < n; i++) {
+                if (arr[i] == 1) {
+                    ans = 1;
+                    break;
+                }
+            }
         } else {
             for (int i = m; i < n; i++) {
                 //지정자리 왼 :
@@ -45,7 +50,7 @@ public class Main {
 
             }
         }
-    
+
 
         System.out.println(ans);
 
@@ -56,5 +61,7 @@ public class Main {
 
     }
 }
+
+
 
 
