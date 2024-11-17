@@ -48,6 +48,10 @@ public class Main {
                     i += m + m;
                 }
 
+                if (n < i+1) {
+                    ans++;
+                }
+
             }
         }
 
@@ -61,7 +65,5 @@ public class Main {
 
     }
 }
-
-
 
 
