@@ -12,7 +12,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int [] arr = new int[n];
+        int[] arr = new int[n];
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
@@ -21,11 +21,13 @@ public class Main {
 
         int ans = 0;
         if (m == 0) {
-            for (int i = 0 ; i < n ; i++) {
+            for (int i = 0; i < n; i++) {
                 if (arr[i] == 1)
                     ans++;
             }
-        }else {
+        } else if (m >= n) {
+            ans = 1;
+        } else {
             for (int i = m; i < n; i++) {
                 //지정자리 왼 :
                 int seat = arr[i];
@@ -43,6 +45,7 @@ public class Main {
 
             }
         }
+    
 
         System.out.println(ans);
 
