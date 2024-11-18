@@ -42,7 +42,7 @@ public class Main {
                 if (jak > 0) {
                     jak--;
                     group++;
-                } else if (hol > 2) {
+                } else if (hol >= 2) {
                     group++;
                     hol -= 2;
                 } else if (hol > 0) {
