@@ -55,7 +55,7 @@ public class Main {
                 if (hol > 0) {
                     group++;
                     hol--;
-                } else if (jak>0){
+                } else {
                     break;
                 }
 
