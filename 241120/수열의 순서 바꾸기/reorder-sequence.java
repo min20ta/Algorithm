@@ -18,7 +18,7 @@ public class Main {
 
         int idx = n-1;
         int count = 1;
-        while (idx >= 0 && list.get(idx) > list.get(idx-1)) {
+        while (idx >= 1 && list.get(idx) > list.get(idx-1)) {
             idx--;
             count++;
         }
