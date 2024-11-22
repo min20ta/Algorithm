@@ -19,14 +19,18 @@ public class Main {
         }
 
         //2355
+        //2489 12
+        //123578  9
         Arrays.sort(arr);
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < n; i++) {
-            int sum = arr[i] + arr[i+n];
+            int sum = arr[i] + arr[2*n-1-i];
             max = Math.max(max, sum);
         }
 
         System.out.println(max);
     }
 }
+
+
 
