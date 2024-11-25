@@ -16,7 +16,7 @@ public class Main {
 
             Game a = new Game();
             a.product = "codetree";
-            a.code = 55;
+            a.code = 50;
             Game b = new Game( product,code);
 
 
