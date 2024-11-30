@@ -22,11 +22,13 @@ public class Main {
                 @Override
                 public int compare(Node o1, Node o2) {
                     if (o1.kee == o2.kee){
-                        return o2.weight-o1.weight;
+                        if (o2.weight == o1.weight) {
+                            return o1.num - o2.num;
+                        }
+                            return o2.weight-o1.weight;
                     }
-                    if (o2.weight == o1.weight) {
-                        return o1.num - o2.num;
-                    }
+                       
+                   
                     return o2.kee-o1.kee;
                 }
             });
