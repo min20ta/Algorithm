@@ -53,24 +53,26 @@ public class Main {
 
         second+=d2;
 
-        int findDay1 = first %7;
-        int findDay2 = second % 7;
+
         int diff =second-first;
-        int diff2 = findDay2-findDay1;
+        int diff2 = diff % 7;
 
         int week = diff /7;
-        boolean flag = true;
+        int where = 0;
 
-        for (int i = 1; i < 7; i++) {
+        for (int i = 0; i < 7; i++) {
 
-            if (str.equals(day[(diff2+i)%7])){
-                flag = false;
-                break;
-            }
+           if (str.equals(day[i])){
+               where = i;
+               break;
+           }
 
         }
-        if (flag)
+        
+        if (diff2 <= where) {
             week++;
+        }
+
 
 
 
@@ -79,9 +81,6 @@ public class Main {
 
     }
 }
-
-
-
 
 
 
