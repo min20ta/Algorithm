@@ -17,11 +17,14 @@ public class Main {
         int time = (a-11)*60*24+ (b-11)*60+(c-11);
         if (a <= 11 && b <=11 )
             System.out.println(-1);
-        System.out.println(time);
+        else
+            System.out.println(time);
 
 
 
     }
 }
+
+
 
 
