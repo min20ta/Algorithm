@@ -63,7 +63,7 @@ public class Main {
 
         for (int i = 1; i < 7; i++) {
 
-            if (str.equals(day[(diff%7+i)%7])){
+            if (str.equals(day[(diff2%7+i)%7])){
                 flag = false;
                 break;
             }
