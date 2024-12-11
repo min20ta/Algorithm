@@ -62,8 +62,8 @@ public class Main {
             }
         }
 
-        int day1 = (second- first)/7;
-              int remain1 = (second- first)%7;
+        int day1 = second/7- first/7;
+              int remain1 = second%7- first%7;
 //
 //        System.out.println(day1+" "+remain1);
         if (remain1 >= strIndex)
