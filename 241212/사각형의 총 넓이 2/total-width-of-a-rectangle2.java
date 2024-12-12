@@ -11,17 +11,17 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int x1 = Integer.parseInt(st.nextToken());
-        int y1 = Integer.parseInt(st.nextToken());
-        int x2 = Integer.parseInt(st.nextToken());
-        int y2 = Integer.parseInt(st.nextToken());
+        int x1 = Integer.parseInt(st.nextToken()) + 100;
+        int y1 = Integer.parseInt(st.nextToken()) + 100;
+        int x2 = Integer.parseInt(st.nextToken()) + 100;
+        int y2 = Integer.parseInt(st.nextToken()) + 100;
 
 
         st = new StringTokenizer(br.readLine());
-        int a1 = Integer.parseInt(st.nextToken());
-        int b1 = Integer.parseInt(st.nextToken());
-        int a2 = Integer.parseInt(st.nextToken());
-        int b2 = Integer.parseInt(st.nextToken());
+        int a1 = Integer.parseInt(st.nextToken()) + 100;
+        int b1 = Integer.parseInt(st.nextToken()) + 100;
+        int a2 = Integer.parseInt(st.nextToken()) + 100;
+        int b2 = Integer.parseInt(st.nextToken()) + 100;
 
         int [][] arr1 = new int[201][201];
 
