@@ -24,20 +24,22 @@ public class Main {
             int num = Integer.parseInt(st.nextToken());
             char d = st.nextToken().charAt(0);
 
+            //현재 위치 타일포함. 같은방향으로 할수가 ???
             if (d == 'L') {
-                for (int j = start-num; j < start ; j++) {
+                for (int j = start; j > start-num ; j--) {
 
                     wbArr[j][0]++;
                     whatIsLast[j] = 2;
-
+                
                 }
-                start = start-num;
+                start = start-num +1;
             }else if (d == 'R') {
                 for (int j = start; j < start + num ; j++) {
                         wbArr[j][1]++;
                         whatIsLast[j] = 3;
+                 
                 }
-                start = start + num;
+                start = start + num -1;
             }
         }
 
