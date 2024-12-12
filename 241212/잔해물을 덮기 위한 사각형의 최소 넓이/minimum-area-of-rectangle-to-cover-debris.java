@@ -43,7 +43,7 @@ public class Main {
         int maxX = Integer.MIN_VALUE;
         int minY = Integer.MAX_VALUE;
         int maxY = Integer.MIN_VALUE;
-
+        int countOne = 0;
         for (int i = 0; i <= 2000; i++) {
             for (int j = 0; j <=2000; j++) {
                 if (arr1[i][j] == 1) {
@@ -51,16 +51,25 @@ public class Main {
                     minY = Math.min(j,minY);
                     maxX = Math.max(i,maxX);
                     maxY = Math.max(j,maxY);
+                    countOne++;
                 }
             }
         }
 
-        System.out.println((maxX+1-minX)*(maxY+1-minY));
+        if (countOne == 0)
+            System.out.println(0);
+        else
+            System.out.println((maxX+1-minX)*(maxY+1-minY));
 
     }
 
 
 }
+
+
+
+
+
 
 
 
