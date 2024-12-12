@@ -20,10 +20,11 @@ public class Main {
             if (d == 'R'){
                 for (int j = start; j < start+x ; j++) {
                     arr[j]++;
+
                 }
                 start = start+x;
             }else {
-                for (int j = start; j > start-x ; j--) {
+                for (int j = start -x; j < start ; j++) {
                     arr[j]++;
                 }
                 start = start-x;
@@ -45,5 +46,8 @@ public class Main {
 
 
 }
+
+
+
 
 
