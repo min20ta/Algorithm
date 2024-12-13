@@ -29,7 +29,9 @@ public class Main {
                 count++;
             }
         }
-
+        if (arr[n-1] == arr[n-2])
+            max = Math.max(max, count);
+      
         if (n == 1)
             System.out.println(1);
         else
