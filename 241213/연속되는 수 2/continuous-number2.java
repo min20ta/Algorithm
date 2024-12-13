@@ -30,8 +30,10 @@ public class Main {
             }
         }
 
-
-        System.out.println(max);
+        if (n == 1)
+            System.out.println(1);
+        else
+            System.out.println(max);
 
     }
 }
