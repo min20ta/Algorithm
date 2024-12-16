@@ -63,7 +63,7 @@ public class Main {
         int answer = -1;
         // 같은거 처리 어케
         for (int i = 1; i <= Math.max(timeA,timeB); i++) {
-            System.out.println(arrA[i] + " "+arrB[i]);
+            //System.out.println(arrA[i] + " "+arrB[i]);
             if (arrA[i] == arrB[i] ) {
                 answer = i;
                 break;
