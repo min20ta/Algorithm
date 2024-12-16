@@ -15,17 +15,18 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int [] arrA = new int[1000001];
         int [] arrB = new int[1000001];
-        int timeA = 0;
-        int timeB = 0;
+        int timeA = 1;
+        int timeB = 1;
         
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             int v = Integer.parseInt(st.nextToken());
             int t = Integer.parseInt(st.nextToken());
             int level = t;
-            int k =1;
             while(level-- > 0) {
-                arrA[timeA++] = v*t*(k++)/t;
+                arrA[timeA] = arrA[timeA-1] + v;
+              //  System.out.println("A: "+arrA[timeA]);
+                timeA++;
             }
         }
 
@@ -35,9 +36,10 @@ public class Main {
             int v = Integer.parseInt(st.nextToken());
             int t = Integer.parseInt(st.nextToken());
             int level = t;
-            int k =1;
             while(level-- > 0) {
-                arrB[timeB++] = v*t*(k++)/t;
+                arrB[timeB] = arrB[timeB-1]+v;
+              //  System.out.println("B: "+arrB[timeB]);
+                timeB++;
             }
         }
 
@@ -45,7 +47,7 @@ public class Main {
         char where = ' ';
         int count = 0;
         for (int i = 0; i < 1000001; i++) {
-
+           // System.out.println(arrA[i] +" "+ arrB[i]);
             if (i == 0){
                 if (arrA[i] > arrB[i]) {
                     where = 'A';
