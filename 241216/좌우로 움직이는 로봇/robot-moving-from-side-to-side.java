@@ -66,26 +66,27 @@ public class Main {
         indexB--;
 
         for (int i = 1; i < 1000001; i++) {
-            if (i >= indexA && i < indexB) {
-                if (arrA[indexA] == arrB[i] && arrA[indexA-1] != arrB[i-1]) {
+            if (i > indexA && i < indexB) {
+                if (arrA[indexA] == arrB[i] && arrA[indexA] != arrB[i-1]) {
                     answer++;
                     //System.out.println(i);
                 }
-            }else if (i < indexA && i >= indexB) {
-                if (arrA[i] == arrB[indexB] && arrA[i-1] != arrB[indexB-1]) {
+            }else if (i < indexA && i > indexB) {
+                if (arrA[i] == arrB[indexB] && arrA[i-1] != arrB[indexB]) {
                     answer++;
                     //System.out.println(i);
                 }
-            }else if (i >= indexA && i >= indexB) {
-                if (arrA[indexA] == arrB[indexB] && arrA[indexA-1] != arrB[indexB-1]) {
-                    answer++;
-                    //System.out.println(i);
-                }
+            }else if (i > indexA && i > indexB) {
+//                if (arrA[indexA] == arrB[indexB] && arrA[indexA-1] != arrB[indexB-1]) {
+//                    answer++;
+//                    System.out.println(i);
+//                }
+                continue;
             }else {
 
                 if (arrA[i] == arrB[i] && arrA[i-1] != arrB[i-1]) {
                     answer++;
-                    //System.out.println(i);
+                   // System.out.println(i);
                 }
             }
         }
