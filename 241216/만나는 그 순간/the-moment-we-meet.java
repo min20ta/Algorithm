@@ -13,8 +13,8 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int [] arrA = new int[1001];
-        int [] arrB = new int[1001];
+        int [] arrA = new int[1000001];
+        int [] arrB = new int[1000001];
         int indexA = 0;
         int indexB = 0;
         int timeA = 0;
@@ -62,7 +62,7 @@ public class Main {
 
         int answer = -1;
         // 같은거 처리 어케
-        for (int i = 1; i <= Math.min(timeA,timeB); i++) {
+        for (int i = 1; i <= Math.max(timeA,timeB); i++) {
             //System.out.println(arrA[i] + " "+arrB[i]);
             if (arrA[i] == arrB[i] ) {
                 answer = i;
