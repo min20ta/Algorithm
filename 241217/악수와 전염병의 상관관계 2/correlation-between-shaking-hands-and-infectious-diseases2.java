@@ -49,21 +49,27 @@ public class Main {
         //time기준 정렬
         //누구의 감염횟수가 증가하는거?
         //감영자가 되고 나서 부터 횟수증가
+        // 1 1 2
+        // 2 1 2
+        // 3 1 2
+        // 4 2 3
+        // k=2, p=1
+        // 1-2, 2-2, 3-0
+        //들어갈때 허점
         for (int i =0 ; i < t ;i++) {
-            if (count[arr[i].x][0] < k || count[arr[i].y][0] < k) { //사람당 감염횟수
-                if(count[arr[i].y][1] == 1 && count[arr[i].y][1] == 1) { //감염자인지
+                if(count[arr[i].x][0] < k && count[arr[i].y][0] < k && count[arr[i].x][1] == 1 && count[arr[i].y][1] == 1) { //감염자인지
                     count[arr[i].y][0]++; //감염횟수+1
                     count[arr[i].x][0]++;
-                } else if(count[arr[i].x][1] == 1){
+                } else if(count[arr[i].x][0] < k && count[arr[i].x][1] == 1){
                     count[arr[i].x][0]++; //감염횟수+1
                     count[arr[i].y][1] = 1; //감염자로
                     answer[arr[i].y] = 1;
-                } else if(count[arr[i].y][1] == 1) { //감염자인지
+                } else if(count[arr[i].y][0] < k && count[arr[i].y][1] == 1) { //감염자인지
                     count[arr[i].y][0]++; //감염횟수+1
                     count[arr[i].x][1] = 1; //감염자로
                     answer[arr[i].x] = 1;
             }
-            }
+
         }
 
         for (int i = 1; i <= n; i++) {
