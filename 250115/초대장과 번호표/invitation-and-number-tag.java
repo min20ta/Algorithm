@@ -31,18 +31,19 @@ public class Main {
             int s = Integer.parseInt(st.nextToken());
             for (int j = 0; j < s; j++) {
                 int num = Integer.parseInt(st.nextToken());
+                num--;
                 groups[i].add(num); //그룹내 사람
                 peopleGroups[num].add(i);  //사람이 포함된 모든 그룹
             }
         }
 
-        q.add(1);
-        invited[1] = true;
+        q.add(0);
+        invited[0] = true;
         while (!q.isEmpty()) { //사람한명씩 검사.
             int x = q.poll();
             ans++;
 
-            for (int i = 0; i < peopleGroups[x].size(); i++) { 
+            for (int i = 0; i < peopleGroups[x].size(); i++) {
                 //for문을 돌지않고 한번에
                 //사람을 제거하기 위해서 hashSet사용
                 int gNum = peopleGroups[x].get(i);
