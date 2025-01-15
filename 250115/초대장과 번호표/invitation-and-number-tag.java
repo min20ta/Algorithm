@@ -18,6 +18,8 @@ public class Main {
         //1번사람 무조건 초대장. k-1초대되었으면 마지막 사람도 초대됨
 
         Set<Integer> set = new HashSet<>();
+        set.add(1);
+
         for (int i = 0; i < g; i++) {
             st = new StringTokenizer(br.readLine());
             int num = Integer.parseInt(st.nextToken());
@@ -27,8 +29,6 @@ public class Main {
 
             for (int j = 0; j < num; j++) {
                 int people = Integer.parseInt(st.nextToken());
-                if (j == 0)
-                    set.add(people);
                 if (set.contains(people))
                     count++;
                 else
@@ -41,6 +41,7 @@ public class Main {
         }
 
         System.out.println(set.size());
+        //13,7,20,3,1,
 
     }
 }
