@@ -11,7 +11,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int t = Integer.parseInt(st.nextToken());
-
+        pair [] arr = new pair[n];
         TreeSet<pair> set = new TreeSet<>();
 
         //만나면 remove
@@ -20,30 +20,27 @@ public class Main {
         //31, 92,103,14
         int ans = 0;
 
-        st = new StringTokenizer(br.readLine());
-        int p = Integer.parseInt(st.nextToken());
-        int v = Integer.parseInt(st.nextToken());
-
-        int end = p + v * t;
-        set.add(new pair(p, v, end));
-        ans++;
 
 
-        for (int i = 1; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             int p2 = Integer.parseInt(st.nextToken());
             int v2 = Integer.parseInt(st.nextToken());
 
             int end2 = p2 + v2 * t;
-            //System.out.println(set.last().end+" "+ end2);
-            if (set.last().end < end2) {
-                set.add(new pair(p2, v2, end2));
-            } else if (set.last().end > end2) {
-                set.remove(set.last());
-                set.add(new pair(p2,v2,end2));
+            arr[i] =new pair(p2,v2,end2);
+            set.add(new pair(p2,v2,end2));
+        }
+
+        Arrays.sort(arr);
+        int start = arr[0].person;
+        for (int i = 0; i < n-1; i++) {
+
+            if (start > arr[i+1].person){
+                set.remove(arr[i+1]);
+            }else {
+                start = arr[i+1].person;
             }
-
-
         }
         System.out.println(set.size());
     }
@@ -61,7 +58,6 @@ public class Main {
 
         @Override
             public int compareTo(pair p) {
-
             return this.end - p.end;
         }
         }
