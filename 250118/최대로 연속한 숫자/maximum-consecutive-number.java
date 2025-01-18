@@ -20,11 +20,8 @@ public class Main {
         }
 
         st = new StringTokenizer(br.readLine());
-        int max = Integer.MIN_VALUE;
-
         TreeSet<Integer> removeSet = new TreeSet<>();
         TreeSet<pair> ansSet = new TreeSet<>();
-        int [] arr =new int[m];
 
         for (int i = 0; i < m; i++) {
             int num = Integer.parseInt(st.nextToken());
@@ -49,12 +46,16 @@ public class Main {
             if (removeSet.higher(num)!= null) {
                 next = removeSet.higher(num)-1;
             }
-            //ystem.out.println("num: "+num+" bottom: "+ bottom+ " top: "+top+" prev:" +prev+ " next: "+next);
+            //System.out.println("num: "+num+" bottom: "+ bottom+ " top: "+top+" prev:" +prev+ " next: "+next);
             if (i>0)
                 ansSet.remove(new pair(next-prev,prev,next));
+
             ansSet.add(new pair(bottom-prev,prev,bottom));
             ansSet.add(new pair(next-top,top,next));
 
+//            Iterator<pair> iter = ansSet.iterator();
+//            while (iter.hasNext())
+//                System.out.println(iter.next().length);
 
             System.out.println(ansSet.first().length+1);
 
@@ -75,7 +76,9 @@ public class Main {
                 this.end = end;
             }
             @Override
-            public int compareTo(pair p) {
+            public int compareTo(pair p) { //여기에 없으면 아예 적용이 안되는거라고???
+                if (p.length==this.length)
+                    return p.start-this.start;
                 return p.length-this.length;
 
             }
