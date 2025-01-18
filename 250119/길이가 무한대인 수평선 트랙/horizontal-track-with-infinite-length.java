@@ -17,6 +17,7 @@ public class Main {
         //만나면 remove
         //분 -> 시간초과ㅠ
         //중복제거,
+        //31, 92,103,14
         int ans = 0;
 
         st = new StringTokenizer(br.readLine());
@@ -34,15 +35,17 @@ public class Main {
             int v2 = Integer.parseInt(st.nextToken());
 
             int end2 = p2 + v2 * t;
+            //System.out.println(set.last().end+" "+ end2);
             if (set.last().end < end2) {
                 set.add(new pair(p2, v2, end2));
-                ans++;
+            } else if (set.last().end > end2) {
+                set.remove(set.last());
+                set.add(new pair(p2,v2,end2));
             }
 
 
-
         }
-        System.out.println(ans);
+        System.out.println(set.size());
     }
 
         static class pair implements Comparable<pair> {
