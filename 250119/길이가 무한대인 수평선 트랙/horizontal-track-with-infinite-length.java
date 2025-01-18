@@ -11,52 +11,29 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int t = Integer.parseInt(st.nextToken());
-        pair [] arr = new pair[n];
-        TreeSet<pair> set = new TreeSet<>();
-
-
+ 
+        TreeSet<Long> set = new TreeSet<>();
 
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            int p2 = Integer.parseInt(st.nextToken());
-            int v2 = Integer.parseInt(st.nextToken());
+            int start = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
 
-            int end2 = p2 + v2 * t;
-            arr[i] =new pair(p2,v2,end2);
-            set.add(new pair(p2,v2,end2));
-        }
-
-        Arrays.sort(arr);
-        int start = arr[0].person;
-        for (int i = 0; i < n-1; i++) {
-
-            if (start > arr[i+1].person){
-                set.remove(arr[i+1]);
-            }else {
-                start = arr[i+1].person;
+            long end = (long) (start + v * t);
+            
+            //앞선사람 모두 제거
+            while(true) {
+                if (set.higher(end) == null)
+                    break;
+                long next = set.higher(end);
+                set.remove(next);
             }
+            
+            set.add(end);
+         
         }
         System.out.println(set.size());
-    }
-
-        static class pair implements Comparable<pair> {
-        int person;
-        int velocity;
-        int end;
-
-        pair(int person, int velocity,int end) {
-            this.person = person;
-            this.velocity = velocity;
-            this.end = end;
-        }
-
-        @Override
-            public int compareTo(pair p) {
-            if (this.end == p.end)
-                return p.person -this.person;
-            return this.end - p.end;
-        }
-        }
+    }      
 
 }
