@@ -14,11 +14,6 @@ public class Main {
         pair [] arr = new pair[n];
         TreeSet<pair> set = new TreeSet<>();
 
-        //만나면 remove
-        //분 -> 시간초과ㅠ
-        //중복제거,
-        //31, 92,103,14
-        int ans = 0;
 
 
 
@@ -58,6 +53,8 @@ public class Main {
 
         @Override
             public int compareTo(pair p) {
+            if (this.end == p.end)
+                return p.person -this.person;
             return this.end - p.end;
         }
         }
