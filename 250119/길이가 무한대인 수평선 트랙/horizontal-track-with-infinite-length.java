@@ -20,7 +20,7 @@ public class Main {
             int start = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
 
-            long end = (long) (start + v * t);
+            long end = start + (long)v * t;
             
             //앞선사람 모두 제거
             while(true) {
