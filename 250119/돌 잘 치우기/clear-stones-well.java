@@ -15,6 +15,7 @@ public class Main {
     static int m;
     static ArrayList<pair> arrayList;
     static int max = Integer.MIN_VALUE;
+    static  Queue<pair> queue = new LinkedList<>();
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -48,10 +49,7 @@ public class Main {
         System.out.println(max);
 
     }
-    static void bfs(int r, int c) {
-        visit[r][c] = true;
-        Queue<pair> queue = new LinkedList<>();
-        queue.add(new pair(r,c));
+    static void bfs() {
 
         while (!queue.isEmpty()) {
             pair pair = queue.poll();
@@ -74,15 +72,19 @@ public class Main {
     static void dfs(int depth) {
         if (depth == m) {
             arr2 = new int[n+1][n+1];
-
+            visit = new boolean[n+1][n+1];
+            
             for (int i = 0; i < k; i++) {
                 pair p = arrayList.get(i);
                 int r = p.x;
                 int c = p.y;
-                visit = new boolean[n+1][n+1];
-                bfs(r,c);
+                visit[r][c] = true;
+                arr2[r][c] = 2;
+                queue.add(new pair(r,c));
             }
-
+            
+            bfs();
+            
             int sum = 0;
             for (int i = 1; i <= n; i++) {
                 for (int j = 1; j <= n ; j++) {
