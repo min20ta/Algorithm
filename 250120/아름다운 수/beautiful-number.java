@@ -7,7 +7,7 @@ public class Main {
 
 
     static int n;
-    static ArrayList<String> arrayList = new ArrayList<>();
+    static ArrayList<Integer> arrayList = new ArrayList<>();
     static int sum = 0;
 
 
@@ -26,46 +26,29 @@ public class Main {
     
     static void num(int idx) {
         if (idx == n) {
-            if (idx != 1) {
-            String str = "" ;
-            for (String a : arrayList){
-                str += a;
-            }
-
-            sum+=check(str);}
-            else if (idx == 1)
-                sum = 1;
+            sum+=check();
             return;
         }
 
         for (int i = 1; i <= 4; i++) {
-            arrayList.add(i+"");
+            arrayList.add(i);
             num(idx+1);
             arrayList.remove(arrayList.size()-1);
         }
     }
 
-    static int check(String str) {
+    static int check() {
 
-        int count = 0;
-        int start = 0;
-        boolean flag = true;
-
-        for (int i = 0; i < n-1; i++) {
-
-            if (str.charAt(i) != str.charAt(i+1)) {
-                count = i-start+1;
-                if (count % str.charAt(i) != 0) {
-                    flag = false;
-                    break;
-                }
+        for (int i = 0; i < n; i+= arrayList.get(i)) {
+            if (i+arrayList.get(i)-1 >= n)
+                return 0;
+            
+            for (int j = i; j <i+arrayList.get(i) ; j++) {
+                if (arrayList.get(j)!=arrayList.get(i))
+                    return 0;
             }
         }
-
-        if (flag)
-            return 1;
-        else
-            return 0;
+        return 1;
 
     }
 
