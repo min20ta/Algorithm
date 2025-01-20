@@ -54,7 +54,7 @@ public class Main {
                 pair p = q.poll();
 
                 if (arrayList.get(i) == 1){
-                    firstBom(p.y);
+                    firstBom(p.x, p.y);
                 }else if (arrayList.get(i) == 2) {
                     secondBom(p.x, p.y);
                 } else if (arrayList.get(i) == 3) {
@@ -67,10 +67,13 @@ public class Main {
             int sum = 0;
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
+                    //System.out.print(arr[i][j]+" ");
                     if (arr[i][j] == 1)
                         sum++;
                 }
+                //System.out.println();
             }
+            //System.out.println();
 
             max = Math.max(max, sum);
 
@@ -83,9 +86,17 @@ public class Main {
             arrayList.remove(arrayList.size()-1);
         }
     }
-    static void firstBom(int j) {
-        for (int i = 0; i < n; i++) {
-            arr[i][j] = 1;
+    static void firstBom(int x, int y) {
+        int [] dx = {-1,-2,1,2};
+        int [] dy = {0,0,0,0};
+
+        for (int i = 0; i < 4; i++) {
+            int newx = x + dx[i];
+            int newy = y + dy[i];
+
+            if (newx >= 0 && newx < n && newy >= 0 && newy < n){
+                arr[newx][newy] = 1;
+            }
         }
     }
 
@@ -127,5 +138,4 @@ public class Main {
             this.x = x;
             this.y = y;
         }
-    }
-}
+    }}
