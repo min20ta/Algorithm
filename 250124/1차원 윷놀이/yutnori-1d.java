@@ -11,7 +11,7 @@ public class Main {
     static int [] arr;
     static int max = Integer.MIN_VALUE;
     static ArrayList<Integer> arrayList = new ArrayList<>();
-
+    static  Map<Integer,Integer> map = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -48,8 +48,8 @@ public class Main {
 
     static int calc() {
         int sum = 0;
-        
-        Map<Integer,Integer> map = new HashMap<>();
+
+
         for (int i = 0; i < n; i++) {
             int queen = arrayList.get(i);
             int distance = arr[i];
@@ -61,9 +61,14 @@ public class Main {
                 sum++;
             }
         }
+        
+        map.clear();
+        
         return sum;
     }
     }
+
+
 
 
 
