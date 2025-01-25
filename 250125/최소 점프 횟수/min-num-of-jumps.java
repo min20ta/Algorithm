@@ -28,27 +28,27 @@ public class Main {
 
         //최소점프수
         //최대 점프가능 거리
-        findMin(0,0,0);
+        findMin(0);
         if (min == Integer.MAX_VALUE)
             System.out.println(-1);
         else
             System.out.println(min);
     }
 
-    static void findMin(int idx, int prev, int jump){
+    static void findMin(int idx){
 
         if (idx == n-1){
-            min = Math.min(min, jump);
+            min = Math.min(min, arrayList.size());
             return;
         }
 
 
-        for (int i = 1 ; i <= arr[prev] ; i++) {
-            if (prev + i > n)
-                return;
+        for (int i = 1 ; i <= arr[idx] ; i++) {
+            if (idx + i >= n)
+                continue;
 
-            arrayList.add(prev+i);
-            findMin(prev+i, prev+i, jump+1);
+            arrayList.add(idx+i);
+            findMin(idx+i);
             arrayList.remove(arrayList.size()-1);
 
         }
@@ -58,6 +58,8 @@ public class Main {
 
 
     }    }
+
+
 
 
 
