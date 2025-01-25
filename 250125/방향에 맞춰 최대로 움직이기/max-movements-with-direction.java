@@ -51,7 +51,10 @@ public class Main {
         //시작점에서 방향에 있는 숫자 중 더 큰것만 가능
         queue.add(new pair(r,c,0));
         findMax();
-        System.out.println(max);
+        if (max == Integer.MIN_VALUE)
+            System.out.println(0);
+        else 
+            System.out.println(max);
 
         }
 
