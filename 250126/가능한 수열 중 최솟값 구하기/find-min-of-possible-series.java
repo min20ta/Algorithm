@@ -6,8 +6,10 @@ import java.io.*;
 public class Main {
 
     static int n ;
+    static int [] arr;
+    static int [] ansArr;
     static ArrayList<Integer> arrayList = new ArrayList<>();
-
+    static int min = Integer.MAX_VALUE;
 
 
 
@@ -38,6 +40,8 @@ public class Main {
         }
 
         for (int i = 4; i <=6 ; i++) {
+            if (arrayList.size()>0 && arrayList.get(arrayList.size()-1) == i)
+                continue;
             arrayList.add(i);
             findMin(count+1);
             arrayList.remove(arrayList.size()-1);
