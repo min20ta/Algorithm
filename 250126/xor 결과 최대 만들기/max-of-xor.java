@@ -27,18 +27,18 @@ public class Main {
         }
 
         //인자사용은 특정 수의 개수 m개 필요시 편리
-        find(0,0);
+        find(0,0,0);
         System.out.println(max);
     }
 
-    static void find(int depth, int ans) {
+    static void find(int depth, int ans, int start) {
         if (depth == m) {
             max = Math.max(max, ans);
             return;
         }
 
-        for (int i = 0; i < n ; i++) {
-                find(depth+1, ans^arr[i]);
+        for (int i = start; i < n ; i++) {
+                find(depth+1, ans^arr[i],i+1);
 
         }
     }
