@@ -27,11 +27,11 @@ public class Main {
             sumAll+= num;
         }
         //n개씩 2개그룹]
-        findMin(0);
+        findMin(0,0);
         System.out.println(min);
 
     }
-    static void findMin(int depth) {
+    static void findMin(int depth, int start) {
 
 
         if (depth == n){
@@ -40,6 +40,7 @@ public class Main {
                 sum+= arrayList.get(i);
             }
             int sum2 = sumAll - sum;
+//            System.out.println(sum+" "+sum2+" ");
             int diff = Math.abs(sum - sum2);
             min = Math.min(min, diff);
 
@@ -47,9 +48,10 @@ public class Main {
 
     }
         //정해진 개수가 있을때
-        for (int i = 0; i < 2*n; i++) {
+        //중복조심
+        for (int i = start; i < 2*n; i++) {
             arrayList.add(arr[i]);
-            findMin(depth+1);
+            findMin(depth+1,i+1);
             arrayList.remove(arrayList.size()-1);
         }
 
@@ -57,6 +59,11 @@ public class Main {
 
 
         }
+
+
+
+
+
 
 
 
