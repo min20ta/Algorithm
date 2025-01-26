@@ -37,7 +37,7 @@ public class Main {
             return;
         }
 
-        for (int i = 1; i <= n ; i++) {
+        for (int i = 0; i < n ; i++) {
                 find(depth+1, ans^arr[i]);
 
         }
