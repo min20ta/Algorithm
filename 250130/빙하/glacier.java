@@ -109,6 +109,7 @@ public class Main {
                 if (arr[i][j] == 1 && neighberWater(i,j)){
                     arr[i][j] = 0;
                     glacierToMelt.add(new pair(i,j));
+                    visit[i][j] = true; 
                 }
             }
         }
@@ -140,6 +141,8 @@ public class Main {
 
 
         }
+
+
 
 
 
