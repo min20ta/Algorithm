@@ -16,6 +16,7 @@ public class Main {
     static int [] dx ={0,1,0,-1};
     static int [] dy ={1,0,-1,0};
     static Queue<pair> q = new LinkedList<>();
+    static Queue<pair> glacierToMelt = new LinkedList<>();
     static int time = 0;
     static int lastMeltCount  = 0;
 
@@ -45,22 +46,30 @@ public class Main {
         //0그룹찾기
         // 하나씩 다 안하고 이어서 하는 방법- 따로 큐 만들어서 "원래 큐 뒤에 넣어줌"!
 
-
-        groupVisit = new boolean[n][m];
-        do{simulate();
-        }while (glacierExist());
+        visit = new boolean[n][m]; //이걸 매번 하기가 싫음
+        q.add(new pair(0,0));
+        boolean flag;
+        do{
+            flag = simulate();
+        }while (flag);
 
         System.out.println(time+" "+ lastMeltCount);
 
 
     }
-    static void simulate() {
-        time++;
-        lastMeltCount=0;
-
+    static boolean simulate() {
         bfs(); //빙하에 둘러쌓여 있지 않은 0그룹
 
+        if (glacierToMelt.size() == 0) //새롭게 큐에 들어간 애들
+            return false;
+
+        time++;
+        lastMeltCount= glacierToMelt.size();
+        q = new LinkedList<>(glacierToMelt);
+
         melt(); //0그룹하나씩 방문하여 녹이기
+
+        return true;
 
     }
     static boolean glacierExist() {
@@ -74,9 +83,6 @@ public class Main {
     }
 
     static void bfs() {
-        visit = new boolean[n][m];
-        q.add(new pair(0,0));
-        visit[0][0] = true;
 
         while(!q.isEmpty()) {
             pair curPos = q.poll();
@@ -102,7 +108,7 @@ public class Main {
             for (int j = 0; j < m; j++) {
                 if (arr[i][j] == 1 && neighberWater(i,j)){
                     arr[i][j] = 0;
-                    lastMeltCount++;
+                    glacierToMelt.add(new pair(i,j));
                 }
             }
         }
@@ -134,9 +140,6 @@ public class Main {
 
 
         }
-
-
-
 
 
 
