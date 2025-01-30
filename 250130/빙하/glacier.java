@@ -48,10 +48,7 @@ public class Main {
 
         visit = new boolean[n][m]; //이걸 매번 하기가 싫음
         q.add(new pair(0,0));
-        boolean flag;
-        do{
-            flag = simulate();
-        }while (flag);
+        while (simulate());
 
         System.out.println(time+" "+ lastMeltCount);
 
@@ -59,7 +56,7 @@ public class Main {
     }
     static boolean simulate() {
         bfs(); //빙하에 둘러쌓여 있지 않은 0그룹
-
+        
         if (glacierToMelt.size() == 0) //새롭게 큐에 들어간 애들
             return false;
 
@@ -71,15 +68,6 @@ public class Main {
 
         return true;
 
-    }
-    static boolean glacierExist() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (arr[i][j] == 1)
-                    return true;
-            }
-        }
-        return false;
     }
 
     static void bfs() {
@@ -97,36 +85,25 @@ public class Main {
                     if (arr[nx][ny] == 0 && !visit[nx][ny]) {
                         q.add(new pair(nx, ny));
                         visit[nx][ny] = true;
+                    }else if (arr[nx][ny] == 1 && !visit[nx][ny]) {
+                        glacierToMelt.add(new pair(nx,ny));
+                        visit[nx][ny] = true;
                     }
                 }
             }
         }
     }
-
-    static void melt(){
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (arr[i][j] == 1 && neighberWater(i,j)){
-                    arr[i][j] = 0;
-                    glacierToMelt.add(new pair(i,j));
-                    visit[i][j] = true; 
-                }
-            }
+    static void melt() {
+        while(!glacierToMelt.isEmpty()){
+            pair p = glacierToMelt.poll();
+            int x = p.x;
+            int y = p.y;
+            
+            arr[x][y] = 0;
         }
     }
 
-    static boolean neighberWater(int x, int y) {
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            if (nx>= 0 && nx < n && ny >= 0 && ny < m){
-                if (visit[nx][ny])
-                    return true;
-            }
-        }
-        return false;
-    }
+   
 
 
         static class pair {
@@ -141,8 +118,6 @@ public class Main {
 
 
         }
-
-
 
 
 
