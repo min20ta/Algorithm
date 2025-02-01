@@ -29,7 +29,10 @@ public class Main {
         //+-1 , 2로 나누어 떨어질 경우 /2, 3으로 나누어 떨어질 경우 /3
 
         bfs();
-        System.out.println(arr[1]);
+        if (n == 1)
+            System.out.println(0);
+        else
+            System.out.println(arr[1]);
 
 
 
@@ -71,6 +74,7 @@ public class Main {
 
 
         }
+
 
 
 
