@@ -7,9 +7,7 @@ public class Main {
 
     static int n ;
     static boolean [] visit;
-    static int [] parent;
-    static int [][] lenArr;
-    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
+    static ArrayList<ArrayList<pair>> arrayList = new ArrayList<>();
     static int max = Integer.MIN_VALUE;
     static int number;
 
@@ -20,19 +18,16 @@ public class Main {
         for (int i = 0; i < n+1; i++) {
             arrayList.add(new ArrayList<>());
         }
-
-        lenArr = new int [n+1][n+1];
+        
         for (int i = 0; i < n-1; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int len = Integer.parseInt(st.nextToken());
 
-            arrayList.get(a).add(b);
-            arrayList.get(b).add(a);
+            arrayList.get(a).add(new pair(b,len));
+            arrayList.get(b).add(new pair(a,len));
 
-            lenArr[a][b] = len;
-            lenArr[b][a] = len;
         }
 
         visit = new boolean[n+1];
@@ -57,21 +52,32 @@ public class Main {
         if (max < len){
             max = len;
             number = node;
-            
+
         }
 
-        for(int next : arrayList.get(node)){
-            if (!visit[next]) {
-                visit[next] = true;
-                tree(next, len+lenArr[node][next]);
+        for(pair next : arrayList.get(node)){
+            if (!visit[next.x]) {
+                visit[next.x] = true;
+                tree(next.x, len+next.len);
             }
         }
 
     }
 
+    static class pair{
+        int x;
+        int len;
+
+        pair(int x,int len) {
+            this.x = x;
+            this.len = len;
+        }
+    }
+
 
 
         }
+
 
 
 
