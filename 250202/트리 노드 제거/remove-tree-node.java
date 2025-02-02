@@ -38,6 +38,12 @@ public class Main {
         }
 
         int erase = Integer.parseInt(br.readLine());
+
+          if (erase == root) {
+            System.out.println(0);
+            return;
+        }
+
         arrayList.get(erase).clear();
         arrayList.get(parent[erase]).remove(Integer.valueOf(erase));
 
