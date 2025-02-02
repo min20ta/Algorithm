@@ -12,6 +12,9 @@ public class Main {
     static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     static int max = Integer.MIN_VALUE;
     static int count;
+    static Map<Integer,Integer> map = new HashMap<>();
+    static Map<Integer,Integer> goMap = new HashMap<>();
+
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +25,6 @@ public class Main {
         }
 
 
-        Map<Integer,Integer> map = new HashMap<>();
 
         for (int i = 0; i < m; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -37,7 +39,7 @@ public class Main {
             map.put(b,map.getOrDefault(b, 0)+1);
 
         }
-        
+
 
         int rootCount = 0;
         boolean overOneLine = false;
@@ -51,35 +53,44 @@ public class Main {
             }
         }
 
-//        visit = new boolean[m+1];
-//        visit[root] = true;
-//        tree(root);
-
-        
-        if (rootCount != 1 || overOneLine)
+        if (rootCount != 1 || overOneLine) {
             System.out.println(0);
-        else
+            System.exit(0);
+        }
+        visit = new boolean[10001];
+        visit[root] = true;
+        tree(root);
+
+        boolean isOneDistacne = true;
+        for (Integer i : map.keySet()) {
+            if (goMap.get(i) != 1)
+                isOneDistacne = false;
+            break;
+        }
+        
+        if (isOneDistacne)
             System.out.println(1);
+        else
+            System.out.println(0);
+
+
+            
 
 
     }
 
-    //리프노드인거 어떻게 판별하지
     static void tree(int node) {
 
-        boolean isLeaf = true;
+
 
         for(int next : arrayList.get(node)){
             if (!visit[next]) {
                 visit[next] = true;
-                isLeaf = false;
+                goMap.put(next, goMap.getOrDefault(next, 0)+1);
                 tree(next);
             }
         }
-
-        if (isLeaf)
-            count++;
-
+      
     }
 
 
@@ -87,6 +98,12 @@ public class Main {
 
 
         }
+
+
+
+
+
+
 
 
 
