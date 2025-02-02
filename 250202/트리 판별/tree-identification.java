@@ -37,7 +37,7 @@ public class Main {
             arrayList.get(b).add(a);
 
 
-            map.put(a,0);
+
             map.put(b,map.getOrDefault(b, 0)+1);
 
             used[a] = 1;
@@ -47,11 +47,11 @@ public class Main {
 
         int rootCount = 0;
         boolean overOneLine = false;
-        for (Integer i : map.keySet()) {
-            if (map.get(i) == 0){
+        for (int i = 1 ; i <= 10000 ; i++) {
+            if (used[i] == 1 && !map.containsKey(i)){
                 root =i;
                 rootCount++;
-            }else if (map.get(i) > 1){
+            }else if (map.containsKey(i) && map.get(i) > 1){
                 overOneLine = true;
                 break;
             }
@@ -61,6 +61,7 @@ public class Main {
             System.out.println(0);
             System.exit(0);
         }
+
         visit = new boolean[10001];
         visit[root] = true;
         tree(root);
@@ -100,16 +101,6 @@ public class Main {
 
 
         }
-
-
-
-
-
-
-
-
-
-
 
 
 
