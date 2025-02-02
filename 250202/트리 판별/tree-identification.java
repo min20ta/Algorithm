@@ -66,7 +66,7 @@ public class Main {
         tree(root);
 
         boolean isOneDistacne = true;
-        for (int i = 1; i < 10001; i++) {
+        for (int i = 0; i < 10001; i++) {
             if (used[i]== 1 && !visit[i])
                 isOneDistacne = false;
         }
