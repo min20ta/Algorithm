@@ -8,6 +8,7 @@ public class Main {
     static int m ;
     static int root ;
     static boolean [] visit;
+    static int [] used;
     static int [] parent;
     static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     static int max = Integer.MIN_VALUE;
@@ -25,6 +26,7 @@ public class Main {
         }
 
 
+        used = new int[10001];
 
         for (int i = 0; i < m; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -38,6 +40,8 @@ public class Main {
             map.put(a,0);
             map.put(b,map.getOrDefault(b, 0)+1);
 
+            used[a] = 1;
+            used[b] = 1;
         }
 
 
@@ -62,23 +66,22 @@ public class Main {
         tree(root);
 
         boolean isOneDistacne = true;
-        for (Integer i : map.keySet()) {
-            if (goMap.get(i) != 1)
+        for (int i = 1; i < 10001; i++) {
+            if (used[i]== 1 && !visit[i])
                 isOneDistacne = false;
-            break;
         }
-        
         if (isOneDistacne)
             System.out.println(1);
         else
             System.out.println(0);
 
 
-            
+
 
 
     }
 
+    //경로 유일 판단
     static void tree(int node) {
 
 
@@ -86,11 +89,10 @@ public class Main {
         for(int next : arrayList.get(node)){
             if (!visit[next]) {
                 visit[next] = true;
-                goMap.put(next, goMap.getOrDefault(next, 0)+1);
                 tree(next);
             }
         }
-      
+
     }
 
 
@@ -98,6 +100,9 @@ public class Main {
 
 
         }
+
+
+
 
 
 
