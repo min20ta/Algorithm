@@ -56,11 +56,12 @@ public class Main {
 
         visit = new boolean[n+1];
         visit[findingNode] = true;
+        subMax = Integer.MIN_VALUE;
         int start = findingNode;
         tree(findingNode,0);
-
         int end = findingNode;
 
+        
         int startLen = arrayList.get(start).get(0).len;
         int endLen = arrayList.get(end).get(0).len;
         int small = 0; int big = 0;
@@ -74,13 +75,14 @@ public class Main {
         }
 
 
+
         visit = new boolean[n+1];
         visit[small] = true;
         visit[big] = true;
         subMax = Integer.MIN_VALUE;
         tree(big,0);
 
-        
+
         System.out.println(subMax);
 
 
