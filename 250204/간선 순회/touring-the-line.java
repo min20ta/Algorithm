@@ -14,7 +14,6 @@ public class Main {
     static int [] findArr;
     static int[] arr;
     static ArrayList<ArrayList<pair>> arrayList = new ArrayList<>();
-    static int min = Integer.MAX_VALUE;
     static int minLen = Integer.MAX_VALUE;
     static int subMax = Integer.MIN_VALUE;
     static int max = Integer.MIN_VALUE;
@@ -70,8 +69,7 @@ public class Main {
         ans = minLen/d;
         if (minLen % d != 0)
             ans++;
-        min = Math.min(min,ans);
-        System.out.println(min);
+        System.out.println(ans);
 
     }
 
@@ -116,8 +114,6 @@ public class Main {
 
 
         }
-
-
 
 
 
