@@ -20,6 +20,7 @@ public class Main {
     static int subMax = Integer.MIN_VALUE;
     static int maxLen = Integer.MIN_VALUE;
     static int maxCount = Integer.MIN_VALUE;
+    static treeSort maxT = new treeSort(0,0);
 
 
 
@@ -58,21 +59,18 @@ public class Main {
         Arrays.sort(findArr);
 
         for (int i = n; i >= 2 ; i--) {
-            
+
             if (findArr[i] == findArr[n]) {
                 visit = new boolean[n+1];
                 visit[i] =true;
-                maxLen = Integer.MIN_VALUE;
-                maxCount = Integer.MIN_VALUE;
-
+             
                 tree2(i,0,0);
-                findList.add(new treeSort(maxCount, maxLen));
+          
             }
         }
-        
-        Collections.sort(findList);
-        ans = findList.get(0).distance/d;
-        if (findList.get(0).distance % d != 0)
+
+        ans = maxT.distance/d;
+        if (maxT.distance % d != 0)
             ans++;
         System.out.println(ans);
 
@@ -95,15 +93,15 @@ public class Main {
 
     static void tree2(int node,int count, int len) {
 
-        if(maxCount <= count) {
-            maxCount = count;
-            maxLen = len;
-        }
-   
 
         for (pair next : arrayList.get(node)) {
             if (!visit[next.x]) {
                 visit[next.x] = true;
+                treeSort t = new treeSort(count+1, len+next.len);
+                if(t.isGreaterThan(maxT)) {
+                    maxT = t;
+                }
+
                 tree2(next.x,count+1, len+next.len);
             }
         }
@@ -119,7 +117,7 @@ public class Main {
         }
     }
 
-    static class treeSort implements Comparable<treeSort>{
+    static class treeSort {
         int count;
         int distance;
 
@@ -127,18 +125,19 @@ public class Main {
             this.count = count;
             this.distance = distance;
         }
-        @Override
-        public int compareTo(treeSort t) {
+
+        public boolean isGreaterThan(treeSort t) {
             if (this.count == t.count)
-                return this.distance - t.distance;
-            return t.count - this.count;
+                return this.distance <= t.distance;
+            return t.count < this.count;
         }
     }
 
 
 
 
-        }
+}
+
 
 
 
