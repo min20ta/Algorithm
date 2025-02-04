@@ -20,6 +20,7 @@ public class Main {
     static int subMax = Integer.MIN_VALUE;
     static int maxLen = Integer.MIN_VALUE;
     static int maxCount = Integer.MIN_VALUE;
+    static int secondMax = Integer.MIN_VALUE;
 
 
 
@@ -60,30 +61,27 @@ public class Main {
         int start = findingNode;
         tree(findingNode,0);
         int end = findingNode;
-
         
-        int startLen = arrayList.get(start).get(0).len;
-        int endLen = arrayList.get(end).get(0).len;
-        int small = 0; int big = 0;
-
-        if (startLen < endLen){
-            small = start;
-            big = end;
-        }else {
-            small = end;
-            big = start;
-        }
-
 
 
         visit = new boolean[n+1];
-        visit[small] = true;
-        visit[big] = true;
+        visit[start] = true;
+        visit[end] = true;
         subMax = Integer.MIN_VALUE;
-        tree(big,0);
+        tree(start,0);
+        int first = subMax;
 
 
-        System.out.println(subMax);
+        visit = new boolean[n+1];
+        visit[start] = true;
+        visit[end] = true;
+        subMax = Integer.MIN_VALUE;
+        tree(end,0);
+        int second = subMax;
+
+
+
+        System.out.println(Math.max(first,second));
 
 
 
@@ -97,7 +95,6 @@ public class Main {
             subMax = len;
             findingNode = node;
         }
-
         for (pair next : arrayList.get(node)) {
             if (!visit[next.x]) {
                 visit[next.x] = true;
@@ -125,6 +122,10 @@ public class Main {
 
 
 }
+
+
+
+
 
 
 
