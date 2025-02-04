@@ -14,7 +14,7 @@ public class Main {
     static int [] findArr;
     static int[] arr;
     static ArrayList<ArrayList<pair>> arrayList = new ArrayList<>();
-    static ArrayList<treeSort> findList = new ArrayList<>();
+    static ArrayList<Integer> findList = new ArrayList<>();
 
     static int minLen = Integer.MAX_VALUE;
     static int subMax = Integer.MIN_VALUE;
@@ -56,17 +56,15 @@ public class Main {
         findArr = new int[n+1];
         visit[1] = true;
         tree(1,0,0);
-        Arrays.sort(findArr);
 
-        for (int i = n; i >= 2 ; i--) {
 
-            if (findArr[i] == findArr[n]) {
+        for (Integer i : findList) {
                 visit = new boolean[n+1];
                 visit[i] =true;
-             
+
                 tree2(i,0,0);
-          
-            }
+
+
         }
 
         ans = maxT.distance/d;
@@ -78,9 +76,12 @@ public class Main {
 
     static void tree(int node, int count, int len) {
 
-        if (subMax <= count) {
+        if (subMax < count) {
             subMax = count;
-            findArr[node] = count;
+            findList.clear();
+            findList.add(node);
+        } else if (subMax == count) {
+            findList.add(node);
         }
 
         for (pair next : arrayList.get(node)) {
@@ -100,6 +101,7 @@ public class Main {
                 treeSort t = new treeSort(count+1, len+next.len);
                 if(t.isGreaterThan(maxT)) {
                     maxT = t;
+                    
                 }
 
                 tree2(next.x,count+1, len+next.len);
