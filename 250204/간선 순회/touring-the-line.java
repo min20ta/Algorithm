@@ -14,9 +14,12 @@ public class Main {
     static int [] findArr;
     static int[] arr;
     static ArrayList<ArrayList<pair>> arrayList = new ArrayList<>();
+    static ArrayList<treeSort> findList = new ArrayList<>();
+
     static int minLen = Integer.MAX_VALUE;
     static int subMax = Integer.MIN_VALUE;
-    static int max = Integer.MIN_VALUE;
+    static int maxLen = Integer.MIN_VALUE;
+    static int maxCount = Integer.MIN_VALUE;
 
 
 
@@ -55,19 +58,21 @@ public class Main {
         Arrays.sort(findArr);
 
         for (int i = n; i >= 2 ; i--) {
+            
             if (findArr[i] == findArr[n]) {
                 visit = new boolean[n+1];
                 visit[i] =true;
-                max = Integer.MIN_VALUE;
+                maxLen = Integer.MIN_VALUE;
+                maxCount = Integer.MIN_VALUE;
 
-                tree2(i,0);
-
-                minLen = Math.min(max, minLen);
-
+                tree2(i,0,0);
+                findList.add(new treeSort(maxCount, maxLen));
             }
         }
-        ans = minLen/d;
-        if (minLen % d != 0)
+        
+        Collections.sort(findList);
+        ans = findList.get(0).distance/d;
+        if (findList.get(0).distance % d != 0)
             ans++;
         System.out.println(ans);
 
@@ -88,14 +93,15 @@ public class Main {
         }
     }
 
-    static void tree2(int node,int len) {
+    static void tree2(int node,int count, int len) {
 
-        max = Math.max(max, len);
+        maxLen = Math.max(len, maxLen);
+        maxCount = Math.max(count, maxCount);
 
         for (pair next : arrayList.get(node)) {
             if (!visit[next.x]) {
                 visit[next.x] = true;
-                tree2(next.x,len+next.len);
+                tree2(next.x,count+1, len+next.len);
             }
         }
     }
@@ -110,10 +116,30 @@ public class Main {
         }
     }
 
+    static class treeSort implements Comparable<treeSort>{
+        int count;
+        int distance;
+
+        treeSort(int count,int distance) {
+            this.count = count;
+            this.distance = distance;
+        }
+        @Override
+        public int compareTo(treeSort t) {
+            if (this.count == t.count)
+                return this.distance - t.distance;
+            return t.count - this.count;
+        }
+    }
+
 
 
 
         }
+
+
+
+
 
 
 
