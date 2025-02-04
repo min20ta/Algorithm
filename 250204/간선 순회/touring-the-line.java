@@ -95,8 +95,11 @@ public class Main {
 
     static void tree2(int node,int count, int len) {
 
-        maxLen = Math.max(len, maxLen);
-        maxCount = Math.max(count, maxCount);
+        if(maxCount <= count) {
+            maxCount = count;
+            maxLen = len;
+        }
+   
 
         for (pair next : arrayList.get(node)) {
             if (!visit[next.x]) {
