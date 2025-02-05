@@ -7,10 +7,11 @@ public class Main {
 
     static int n;
     static int m;
-    static int ans = Integer.MIN_VALUE;
+    static int ans = 0;
     static int root;
     static boolean[] visit;
-    static int findingNode;
+    static int edgeCount = 0;
+    static int nodeCount = 0;
     static boolean [] finish;
     static int[][] lineArr;
     static boolean cycle = false ;
@@ -34,7 +35,7 @@ public class Main {
             arrayList.add(new ArrayList<>());
         }
 
-        int checkNode = 0;
+
         for (int i = 0; i < m ; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
@@ -45,25 +46,26 @@ public class Main {
 
             set.add(a); set.add(b);
 
-            checkNode = a;
+
         }
 
 
-        finish = new boolean[n+1];
+
         visit = new boolean[n+1];
-        visit[checkNode] = true;
-         boolean first = edge();
-         boolean second =  place(checkNode);
 
-         ans = n- set.size();
-//        System.out.println(first);
-//        System.out.println(second);
-//        System.out.println(cycle);
-        //그래프가 여러개일수있음
-         if (first && second && !cycle){
-             ans = 1 + n-set.size();
-         }
+        for (int i = 1 ; i <= n ; i++) {
+            if (!visit[i]) {
+                visit[i] = true;
+                nodeCount = 0;
+                edgeCount = 0;
+                cycle = false;
 
+                place(i);
+
+                if (!cycle && edgeCount/2 == nodeCount -1)
+                    ans++;
+            }
+        }
 
 
         System.out.println(ans);
@@ -73,11 +75,6 @@ public class Main {
 
 
 
-    static boolean edge() {
-        if (set.size() -1 == m)
-            return true;
-        return false;
-    }
 
 
     static boolean place(int node) {
@@ -100,7 +97,10 @@ public class Main {
     }
 
     static void tree(int node, int parent) {
+        nodeCount++;
+
         for (Integer next : arrayList.get(node)) {
+            edgeCount++;
             if (!visit[next]) {
                 visit[next] = true;
                 tree(next, node);
@@ -120,6 +120,10 @@ public class Main {
             this.len = len;
         }
     }
+
+
+
+
 
 
 
