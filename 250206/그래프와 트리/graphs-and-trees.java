@@ -13,7 +13,7 @@ public class Main {
     static int findingNode;
     static boolean [] finish;
     static int[][] lineArr;
-    static boolean cycle ;
+    static boolean cycle = false ;
     static int deleteTwo = 0;
     static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     static int subMax = Integer.MIN_VALUE;
@@ -59,7 +59,8 @@ public class Main {
 //        System.out.println(first);
 //        System.out.println(second);
 //        System.out.println(cycle);
-         if (first || second || !cycle){
+        //그래프가 여러개일수있음
+         if (first && second && !cycle){
              ans = 1 + n-set.size();
          }
 
@@ -81,7 +82,7 @@ public class Main {
 
     static boolean place(int node) {
 
-          tree(node);
+          tree(node, -1);
 
           boolean flag = true;
 
@@ -98,15 +99,15 @@ public class Main {
               return false;
     }
 
-    static void tree(int node) {
+    static void tree(int node, int parent) {
         for (Integer next : arrayList.get(node)) {
             if (!visit[next]) {
                 visit[next] = true;
-                tree(next);
-            }else if (!finish[next])
+                tree(next, node);
+            }else if (next != parent)
                 cycle = true;
         }
-        finish[node] = true;
+
     }
 
 
@@ -119,6 +120,23 @@ public class Main {
             this.len = len;
         }
     }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
