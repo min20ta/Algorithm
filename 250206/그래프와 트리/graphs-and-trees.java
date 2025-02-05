@@ -61,10 +61,7 @@ public class Main {
 //        System.out.println(cycle);
          if (first || second || !cycle){
              ans = 1 + n-set.size();
-         }else {
-             ans = 0;
          }
-
 
 
 
@@ -130,5 +127,7 @@ public class Main {
 
 
 }
+
+
 
 
