@@ -72,7 +72,7 @@ public class Main {
         //종료조건을 넣어야함
         if (x==-1)
             return;
-        System.out.println((char)(x+'A'));
+        System.out.print((char)(x+'A'));
         preOrder(leftArr[x]);
         preOrder(rightArr[x]);
     }
@@ -83,7 +83,7 @@ public class Main {
             return;
       
         preOrder(leftArr[x]);
-        System.out.println((char)(x+'A'));
+        System.out.print((char)(x+'A'));
         preOrder(rightArr[x]);
     }
 
@@ -94,7 +94,7 @@ public class Main {
             return;
         preOrder(leftArr[x]);
         preOrder(rightArr[x]);
-        System.out.println((char)(x+'A'));
+        System.out.print((char)(x+'A'));
     }
 
 
