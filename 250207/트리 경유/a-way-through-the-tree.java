@@ -40,7 +40,7 @@ public class Main {
             int x = Integer.parseInt(br.readLine());
             arr[i] = x;
         }
-  
+
         int idx = 0;
 
         //트리 만들기
@@ -59,13 +59,13 @@ public class Main {
             int parent = find/2;
             boolean ans = true;
 
-      
-            while(parent != 1) {
+//            System.out.println(find+" "+ parent);
+            while(parent > 0) {
                 if (tree[parent] != -1){
                     parent = parent/2;
                 }else{
                     ans = false;
-                   System.out.println(parent);
+                    System.out.println(parent);
                     break;
                 }
             }
@@ -90,6 +90,7 @@ public class Main {
 
 
 }
+
 
 
 
