@@ -65,7 +65,7 @@ public class Main {
                     parent = parent/2;
                 }else{
                     ans = false;
-//                    System.out.println(parent);
+                   System.out.println(parent);
                     break;
                 }
             }
