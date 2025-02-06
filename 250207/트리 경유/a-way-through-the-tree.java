@@ -61,7 +61,7 @@ public class Main {
             int block = 0;
 
 //            System.out.println(find+" "+ parent);
-            while(parent > 0) {
+            while(parent > 1) {
                 if (tree[parent] == -1){
                     ans = false;
                     block = parent;
