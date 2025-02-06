@@ -1,71 +1,110 @@
-import java.util.Scanner;
+
+import java.util.*;
+import java.io.*;
+
 
 public class Main {
-    public static final int MAX_N = 26;
-    
-    // 변수 선언
-    public static int n;
-    public static int[] leftNum = new int[MAX_N];
-    public static int[] rightNum = new int[MAX_N];
-    
-    public static void preOrder(int x) {
-        // -1이면 존재하지 않으므로 빠져나갑니다.
-        if(x == -1)
-            return;
-    
-        System.out.print((char)(x + 'A'));
-        preOrder(leftNum[x]);
-        preOrder(rightNum[x]);
-    }
-    
-    public static void inOrder(int x) {
-        // -1이면 존재하지 않으므로 빠져나갑니다.
-        if(x == -1)
-            return;
-    
-        inOrder(leftNum[x]);
-        System.out.print((char)(x + 'A'));
-        inOrder(rightNum[x]);
-    }
-    
-    public static void postOrder(int x) {
-        // -1이면 존재하지 않으므로 빠져나갑니다.
-        if(x == -1)
-            return;
-    
-        postOrder(leftNum[x]);
-        postOrder(rightNum[x]);
-        System.out.print((char)(x + 'A'));
-    }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // 입력:
-        n = sc.nextInt();
+    static int n;
+    static int ans = 0;
+    static int root;
+    static boolean[] visit;
+    static int edgeCount = 0;
+    static int nodeCount = 0;
+    static boolean [] finish;
+    static int [] leftArr;
+    static int [] rightArr;
+    static boolean cycle = false ;
+    static int deleteTwo = 0;
+    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
+    static int subMax = Integer.MIN_VALUE;
+    static Set<Integer>set = new HashSet<>();
 
-        // 자식이 없는 경우 -1을 넣어줍니다.
-        for(int i = 0; i < n; i++)
-            leftNum[i] = rightNum[i] = -1;
 
-        for(int i = 0; i < n; i++) {
-            char x = sc.next().charAt(0);
-            char l = sc.next().charAt(0);
-            char r = sc.next().charAt(0);
 
-            if(l != '.')
-                leftNum[x - 'A'] = l - 'A';
-            if(r != '.')
-                rightNum[x - 'A'] = r - 'A';
+
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        
+        leftArr = new int[26];
+        rightArr = new int[26];
+
+        for (int i = 0; i < n; i++) {
+            leftArr[i] = rightArr[i] = -1;
+        }
+        //리프노드까지 자식 -1로 있어야함
+        //인덱스, 값 전부 정수여야 재귀가능
+        
+
+        for (int i = 1; i <= n ; i++) {
+            st = new StringTokenizer(br.readLine());
+            char x = st.nextToken().charAt(0);
+            char left = st.nextToken().charAt(0);
+            char right = st.nextToken().charAt(0);
+
+            if (left != '.')
+                leftArr[x-'A'] = left - 'A';
+            if (right != '.')
+                rightArr[x-'A'] = right - 'A';
         }
 
-        // 전위 순회를 진행합니다.
+
+
         preOrder(0);
         System.out.println();
-        // 중위 순회를 진행합니다.
+
         inOrder(0);
         System.out.println();
-        // 후위 순회를 진행합니다.
+
         postOrder(0);
         System.out.println();
+
+
+
+
     }
+
+
+    static void preOrder(int x) {
+        //종료조건을 넣어야함
+        if (x==-1)
+            return;
+        System.out.println((char)(x+'A'));
+        preOrder(leftArr[x]);
+        preOrder(rightArr[x]);
+    }
+
+    static void inOrder(int x) {
+        //종료조건을 넣어야함
+        if (x==-1)
+            return;
+      
+        preOrder(leftArr[x]);
+        System.out.println((char)(x+'A'));
+        preOrder(rightArr[x]);
+    }
+
+
+    static void postOrder(int x) {
+        //종료조건을 넣어야함
+        if (x==-1)
+            return;
+        preOrder(leftArr[x]);
+        preOrder(rightArr[x]);
+        System.out.println((char)(x+'A'));
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
