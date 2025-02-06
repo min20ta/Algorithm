@@ -82,9 +82,9 @@ public class Main {
         if (x==-1)
             return;
       
-        preOrder(leftArr[x]);
+        inOrder(leftArr[x]);
         System.out.print((char)(x+'A'));
-        preOrder(rightArr[x]);
+        inOrder(rightArr[x]);
     }
 
 
@@ -92,8 +92,8 @@ public class Main {
         //종료조건을 넣어야함
         if (x==-1)
             return;
-        preOrder(leftArr[x]);
-        preOrder(rightArr[x]);
+        postOrder(leftArr[x]);
+        postOrder(rightArr[x]);
         System.out.print((char)(x+'A'));
     }
 
