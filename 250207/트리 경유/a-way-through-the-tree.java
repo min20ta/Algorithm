@@ -59,7 +59,7 @@ public class Main {
             int parent = find/2;
             boolean ans = true;
 
-            System.out.println(find+" "+ parent);
+      
             while(parent != 1) {
                 if (tree[parent] != -1){
                     parent = parent/2;
