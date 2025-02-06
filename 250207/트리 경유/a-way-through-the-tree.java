@@ -53,8 +53,8 @@ public class Main {
         while (q-- > 0) {
 
             //트리 탐색
-                //도착한거에 -1처리
-                //같은 라인은 괜찮. 부모라인확인필요
+            //도착한거에 -1처리
+            //같은 라인은 괜찮. 부모라인확인필요
             int find = arr[idx++];
             int parent = find/2;
             boolean ans = true;
@@ -69,7 +69,9 @@ public class Main {
                 parent /= 2;
             }
 
-            if (ans){
+            if (ans &&tree[find] == -1)
+                System.out.println(find);
+            else if (ans){
                 System.out.println(0);
                 tree[find] = -1;
             }else
@@ -89,6 +91,7 @@ public class Main {
 
 
 }
+
 
 
 
