@@ -1,30 +1,12 @@
-
 import java.util.*;
 import java.io.*;
-
 
 public class Main {
 
     static int n;
     static int q;
-    static int idx = 0;
-    static int root;
-    static boolean[] visit;
-    static int edgeCount = 0;
-    static int nodeCount = 0;
-    static boolean [] finish;
-    static int [] tree;
-    static int [] rightArr;
-    static int [] arr;
-    static boolean cycle = false ;
-    static int deleteTwo = 0;
-    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
-    static int subMax = Integer.MIN_VALUE;
-    static Set<Integer>set = new HashSet<>();
-
-
-
-
+    static int[] arr;
+    static int[] tree;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,65 +14,41 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         q = Integer.parseInt(st.nextToken());
 
+        arr = new int[q];
+        tree = new int[n + 1];  // ❗ 배열 크기 수정
 
-        arr = new int[q+1];
-        tree = new int[2*n];
-//        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < q ; i++) {
-            int x = Integer.parseInt(br.readLine());
-            arr[i] = x;
+        for (int i = 0; i <= n; i++) {
+            tree[i] = i;  // ❗ 초기화
         }
 
-        int idx = 0;
-
-        //트리 만들기
-        int count = 0;
-
-        for (int i = 1; i <= n ; i++) {
-            tree[i] = i;
+        for (int i = 0; i < q; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
         }
 
-        while (q-- > 0) {
-
-            //트리 탐색
-                //도착한거에 -1처리
-                //같은 라인은 괜찮. 부모라인확인필요
-            int find = arr[idx++];
-            int parent = find/2;
+        for (int i = 0; i < q; i++) {
+            int find = arr[i];  // ❗ idx 대신 직접 접근
+            int parent = find / 2;
             boolean ans = true;
+            int blockedNode = 0;  // ❗ 차단된 노드 저장
 
-//            System.out.println(find+" "+ parent);
-            while(parent > 0) {
-                if (tree[parent] != -1){
-                    parent = parent/2;
-                }else{
+            while (parent > 0) {  // ❗ 수정: parent != 1 ❌ → parent > 0 ⭕
+                if (tree[parent] == -1) {  // ❗ 부모가 차지되었으면
                     ans = false;
-                    System.out.println(parent);
+                    blockedNode = parent;  // 차단된 노드 저장
                     break;
                 }
+                parent /= 2;
             }
 
-            if (ans){
-                System.out.println(0);
-                tree[find] = -1;
-
+            if (ans) {
+                System.out.println(0);  // 이동 가능
+                tree[find] = -1;  // ❗ 노드 차지
+            } else {
+                System.out.println(blockedNode);  // ❗ 차단된 부모 노드 출력
             }
-
-
         }
-
-
-
-
     }
-
-
-
-
-
-
 }
-
 
 
 
