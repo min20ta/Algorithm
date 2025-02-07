@@ -23,42 +23,34 @@ public class Main {
 
         k = Long.parseLong(br.readLine());
 
-        // 공 떨어뜨리기 시뮬레이션
-        int node = 1; // 루트에서 시작
+        int node = 1; // 루트 노드에서 시작
+
         while (true) {
-            // 리프 노드에 도착하면 멈춤
+            // 리프 노드에 도착하면 멈춘다.
             if (left[node] == -1 && right[node] == -1) {
-                System.out.println(node);
-                return;
+                break;
             }
 
-            if (left[node] == -1) {
-                // 왼쪽 자식이 없으면 무조건 오른쪽으로 이동
-                node = right[node];
-            } else if (right[node] == -1) {
-                // 오른쪽 자식이 없으면 무조건 왼쪽으로 이동
-                node = left[node];
-            } else {
-                // 왼쪽과 오른쪽 자식이 모두 있는 경우
-                if (k % 2 == 1) {
-                    node = left[node]; // 왼쪽으로 이동
+            // 왼쪽 서브트리로 이동할 경우
+            if (k % 2 == 1) { 
+                if (left[node] != -1) {
+                    node = left[node]; 
                 } else {
-                    node = right[node]; // 오른쪽으로 이동
+                    node = right[node]; // 왼쪽이 없으면 오른쪽으로 이동
                 }
-                k /= 2;
             }
+            // 오른쪽 서브트리로 이동할 경우
+            else { 
+                if (right[node] != -1) {
+                    node = right[node];
+                } else {
+                    node = left[node]; // 오른쪽이 없으면 왼쪽으로 이동
+                }
+            }
+
+            k /= 2; // k를 2로 나눠서 다음 공의 이동 방향 결정
         }
+
+        System.out.println(node);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
