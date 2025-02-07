@@ -1,89 +1,55 @@
-
 import java.util.*;
 import java.io.*;
-
 
 public class Main {
 
     static int n;
     static long k;
-    static int idx = 0;
-    static int root;
-    static boolean[] visit;
-    static int edgeCount = 0;
-    static int nodeCount = 0;
-    static boolean [] finish;
-    static int [] right;
-    static int [] left;
-    static int [] arr;
-    static boolean cycle = false ;
-    static int deleteTwo = 0;
-    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
-    static int subMax = Integer.MIN_VALUE;
-    static Set<Integer>set = new HashSet<>();
-
-
-
-
+    static int[] left, right;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
 
-        left = new int[2*n+1];
-        right = new int[2*n+1];
+        left = new int[n + 1];
+        right = new int[n + 1];
 
-        for (int i = 1; i <= n ; i++) {
+        for (int i = 1; i <= n; i++) {
             st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-            left[i] = x;
-            right[i] = y;
+            left[i] = Integer.parseInt(st.nextToken());
+            right[i] = Integer.parseInt(st.nextToken());
         }
-
 
         k = Long.parseLong(br.readLine());
-        //값이 클때는 시뮬레이션 불가능
 
-        int node = 1;
-        int idx = 1;
-        int ans = 0;
-
+        // 공 떨어뜨리기 시뮬레이션
+        int node = 1; // 루트에서 시작
         while (true) {
-
-            if (left[node] == -1 && right[node] == -1){
-                ans = node;
-                break;
+            // 리프 노드에 도착하면 멈춤
+            if (left[node] == -1 && right[node] == -1) {
+                System.out.println(node);
+                return;
             }
-            
-            if (k % 2 != 0){ //홀수일때 -> 왼쪽 서브트리
-                if (left[node] == -1 && right[node] > 0)
-                    node = right[node];
-                else
-                    node = left[node];
-            }else {
-                if (left[node] > 0 && right[node] == -1)
-                    node = left[node];
-                else 
-                    node = right[node];
+
+            if (left[node] == -1) {
+                // 왼쪽 자식이 없으면 무조건 오른쪽으로 이동
+                node = right[node];
+            } else if (right[node] == -1) {
+                // 오른쪽 자식이 없으면 무조건 왼쪽으로 이동
+                node = left[node];
+            } else {
+                // 왼쪽과 오른쪽 자식이 모두 있는 경우
+                if (k % 2 == 1) {
+                    node = left[node]; // 왼쪽으로 이동
+                } else {
+                    node = right[node]; // 오른쪽으로 이동
+                }
+                k /= 2;
             }
-            k /= 2;
-
         }
-        System.out.println(ans);
-
-
-        }
-
-
-
-
-
-
+    }
 }
-
-
 
 
 
