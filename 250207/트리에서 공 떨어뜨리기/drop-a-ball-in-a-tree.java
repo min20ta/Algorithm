@@ -51,6 +51,12 @@ public class Main {
         int ans = 0;
 
         while (true) {
+
+            if (left[node] == -1 && right[node] == -1){
+                ans = node;
+                break;
+            }
+            
             if (k % 2 != 0){ //홀수일때 -> 왼쪽 서브트리
                 if (left[node] == -1 && right[node] > 0)
                     node = right[node];
@@ -64,10 +70,6 @@ public class Main {
             }
             k /= 2;
 
-            if (left[node] == -1 && right[node] == -1){
-                ans = node;
-                break;
-            }
         }
         System.out.println(ans);
 
