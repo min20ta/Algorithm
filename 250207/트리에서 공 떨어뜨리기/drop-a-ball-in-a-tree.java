@@ -52,10 +52,16 @@ public class Main {
 
         while (true) {
             if (k % 2 != 0){ //홀수일때 -> 왼쪽 서브트리
-                node = left[node];
-            }else
-                node = right[node];
-
+                if (left[node] == -1 && right[node] > 0)
+                    node = right[node];
+                else
+                    node = left[node];
+            }else {
+                if (left[node] > 0 && right[node] == -1)
+                    node = left[node];
+                else 
+                    node = right[node];
+            }
             k /= 2;
 
             if (left[node] == -1 && right[node] == -1){
@@ -74,6 +80,9 @@ public class Main {
 
 
 }
+
+
+
 
 
 
