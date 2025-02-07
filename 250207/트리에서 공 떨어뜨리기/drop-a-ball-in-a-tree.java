@@ -31,8 +31,8 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
 
-        left = new int[n+1];
-        right = new int[n+1];
+        left = new int[2*n+1];
+        right = new int[2*n+1];
 
         for (int i = 1; i <= n ; i++) {
             st = new StringTokenizer(br.readLine());
@@ -47,6 +47,7 @@ public class Main {
         //값이 클때는 시뮬레이션 불가능
 
         int node = 1;
+        int idx = 1;
         int ans = 0;
 
         while (true) {
@@ -73,6 +74,7 @@ public class Main {
 
 
 }
+
 
 
 
