@@ -56,7 +56,8 @@ public class Main {
             //도착한거에 -1처리
             //같은 라인은 괜찮. 부모라인확인필요
             int find = arr[idx++];
-            int parent = find/2;
+            int parent = find;
+            
             boolean ans = true;
             int block = 0;
 
@@ -69,9 +70,8 @@ public class Main {
                 parent /= 2;
             }
 
-            if (ans &&tree[find] == -1)
-                System.out.println(find);
-            else if (ans){
+          
+          if (ans){
                 System.out.println(0);
                 tree[find] = -1;
             }else
@@ -91,13 +91,6 @@ public class Main {
 
 
 }
-
-
-
-
-
-
-
 
 
 
