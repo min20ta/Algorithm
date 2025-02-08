@@ -72,7 +72,7 @@ public class Main {
 
         //사각-제일작은조각
         for (int i = 0; i <= n-2; i++) {
-            for (int j = 0; j < m-2; j++) {
+            for (int j = 0; j <= m-2; j++) {
                 int min = Integer.MAX_VALUE;
                 int sum = 0;
 
