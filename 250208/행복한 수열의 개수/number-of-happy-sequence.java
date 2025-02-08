@@ -47,10 +47,10 @@ public class Main {
         int happy = 0;
 
         for (int i = 0; i < n; i++) {
-            int sum = 0;
+            int sum = 1;
             boolean check = false;
-            for (int j = 0; j < n-1; j++) {
-                if (arr[i][j] != arr[i][j+1]) {
+            for (int j = 1; j < n; j++) {
+                if (arr[i][j] != arr[i][j-1]) {
                     if (sum >= m) {
                         happy++;
                         check = true;
@@ -70,10 +70,10 @@ public class Main {
         //열검사
 
         for (int i = 0; i < n; i++) {
-            int sum = 0;
+            int sum = 1;
             boolean check = false;
-            for (int j = 0; j < n-1; j++) {
-                if (arr[j][i] != arr[j+1][i]) {
+            for (int j = 1; j < n; j++) {
+                if (arr[j][i] != arr[j-1][i]) {
                     if (sum >= m) {
                         happy++;
                         check = true;
