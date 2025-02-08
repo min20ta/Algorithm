@@ -63,7 +63,7 @@ public class Main {
                 node = right[node];
             else if (k % 2 != 0){ //홀수일때 -> 왼쪽 서브트리
                     node = left[node];
-                    k = (k+1)/2;
+                    k = k/2+1;
             }else {
                     node = right[node];
                     k /= 2;
