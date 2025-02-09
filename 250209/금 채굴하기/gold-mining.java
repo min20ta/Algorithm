@@ -20,7 +20,7 @@ public class Main {
     static int max = Integer.MIN_VALUE;
     static int ans = Integer.MIN_VALUE;
 
-    static Queue<pair>  nextQ = new LinkedList<>();
+  
 
 
 
@@ -48,6 +48,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 for (int k = 0; k <= n; k++) { //해당죄표에서 k=0,1,
+                    visit = new boolean[n][n];
                     int goldCount = mineGold(k, i, j);
                     if (notLose(k, goldCount))
                         ans = Math.max(ans, goldCount);
@@ -55,73 +56,24 @@ public class Main {
                 }
             }
         }
-//
-//                while (checkKSize(k)) {
-//                    q = new LinkedList<>(nextQ);
-//                    whil  e (!q.isEmpty()) {
-//                        pair p = q.poll();
-//                        int x = p.x;
-//                        int y = p.y;
-//
-//                        if (k == 0) {
-//                            if (!(x >= 0 && x < n && y >= 0 && y < n
-//                                    && !visit[x][y])) {
-//                                k++;
-//                                continue;
-//                            }
-//
-//                            if (arr[x][y] == 1)
-//                                gold++;
-//                            visit[x][y] = true;
-//
-//                            if (notLose(k, gold)) {
-//                                max = Math.max(max, gold);
-//                            }
-//                        } else {
-//                            for (int l = 0; l < 4; l++) {
-//                                int nx = x + dx[l];
-//                                int ny = y + dy[l];
-//
-//                                if (!(nx >= 0 && nx < n && ny >= 0 && ny < n
-//                                        && !visit[nx][ny]))
-//                                    continue;
-//
-//                                if (arr[nx][ny] == 1)
-//                                    gold++;
-//                                visit[nx][ny] = true;
-//                                nextQ.add(new pair(nx, ny));
-//                            }
-//
-//                            if (notLose(k, gold)) {
-//                                System.out.println(gold);
-//                                max = Math.max(max, gold);
-//                            }
-//
-//                            k++;
-//                        }
-//                    }
-//                }
-//                ans = Math.max(ans, max);
-//                System.out.println(ans);
-//            }
-//            }
+
         System.out.println(ans);
         }
 
     static int mineGold(int k , int x, int y) {
         Queue<pair> q = new LinkedList<>();
-        q.add(new pair(x,y));
-        visit = new boolean[n][n];
+        Queue<pair> nextQ = new LinkedList<>();
+        q.add(new pair(x,y,0));
         visit[x][y] = true;
 
         int gold = 0;
-        int depth = 0;
+      
 
         while (!q.isEmpty()) {
             pair p = q.poll();
             if (arr[p.x][p.y] == 1)
                 gold++;
-            if (depth == k)
+            if (p.d == k)
                 continue;
 
 
@@ -133,14 +85,11 @@ public class Main {
                 if (nextX >= 0 && nextY >= 0 && nextY < n && nextX < n
                 && !visit[nextX][nextY]) {
                     visit[nextX][nextY] = true;
-                    q.add(new pair(nextX, nextY));
+                    q.add(new pair(nextX, nextY, p.d+1));
 
                 }
             }
-            depth++;
-
-
-
+          
 
         }
         return gold;
@@ -156,29 +105,18 @@ public class Main {
         return false;
     }
 
-    static boolean checkKSize (int k) {
-        int size = 5 + 8*(k-1);
-        if (size <= n*n)
-            return true;
-        return false;
-    }
 
     static class pair {
         int x;
         int y;
+        int d;
 
-        pair(int x, int y) {
+        pair(int x, int y, int d) {
             this.x =x;
             this.y = y;
+            this.d = d;
         }
     }
-
-
-
-
-
-
-
 }
 
 
