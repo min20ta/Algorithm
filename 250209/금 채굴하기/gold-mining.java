@@ -18,7 +18,7 @@ public class Main {
     static int deleteTwo = 0;
     static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     static int max = Integer.MIN_VALUE;
-    static int ans = Integer.MIN_VALUE;
+    static int ans = 0;
 
   
 
