@@ -62,7 +62,7 @@ public class Main {
 
     static int mineGold(int k , int x, int y) {
         Queue<pair> q = new LinkedList<>();
-        Queue<pair> nextQ = new LinkedList<>();
+    
         q.add(new pair(x,y,0));
         visit[x][y] = true;
 
@@ -100,7 +100,7 @@ public class Main {
         int square = k*k + (k+1)*(k+1);
         int goldMoney = gold * m;
 
-        if (square < goldMoney)
+        if (square <= goldMoney)
             return true;
         return false;
     }
