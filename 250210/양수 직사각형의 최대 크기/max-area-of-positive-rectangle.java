@@ -59,7 +59,7 @@ public class Main {
 
         for (int i = x ; i < x+h ; i++) {
             for (int j = y; j < y + w ; j++) {
-                if (arr[i][j] < 0)
+                if (arr[i][j] <= 0)
                     return Integer.MIN_VALUE;
             }
         }
