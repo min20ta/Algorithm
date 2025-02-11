@@ -1,104 +1,169 @@
+
 import java.util.*;
 import java.io.*;
 
+
 public class Main {
 
-    static int n, m, q;
-    static List<LinkedList<Integer>> list = new ArrayList<>();
-    static List<LinkedList<Integer>> list2 = new ArrayList<>();
-    static int[] dx = {0, 1, 0, -1}; // 우, 하, 좌, 상
-    static int[] dy = {1, 0, -1, 0};
+    static int n;
+    static int m;
+    static int q;
+    static int idx = 0;
+    static int root;
+    static boolean[][] visit;
+    static int [] dx = new int[]{0,1,0,-1};
+    static int [] dy = new int[]{1,0,-1,0};
+    static int [][] arr;
+    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
+    static int max = Integer.MIN_VALUE;
+
+
+
+//행,열 밀기
+
+    //행여러개 섞일때
+        //2차배열
+        //linkedlist addFirst, removeLast사용 로 배열 저장
+            // 새로운 linkedlist에 밀어야 하는거 한번에 다시 넣기
+
+
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
         q = Integer.parseInt(st.nextToken());
 
-        // 리스트 초기화 (각 행을 LinkedList로 관리)
+//       arr = new int[n][m];
+        List<LinkedList<Integer>> list = new ArrayList<>();
+        List<LinkedList<Integer>> list2 = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             list.add(new LinkedList<>());
             list2.add(new LinkedList<>());
         }
 
-        // 입력 받기
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < m; j++) {
-                list.get(i).add(Integer.parseInt(st.nextToken()));
+                int num = Integer.parseInt(st.nextToken());
+                list.get(i).add(num);
             }
         }
 
-        // Q번 바람 실행
+        pair [] wind = new pair[q];
+
         for (int i = 0; i < q; i++) {
             st = new StringTokenizer(br.readLine());
-            int r1 = Integer.parseInt(st.nextToken()) - 1;
-            int c1 = Integer.parseInt(st.nextToken()) - 1;
-            int r2 = Integer.parseInt(st.nextToken()) - 1;
-            int c2 = Integer.parseInt(st.nextToken()) - 1;
-
-            rotateBorder(r1, c1, r2, c2); // 경계 회전
-            updateInnerValues(r1, c1, r2, c2); // 내부 평균 업데이트
+            int r1 = Integer.parseInt(st.nextToken());
+            int c1 = Integer.parseInt(st.nextToken());
+            int r2 = Integer.parseInt(st.nextToken());
+            int c2 = Integer.parseInt(st.nextToken());
+            wind[i] = new pair(r1,c1,r2,c2);
         }
 
-        // 최종 결과 출력
+        int r1 = 0; int r2 = 0; int c1 = 0; int c2 = 0;
+         //회전
+        for (int i = 0; i < q; i++) {
+            r1 = wind[i].r1;
+            c1 = wind[i].c1;
+            r2 = wind[i].r2;
+            c2 = wind[i].c2;
+
+            r1--;
+            c1--;
+            r2--;
+            c2--;
+
+            LinkedList<Integer> temp = new LinkedList<>();
+
+            for (int j = c1; j <= c2 ; j++)
+                temp.add(list.get(r1).get(j));
+            for (int x = r1+1; x <= r2 ; x++)
+                temp.add(list.get(x).get(c2));
+            for (int j = c2-1; j >= c1 ; j--)
+                temp.add(list.get(r2).get(j));
+            for (int x = r2-1; x > r1 ; x--)
+                temp.add(list.get(x).get(c1));
+
+
+            temp.addFirst(temp.removeLast());
+
+            int index = 0;
+            for (int j = c1; j <= c2 ; j++)
+                list.get(r1).set(j,temp.get(index++));
+            for (int x = r1+1; x <= r2 ; x++)
+                list.get(x).set(c2,temp.get(index++));
+            for (int j = c2-1; j >= c1 ; j--)
+                list.get(r2).set(j,temp.get(index++));
+            for (int x = r2-1; x > r1 ; x--)
+                list.get(x).set(c1,temp.get(index++));
+
+
+
+            //평균
+
+            for (int h = 0; h < n; h++) {
+                list2.get(h).clear();
+                list2.get(h).addAll(list.get(h)); //깊은복사
+            }
+
+            for (int p = r1; p <= r2; p++) {
+                for (int j = c1; j <= c2; j++) {
+                    int sum = list2.get(p).get(j);
+                    int num = 1;
+                    for (int k = 0; k < 4; k++) {
+                        int x = p + dx[k];
+                        int y = j + dy[k];
+
+                        if (x >= 0 && x < n && y >= 0 && y < m) {
+                            sum += list2.get(x).get(y);
+                            num++;
+                        }
+                    }
+                    int mean = sum / num;
+                    list.get(p).set(j, mean);
+                }
+            }
+//
+//            for (int w = 0; w < n; w++) {
+//                for (int j = 0; j < m; j++) {
+//                    System.out.print(list[w].get(j)+" ");
+//                }
+//                System.out.println();
+//            }
+
+        }
+
+
+//        System.out.println();
+
         for (int i = 0; i < n; i++) {
-            for (int num : list.get(i)) {
-                System.out.print(num + " ");
+            for (int j = 0; j < m; j++) {
+                System.out.print(list.get(i).get(j)+" ");
             }
             System.out.println();
         }
+
+
+
+
     }
 
-    // ✅ 직사각형 경계 회전 (시계 방향)
-    static void rotateBorder(int r1, int c1, int r2, int c2) {
-        LinkedList<Integer> temp = new LinkedList<>();
+    static class pair{
+        int r1;
+        int c1;
+        int r2;
+        int c2;
 
-        // 테두리 원소 저장 (시계 방향)
-        for (int j = c1; j <= c2; j++) temp.add(list.get(r1).get(j)); // 상단
-        for (int i = r1 + 1; i <= r2; i++) temp.add(list.get(i).get(c2)); // 오른쪽
-        for (int j = c2 - 1; j >= c1; j--) temp.add(list.get(r2).get(j)); // 하단
-        for (int i = r2 - 1; i > r1; i--) temp.add(list.get(i).get(c1)); // 왼쪽
-
-        // 회전
-        temp.addFirst(temp.removeLast());
-
-        // 회전된 값 다시 삽입
-        int index = 0;
-        for (int j = c1; j <= c2; j++) list.get(r1).set(j, temp.get(index++));
-        for (int i = r1 + 1; i <= r2; i++) list.get(i).set(c2, temp.get(index++));
-        for (int j = c2 - 1; j >= c1; j--) list.get(r2).set(j, temp.get(index++));
-        for (int i = r2 - 1; i > r1; i--) list.get(i).set(c1, temp.get(index++));
-    }
-
-    // ✅ 내부 평균 업데이트
-    static void updateInnerValues(int r1, int c1, int r2, int c2) {
-        // list2를 list의 복사본으로 갱신
-        for (int i = 0; i < n; i++) {
-            list2.get(i).clear();
-            list2.get(i).addAll(list.get(i));
-        }
-
-        // 내부 값 평균 계산
-        for (int i = r1; i <= r2; i++) {
-            for (int j = c1; j <= c2; j++) {
-                int sum = list2.get(i).get(j);
-                int count = 1;
-
-                for (int k = 0; k < 4; k++) {
-                    int nx = i + dx[k];
-                    int ny = j + dy[k];
-
-                    if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
-                        sum += list2.get(nx).get(ny);
-                        count++;
-                    }
-                }
-
-                list.get(i).set(j, sum / count); // 평균 값 적용 (버림 연산)
-            }
+        pair(int r1, int c1, int r2, int c2)
+        {
+            this.r1 = r1;
+            this.c1 = c1;
+            this.r2 = r2;
+            this.c2 = c2;
         }
     }
-}
+
+
+    }
