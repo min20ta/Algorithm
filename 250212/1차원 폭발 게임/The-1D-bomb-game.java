@@ -35,7 +35,7 @@ public class Main {
         //동시에 터짐
     
         boolean end = false;
-        while(!end) {
+        while(!end && !list.isEmpty()) {
             end = true;
             List<Integer> temp = new ArrayList<>();
             List<Integer> temp2 = new ArrayList<>();
