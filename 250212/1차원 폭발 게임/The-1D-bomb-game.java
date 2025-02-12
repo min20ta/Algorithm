@@ -1,91 +1,99 @@
-import java.util.Scanner;
+
+import java.util.*;
+import java.io.*;
+
 
 public class Main {
-    public static final int MAX_NUM = 100;
-    
-    public static int n, m, endOfArray, endOfTemp;
-    public static int[] numbers = new int[MAX_NUM];
-    public static int[] temp = new int[MAX_NUM];
-    
-    // 주어진 시작점에 대하여 
-    // 부분 수열의 끝 위치를 반환합니다.
-    public static int getEndIdxOfExplosion(int startIdx, int currNum) {
-        int endIdx = startIdx + 1;
-        while(endIdx < endOfArray) {
-            if(numbers[endIdx] == currNum)
-                endIdx++;
-            else{
+
+    static int n;
+    static int m;
+    static int q;
+    static int idx = 0;
+    static int root;
+    static boolean[][] visit;
+    static int [] dx = new int[]{0,-1,0,1};
+    static int [] dy = new int[]{1,0,-1,0};
+    static int [][] arr;
+    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
+    static int max = Integer.MIN_VALUE;
+    static int min = Integer.MAX_VALUE;
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        List<Integer> list = new ArrayList<>();
+
+
+        for (int j = 0; j < n; j++) {
+            int num = Integer.parseInt(br.readLine());
+            list.add(num);
+        }
+
+        //동시에 터짐
+        while(true) {
+            List<Integer> temp = new ArrayList<>();
+            int count = 1;
+            int start = 0;
+            boolean notSame = true;
+
+            if (list.size() == 1){
+                if (m <= 1)
+                    System.out.println(0);
+                else{
+                    System.out.println(1);
+                    System.out.println(list.get(0));
+                }
+                System.exit(0);
+            }
+
+            for (int i = 1; i < list.size(); i++) {
+                if (list.get(i) != list.get(i-1)){
+                    if (count >= m) {
+                        for (int j = start; j < i; j++) {
+                            list.set(j,0);
+                        }
+                    }
+                    count = 1;
+                    start = i;
+                }else{
+                    count++;
+                    notSame = false;
+                }
+            }
+
+            if (notSame)
                 break;
-            }
-        }
-    
-        return endIdx - 1;
-    }
-    
-    // 터져야 할 폭탄들에 대해 터졌다는 의미로 0을 채워줍니다.
-    public static void fillZero(int startIdx, int endIdx) {
-        for(int i = startIdx; i <= endIdx; i++) {
-            numbers[i] = 0;
-        }
-    }
-    
-    // Arr에서 폭탄이 터진 이후의 결과를 Temp에 임시로 저장합니다. 
-    public static void moveToTemp() {
-        endOfTemp = 0;
-        for(int i = 0; i < endOfArray; i++) {
-            if(numbers[i] != 0) {
-                temp[endOfTemp++] = numbers[i];
-            }
-        }
-    }
-    
-    // Temp배열을 그대로 Copy하여 Arr에 저장합니다.
-    public static void copy() {
-        endOfArray = endOfTemp;
-        for(int i = 0; i < endOfArray; i++) {
-            numbers[i] = temp[i];
-        }
-    }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // 입력:
-        n = sc.nextInt();
-        m = sc.nextInt();
-        for(int i = 0; i < n; i++)
-            numbers[i] = sc.nextInt();
-        endOfArray = n;
-
-        boolean didExplode;
-        do {
-            didExplode = false;
-            for(int currIdx = 0; currIdx < endOfArray; currIdx++) {  
-                // 각 위치마다 그 뒤로 폭탄이 m개 이상 있는지 확인합니다.
-                
-                // 이미 터지기로 예정되어있는 폭탄은 패스합니다.
-                if(numbers[currIdx] == 0) { 
-                    continue;
-                }
-                // currIdx로부터 연속하여 같은 숫자를 갖는 폭탄 중 
-                // 가장 마지막 위치를 찾아 반환합니다.
-                int endIdx = getEndIdxOfExplosion(currIdx, numbers[currIdx]);
-
-                if(endIdx - currIdx + 1 >=  m) {
-                    // 연속한 숫자의 개수가 m개 이상인 경우 폭탄이 터졌음을 기록해줍니다.
-                    fillZero(currIdx, endIdx);
-                    didExplode = true;
+            //마지막원소 처리
+            if (start != list.size()-1) {
+                if (count >= m) {
+                    for (int j = start; j < list.size(); j++) {
+                        list.set(j, 0);
+                    }
                 }
             }
-            
-            // Arr에서 폭탄이 터진 이후의 결과를 Temp에 임시로 저장합니다. 
-            moveToTemp();
-            // Temp배열을 그대로 Copy하여 Arr에 저장합니다.
-            copy();       
-        }
-        while(didExplode); // 더 이상 폭탄이 터질 수 없을 때까지 반복합니다.
 
-        System.out.println(endOfArray);
-        for(int i = 0; i < endOfArray; i++)
-            System.out.println(numbers[i]);
+            //배열복사해서 옮기기
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) != 0)
+                    temp.add(list.get(i));
+            }
+
+            list = temp;
+
+        }
+
+        System.out.println(list.size());
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
+
+
+
+
 }
+
