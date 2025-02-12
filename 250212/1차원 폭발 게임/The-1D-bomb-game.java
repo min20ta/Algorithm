@@ -33,57 +33,34 @@ public class Main {
         }
 
         //동시에 터짐
-        while(true) {
+    
+        boolean end = false;
+        while(!end) {
+            end = true;
             List<Integer> temp = new ArrayList<>();
-            int count = 1;
-            int start = 0;
-            boolean notSame = true;
-
-            if (list.size() == 1){
-                if (m <= 1)
-                    System.out.println(0);
-                else{
-                    System.out.println(1);
-                    System.out.println(list.get(0));
-                }
-                System.exit(0);
-            }
+            List<Integer> temp2 = new ArrayList<>();
+        
+            temp.add(list.get(0));
 
             for (int i = 1; i < list.size(); i++) {
-                if (list.get(i) != list.get(i-1)){
-                    if (count >= m) {
-                        for (int j = start; j < i; j++) {
-                            list.set(j,0);
-                        }
-                    }
-                    count = 1;
-                    start = i;
-                }else{
-                    count++;
-                    notSame = false;
-                }
-            }
-
-            if (notSame)
-                break;
-
-            //마지막원소 처리
-            if (start != list.size()-1) {
-                if (count >= m) {
-                    for (int j = start; j < list.size(); j++) {
-                        list.set(j, 0);
-                    }
-                }
-            }
-
-            //배열복사해서 옮기기
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i) != 0)
+                if (list.get(i) == list.get(i-1)){
                     temp.add(list.get(i));
+                }else {
+                    if(temp.size() < m) {
+                        temp2.addAll(temp);
+                    }else {
+                        end = false;
+                    }
+                    temp.clear();
+                    temp.add(list.get(i));
+                }   
             }
+            if(temp.size() < m)
+                temp2.addAll(temp);
+            
+            list = temp2;
 
-            list = temp;
-
+         
         }
 
         System.out.println(list.size());
