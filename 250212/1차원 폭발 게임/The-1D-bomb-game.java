@@ -39,10 +39,12 @@ public class Main {
             boolean notSame = true;
 
             if (list.size() == 1){
-                if (m >= 1)
+                if (m <= 1)
                     System.out.println(0);
-                else
+                else{
                     System.out.println(1);
+                    System.out.println(list.get(0));
+                }
                 System.exit(0);
             }
 
