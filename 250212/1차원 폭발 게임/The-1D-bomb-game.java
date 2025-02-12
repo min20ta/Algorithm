@@ -52,6 +52,10 @@ public class Main {
                     notSame = false;
                 }
             }
+
+              if (notSame)
+                break;
+                
             //마지막원소 처리
             if (start != list.size()-1) {
                 if (count >= m) {
@@ -71,8 +75,7 @@ public class Main {
             list.addAll(temp);
             temp.clear();
 
-            if (notSame)
-                break;
+          
 
         }
 
