@@ -38,6 +38,14 @@ public class Main {
             int start = 0;
             boolean notSame = true;
 
+            if (list.size() == 1){
+                if (m >= 1)
+                    System.out.println(0);
+                else
+                    System.out.println(1);
+                System.exit(0);
+            }
+
             for (int i = 1; i < list.size(); i++) {
                 if (list.get(i) != list.get(i-1)){
                     if (count >= m) {
@@ -53,9 +61,9 @@ public class Main {
                 }
             }
 
-              if (notSame)
+            if (notSame)
                 break;
-                
+
             //마지막원소 처리
             if (start != list.size()-1) {
                 if (count >= m) {
@@ -75,7 +83,7 @@ public class Main {
             list.addAll(temp);
             temp.clear();
 
-          
+
 
         }
 
@@ -93,11 +101,11 @@ public class Main {
 
         pair(int x, int y , int len)
         {
-           this.x = x;
-           this.y = y;
-           this.len = len;
+            this.x = x;
+            this.y = y;
+            this.len = len;
         }
     }
 
 
-    }
+}
