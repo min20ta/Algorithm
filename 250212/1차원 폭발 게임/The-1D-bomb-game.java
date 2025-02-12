@@ -25,7 +25,7 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
 
         LinkedList<Integer> list = new LinkedList<>();
-        LinkedList<Integer> temp = new LinkedList<>();
+
 
         for (int j = 0; j < n; j++) {
             int num = Integer.parseInt(br.readLine());
@@ -34,6 +34,7 @@ public class Main {
 
         //동시에 터짐
         while(true) {
+            LinkedList<Integer> temp = new LinkedList<>();
             int count = 1;
             int start = 0;
             boolean notSame = true;
@@ -81,11 +82,7 @@ public class Main {
                     temp.add(list.get(i));
             }
 
-            list.clear();
-            list.addAll(temp);
-            temp.clear();
-
-
+            list = temp;
 
         }
 
