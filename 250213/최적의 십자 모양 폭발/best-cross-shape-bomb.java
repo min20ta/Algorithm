@@ -22,7 +22,7 @@ public class Main {
 
         map = new int[n][n];
         grid = new int[n][n];
-        int[] bomb = new int[m];
+
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -34,10 +34,11 @@ public class Main {
             for (int j = 0; j < n; j++) {
                 for (int k = 0; k < n; k++) {
                     System.arraycopy(map[k],0,grid[k],0,n);
-                    bombing(i,j);
-                    gravity();
-                    findMax();
                 }
+
+                bombing(i,j);
+                gravity();
+                findMax();
             }
         }
 
