@@ -101,9 +101,9 @@ public class Main {
             }
         }else {
             //밀기
-            for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 int index = 3;
-                for (int j = 0; j < 4; j++) {
+                for (int i = 3; i >=0 ; i--) {
                     if (grid[i][j]!=0) {
                         temp[index--][j] = grid[i][j];
                     }
@@ -114,12 +114,12 @@ public class Main {
                 int index = 3;
                 for (int i = 3; i >= 0 ; i--) {
                     if (i == 0){
-                        temp2[index--][j] = 2*temp[i][j];
+                        temp2[index--][j] = temp[i][j];
                         continue;
                     }
                     if (temp[i][j] == temp[i-1][j]){
                         temp2[index--][j] = 2*temp[i][j];
-                        i++;
+                        i--;
                     }else
                         temp2[index--][j] = temp[i][j];
                 }
