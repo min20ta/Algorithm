@@ -89,7 +89,7 @@ public class Main {
                 int index = 0;
                 for (int i = 0; i < 4 ; i++) {
                     if (i == 3){
-                        temp2[index++][j] = 2*temp[i][j];
+                        temp2[index++][j] = temp[i][j];
                         continue;
                     }
                     if (temp[i][j] == temp[i+1][j]){
