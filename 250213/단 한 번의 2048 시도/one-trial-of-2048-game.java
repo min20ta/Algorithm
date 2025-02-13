@@ -76,9 +76,9 @@ public class Main {
             }
         }else if (c == 'U') {
             //밀기
-            for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 int index = 0;
-                for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < 4; i++) {
                     if (grid[i][j]!=0) {
                         temp[index++][j] = grid[i][j];
                     }
