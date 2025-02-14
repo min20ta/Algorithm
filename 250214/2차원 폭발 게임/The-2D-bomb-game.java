@@ -40,8 +40,10 @@ public class Main {
         //k번 반복후에 남아있다면 회전제외 폭발 및 중력
         //남아있는 수
         while (k-- > 0) {
-            bombing();
-            gravity();
+            while (isBombLeft()){
+                bombing();
+                gravity();
+            }
             rotateAndGravity();
         }
 
@@ -93,6 +95,7 @@ public class Main {
 //            }
 //            System.out.println();
 //        }
+//        System.out.println();
 
     }
 
@@ -116,6 +119,7 @@ public class Main {
             }
 //            System.out.println();
         }
+//        System.out.println();
     }
 
     static void rotateAndGravity() {
