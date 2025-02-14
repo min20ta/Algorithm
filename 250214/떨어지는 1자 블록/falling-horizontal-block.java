@@ -60,7 +60,6 @@ public class Main {
                     count++;
 
                     if (count >= m) {
-                        //System.out.println(check(startIdx, i, j));
                         if (check(startIdx,i, j)) {
                             for (int l = startIdx; l < startIdx + m; l++) {
                                 map[i][l] = 1;
@@ -96,7 +95,7 @@ public class Main {
         if (row == n-1)
             return true;
 
-        for (int i = startIdx; i < endCol; i++) {
+        for (int i = startIdx; i <= endCol; i++) {
             int x = row;
             int y = startIdx;
 
@@ -115,3 +114,4 @@ public class Main {
 
     }
 }
+
