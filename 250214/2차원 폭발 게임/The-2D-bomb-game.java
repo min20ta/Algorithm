@@ -154,7 +154,7 @@ public class Main {
                     zero++;
             }
         }
-        if (zero == n)
+        if (zero == n*n)
             return false;
 
         for (int i = 0; i < n; i++) {
