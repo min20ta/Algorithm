@@ -11,10 +11,6 @@ public class Main {
     static int[] dx = {0, 1, 0, -1,};
     static int[] dy = {-1, 0, 1, 0};
     static char [] dir ;
-    static int [] left = {6,4,1,3};
-    static int [] right = {6,3,1,4};
-    static int [] down = {6,2,1,5};
-    static int [] up = {6,5,1,2};
     static int n;
     static int m;
     static int r;
@@ -43,8 +39,6 @@ public class Main {
             dir[i] = st.nextToken().charAt(0);
         }
 
-
-
         int direction = 0;
         map[r][c] = 6;
         x = r; y = c;
@@ -59,16 +53,25 @@ public class Main {
 
             move(direction);
             changeDice(direction);
+//
+//            for (int k = 0; k < 4; k++) {
+//                for (int j = 0; j < 3; j++) {
+//                    System.out.print(dice[k][j]+" ");
+//                }
+//                System.out.println();
+//            }
+//            System.out.println();
+
         }
 
 
         int sum = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-              //  System.out.print(map[i][j]+" ");
+                //System.out.print(map[i][j]+" ");
                 sum += map[i][j];
             }
-          //  System.out.println();
+           // System.out.println();
         }
 
         System.out.println(sum);
@@ -119,9 +122,9 @@ public class Main {
             }
             dice[1][2] = temp2;
             dice[3][1] = temp;
-        }else { //uphhn
+        }else { //up
             int temp = dice[3][1];
-            for (int i = 1; i <= 3; i++) {
+            for (int i = 3; i >= 1; i--) {
                 dice[i][1] = dice[i-1][1];
             }
             dice[0][1] = temp;
