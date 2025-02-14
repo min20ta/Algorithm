@@ -60,12 +60,12 @@ public class Main {
                     count++;
 
                     if (count >= m) {
-                        if (check(startIdx,i, j)) {
+
                             for (int l = startIdx; l < startIdx + m; l++) {
                                 map[i][l] = 1;
                             }
                             return;
-                        }
+
                     }
                 }
                 else if (map[i][j] == 0 && checkZero(i,j)) {
