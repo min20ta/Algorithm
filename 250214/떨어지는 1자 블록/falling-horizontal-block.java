@@ -68,14 +68,15 @@ public class Main {
                         }
                     }
                 }
-                else if (map[i][j] == 0 && map[i - 1][j] == 0) {
+                else if (map[i][j] == 0 && checkZero(i,j)) {
                     count++;
-
+                   // System.out.println(i+" "+j);
                     if (count >= m) {
-                     //   System.out.println(check(startIdx, i, j));
+                      //  System.out.println(check(startIdx, i, j));
                         if (check(startIdx, i, j)) {
                             for (int l = startIdx; l < startIdx + m; l++) {
                                 map[i][l] = 1;
+                               // System.out.println(i+" "+l);
                             }
                             return;
                         }
@@ -90,6 +91,13 @@ public class Main {
     }
 
 
+    static boolean checkZero(int row, int col) {
+        for (int i = row; i >= 0 ; i--) {
+            if (map[i][col]!= 0)
+                return false;
+        }
+        return true;
+    }
     static boolean check(int startIdx, int row, int endCol) {
 
         if (row == n-1)
