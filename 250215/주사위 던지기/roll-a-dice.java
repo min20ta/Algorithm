@@ -17,10 +17,7 @@ public class Main {
     static int c;
     static int x;
     static int y;
-    static int index =0;
-
-    static int endIndex;
-    static int max = Integer.MIN_VALUE;
+    static int stop;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -52,7 +49,8 @@ public class Main {
             else if (c == 'U') direction = 3;
 
             move(direction);
-            changeDice(direction);
+            if (stop == 0)
+                changeDice(direction);
 //
 //            for (int k = 0; k < 4; k++) {
 //                for (int j = 0; j < 3; j++) {
@@ -68,7 +66,7 @@ public class Main {
         int sum = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                //System.out.print(map[i][j]+" ");
+              //  System.out.print(map[i][j]+" ");
                 sum += map[i][j];
             }
            // System.out.println();
@@ -86,6 +84,7 @@ public class Main {
 
     static void move(int direction) {
 
+        stop = 0;
         int curX = 1; int curY = 1;
         int diceX = curX + dx[direction];
         int diceY = curY + dy[direction];
@@ -96,6 +95,8 @@ public class Main {
         if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
             map[nx][ny] = dice[diceX][diceY];
             x = nx; y = ny;
+        }else {
+            stop = 1;
         }
     }
 
