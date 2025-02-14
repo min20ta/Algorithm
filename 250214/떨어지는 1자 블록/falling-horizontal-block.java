@@ -51,18 +51,17 @@ public class Main {
         int start = k; //1열부터 3열
         int end = k + m - 1;
 
-        for (int i = end; i >= start; i--) {
+        for (int i = n-1; i >= 0; i--) {
             int count = 0;
-            int startIdx = 0;
-            for (int j = 0; j < n; j++) {
-
+            int startIdx = start;
+            for (int j = start; j <= end; j++) {
 
                 if (i == 0 && map[i][j] == 0) {
                     count++;
 
                     if (count >= m) {
                         //System.out.println(check(startIdx, i, j));
-                        if (check(startIdx, i, j)) {
+                        if (check(startIdx,i, j)) {
                             for (int l = startIdx; l < startIdx + m; l++) {
                                 map[i][l] = 1;
                             }
@@ -116,4 +115,3 @@ public class Main {
 
     }
 }
-
