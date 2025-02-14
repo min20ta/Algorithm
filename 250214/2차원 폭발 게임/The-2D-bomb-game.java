@@ -143,9 +143,19 @@ public class Main {
 
     static boolean isBombLeft() {
         int count = 1;
+        int zero = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (map[i][j] == 0)
+                    zero++;
+            }
+        }
+        if (zero == n)
+            return false;
 
         for (int i = 0; i < n; i++) {
             count = 1;
+
             for (int j = 0; j < n-1; j++) {
                 if (map[j][i] != 0 &&
                         map[j][i] == map[j + 1][i]) {
