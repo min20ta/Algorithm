@@ -55,13 +55,13 @@ public class Main {
             int count = 0;
             int startIdx = 0;
             for (int j = 0; j < n; j++) {
-                if (i == 0 && map[i][j] == 0)
+
+
+                if (i == 0 && map[i][j] == 0) {
                     count++;
-                else if (map[i][j] == 0 && map[i - 1][j] == 0) {
-                    count++;
-                } else {
+
                     if (count >= m) {
-                        //System.out.println(count+" i: "+i);
+                        //System.out.println(check(startIdx, i, j));
                         if (check(startIdx, i, j)) {
                             for (int l = startIdx; l < startIdx + m; l++) {
                                 map[i][l] = 1;
@@ -69,6 +69,21 @@ public class Main {
                             return;
                         }
                     }
+                }
+                else if (map[i][j] == 0 && map[i - 1][j] == 0) {
+                    count++;
+
+                    if (count >= m) {
+                     //   System.out.println(check(startIdx, i, j));
+                        if (check(startIdx, i, j)) {
+                            for (int l = startIdx; l < startIdx + m; l++) {
+                                map[i][l] = 1;
+                            }
+                            return;
+                        }
+                    }
+
+                } else {
                     startIdx = j+1;
                     count = 0;
                 }
@@ -78,6 +93,10 @@ public class Main {
 
 
     static boolean check(int startIdx, int row, int endCol) {
+
+        if (row == n-1)
+            return true;
+
         for (int i = startIdx; i < endCol; i++) {
             int x = row;
             int y = startIdx;
@@ -87,7 +106,7 @@ public class Main {
                 int ny = y + dy[j];
 
                 if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
-                    if (map[nx][ny] == 1) {
+                    if (map[nx][ny] == 1 ) {
                         return true;
                     }
                 }
