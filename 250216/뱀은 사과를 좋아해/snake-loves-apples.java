@@ -86,7 +86,8 @@ public class Main {
               return;
           }
 
-          if (bumpSnake(nx, ny)) { //충돌
+          tail = tailList.get(0);
+          if (bumpSnake(nx, ny, tail.x, tail.y)) { //충돌
               stop = 1;
               return;
           }
@@ -97,7 +98,6 @@ public class Main {
           head = new pair(nx, ny);
 
           if (map[nx][ny] == 0) { //사과x
-              tail = tailList.get(0);
               snake[tail.x][tail.y] = 0; //꼬리삭제
               tailList.remove(0);
           } else {//사과o
@@ -109,8 +109,8 @@ public class Main {
 
   }
 
-  static boolean bumpSnake(int headX, int headY) {
-        if (snake[headX][headY] == 1)
+  static boolean bumpSnake(int newHeadX, int newHeadY, int tailX, int tailY) {
+        if (snake[newHeadX][newHeadY] == 1 && !(newHeadX == tailX && newHeadY == tailY))
             return true;
         return false;
   }
