@@ -38,8 +38,8 @@ public class Main {
         }
 
         int time = 0;
-        pair [] dir = {new pair(0,0,1,1), new pair(0,n-1,0,0),
-                        new pair(n-1,0,3,1),new pair(0,0,2,0)};
+        pair [] dir = {new pair(-1,0,1,1), new pair(0,n,0,0),
+                        new pair(n,0,3,1),new pair(0,-1,2,0)};
         for (int i = 0; i < 4; i++) {
             pair p = dir[i];
 
@@ -52,10 +52,10 @@ public class Main {
                 else
                     y += j;
 
-                t = 1;
-                //System.out.println(p.d);
+                t = 0;
+               // System.out.println(p.d);
                 time = pinBall(x,y,p.d);
-               // System.out.println(x+ " "+ y +" "+ time);
+                //System.out.println(x+ " "+ y +" "+ time);
                 max = Math.max(max, time);
             }
         }
@@ -74,7 +74,7 @@ public class Main {
             t++;
             int nx = x + dx[next];
             int ny = y + dy[next];
-            //System.out.print("n "+x+" "+y+" "+next+" ");
+         //   System.out.print("n "+x+" "+y+" "+next+" ");
             if (!(nx >= 0 && nx < n && ny >= 0 && ny < n))
                 return t;
 
@@ -93,7 +93,7 @@ public class Main {
             }
 
             x = nx; y = ny;
-            //System.out.println();
+           // System.out.println();
         }
     }
 
