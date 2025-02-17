@@ -29,7 +29,7 @@ public class Main {
 
         map = new int[n][n];
         ballMap = new int[n][n];
-        ball = new pair[n];
+        ball = new pair[m];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
