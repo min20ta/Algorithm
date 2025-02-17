@@ -133,19 +133,15 @@ public class Main {
 
     static void saveInList() {
         int [][] saveArr = new int[n][n];
+        int [][] saveDirArr = new int[n][n];
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 saveArr[i][j] = map[i][j];
-            }
-        }
-        list.add(saveArr);
-
-        int [][] saveDirArr = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
                 saveDirArr[i][j] = dir[i][j];
             }
         }
+        list.add(saveArr);
         dirList.add(saveDirArr);
     }
 
@@ -156,11 +152,12 @@ public class Main {
             int [][] dirArr = dirList.get(i);
             boolean check = true;
 
+            loop:
             for (int j = 0; j < n; j++) {
                 for (int k = 0; k < n; k++) {
                     if (!(arr[j][k] == map[j][k] && dirArr[j][k] == dir[j][k])) {
                         check = false;
-                        break;
+                        break loop;
                     }
                 }
             }
