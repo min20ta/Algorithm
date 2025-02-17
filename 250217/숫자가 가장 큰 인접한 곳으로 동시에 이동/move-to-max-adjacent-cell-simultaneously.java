@@ -8,7 +8,7 @@ public class Main {
     static pair[] ball;
     static int idx = 0;
     static int[] dx = {1, -1, 0, 0};
-    static int[] dy = {0, 0, 1, -1};
+    static int[] dy = {0, 0, -1, 1};
     static int n;
     static int m;
     static int t;
@@ -105,12 +105,12 @@ public class Main {
                 if (ballMap[i][j] == 1)
                     q.add(new pair(i,j));
 
-               // System.out.print(ballMap[i][j]+" ");
+                //System.out.print(ballMap[i][j]+" ");
             }
-           // System.out.println();
+            //System.out.println();
         }
 
-       // System.out.println();
+        //System.out.println();
 
 
     }
