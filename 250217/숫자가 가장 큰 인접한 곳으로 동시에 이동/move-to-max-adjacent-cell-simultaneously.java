@@ -7,7 +7,7 @@ public class Main {
     static int[][] ballMap;
     static pair[] ball;
     static int idx = 0;
-    static int[] dx = {1, -1, 0, 0};
+    static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
     static int n;
     static int m;
@@ -101,7 +101,11 @@ public class Main {
             for (int j = 0; j < n; j++) {
                 if (ballMap[i][j] >= 2)
                     ballMap[i][j] = 0;
+            }
+        }
 
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 if (ballMap[i][j] == 1)
                     q.add(new pair(i,j));
 
@@ -110,7 +114,7 @@ public class Main {
             //System.out.println();
         }
 
-        //System.out.println();
+       // System.out.println();
 
 
     }
