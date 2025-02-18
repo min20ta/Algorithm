@@ -20,7 +20,7 @@ public class Main {
     static int next;
     static Queue<pair> q = new LinkedList<>();
     static ArrayList<pair>[][] list;
-    static ArrayList<pair> list2 = new ArrayList<>();
+    static ArrayList<pair> numList = new ArrayList<>();
     static ArrayList<int[][]> dirList = new ArrayList<>();
     static int max = Integer.MIN_VALUE;
     static pair Blank = new pair(-1,-1,-1,-1,-1);
@@ -32,8 +32,7 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
         t = Integer.parseInt(st.nextToken());
         k = Integer.parseInt(st.nextToken());
-
-        num = new pair[m];
+        
         list = new ArrayList[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -54,7 +53,7 @@ public class Main {
             else if (d == 'U') dir = 2;
             else if (d == 'R') dir = 3;
 
-            num[i] = new pair(r,c,dir,v,i);
+            numList.add(new pair(r,c,dir,v,i));
             list[r][c].add(new pair(r,c,dir,v,i));
         }
 
@@ -70,8 +69,8 @@ public class Main {
     }
 
     static void move() {
-        for (int i = 0; i < m; i++) {
-            pair p = num[i];
+        for (int i = 0; i < numList.size(); i++) {
+            pair p = numList.get(i);
             int x = p.x; int y = p.y; int d = p.d; int v = p.v;
 
             int nx = x + dx[d]*v;
@@ -96,6 +95,8 @@ public class Main {
     }
 
     static void bomb() {
+        numList.clear();
+        
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n ; j++) {
                 int size = list[i][j].size();
@@ -104,6 +105,12 @@ public class Main {
                     int erase = size - k;
                     while (erase -- > 0)
                         list[i][j].remove(list[i][j].size()-1);
+                }
+                
+                if (size > 0){
+                    for (int q = 0; q < list[i][j].size(); q++) {
+                        numList.add(list[i][j].get(q));
+                    }
                 }
             }
         }
