@@ -88,18 +88,18 @@ public class Main {
         list.clear();
         getNumbers(maxX,maxY);
         int curNum = list.size()-1;
-        int nextNum = list2.size();
-//        System.out.println("cur: "+ curNum);
-//        System.out.println("next: "+ nextNum);
-        if (nextNum != 0) {
+        int nextNum = list2.size(); //갖고가는거
+    //    System.out.println("cur: "+ curNum);
+      //  System.out.println("next: "+ nextNum);
+        if (curNum+1 != 0) {
             for (int i = list2.size() - 1; i >= 0; i--) {
                 display[list2.get(i).num] = new pair(maxX, maxY, nextNum-- + curNum, list2.get(i).num);
             }
             list2.clear();
         }
 //        for (int i = 1; i <= n*n; i++) {
-////            System.out.println(i+": "+display[i].x+" "+display[i].y +" "+ display[i].howManyBack);
-////        }
+//            System.out.println(i+": "+display[i].x+" "+display[i].y +" "+ display[i].howManyBack);
+//        }
 
     }
     static void getNumbers(int x, int y) {
