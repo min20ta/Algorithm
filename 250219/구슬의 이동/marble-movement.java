@@ -76,8 +76,8 @@ public class Main {
 
             int nx = x + dx[d]*v;
             int ny = y + dy[d]*v;
-           // System.out.println(nx +" "+ ny);
-            if (!(nx >= 0 && nx < n && ny >= 0 && ny < n)) {
+            //System.out.println(nx +" "+ ny);
+            while (!(nx >= 0 && nx < n && ny >= 0 && ny < n)) {
                 d = 3 - d;
                 if (nx <0) nx = Math.abs(nx);
                 else if (nx >= n) nx = 2*n -nx - 2;
@@ -87,10 +87,10 @@ public class Main {
 
             }
 
-           // System.out.println(x+" "+ y+" "+ nx+" "+ny);
+            //System.out.println(x+" "+ y+" "+ nx+" "+ny);
             list[x][y].removeIf(q -> q.num == p.num);
             list[nx][ny].add(new pair(nx,ny,d,v,p.num));
-           // System.out.println(list[nx][ny].size());
+            //System.out.println(list[nx][ny].size());
         }
 
     }
