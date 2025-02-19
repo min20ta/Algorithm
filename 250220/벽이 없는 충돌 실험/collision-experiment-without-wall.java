@@ -3,11 +3,7 @@ import java.io.*;
 
 
 public class Main {
-    static pair[][] map;
-    static pair[] num;
-    static pair[] display;
-    static int[][] dir;
-    static int[][] dir2;
+ 
     static int time = 0;
     static int[] dx = {-1, 0, 0, 1};
     static int[] dy = {0, -1, 1, 0};
@@ -19,30 +15,26 @@ public class Main {
     static int ansW;
     static int x = 0;
     static int y = 0;
-    static ArrayList<Integer> bombList = new ArrayList<>();
-    static Queue<pair> q = new LinkedList<>();
     static int [][] duplicateList;
-    static boolean[][] visit;
     static ArrayList<pair> grid = new ArrayList<>();
     static ArrayList<pair> temp = new ArrayList<>();
-    static ArrayList<pair> temp2 = new ArrayList<>();
+   
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         //StringTokenizer st = new StringTokenizer(br.readLine());
         t = Integer.parseInt(br.readLine());
-
-
+        duplicateList = new int[4001][4001];
+        grid = new ArrayList<>();
+        temp = new ArrayList<>();
+    
+        for (int[] i : duplicateList)
+            Arrays.fill(i,-1);
         while (t-- > 0) {
             n = Integer.parseInt(br.readLine());
-            duplicateList = new int[4001][4001];
             time = 0;
             lastTime = -1;
-            grid = new ArrayList<>();
-            temp = new ArrayList<>();
-
-            for (int[] i : duplicateList)
-                Arrays.fill(i,-1);
+        
 
             for (int i = 1; i <= n; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
