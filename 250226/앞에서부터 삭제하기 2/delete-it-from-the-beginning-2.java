@@ -39,13 +39,16 @@ public class Main {
                 pq.add(list.get(i));
             }
 
-            pq.poll();
-            int size = pq.size();
-            int sum = 0;
-            for (int i = 0; i < size; i++) {
-                sum += pq.poll();
+            int remove = pq.poll();
+            int sum = 0; int count = 0;
+            for (int i = k; i < n; i++) {
+                if (remove == list.get(i) && count == 0) {
+                    count++;
+                    continue;
+                }
+                sum += list.get(i);
             }
-            double avg = (double)sum/size;
+            double avg = (double)sum/(n-k-1);
             max = Math.max(max, avg);
 
             pq.clear();
@@ -55,5 +58,6 @@ public class Main {
 
     }
 }
+
 
 
