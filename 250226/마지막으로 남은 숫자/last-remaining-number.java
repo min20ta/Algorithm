@@ -43,7 +43,10 @@ public class Main {
             pq.add(-(max1-max2));
         }
 
-        System.out.println(-pq.poll());
+        if(pq.isEmpty())
+            System.out.println(-1);
+        else
+            System.out.println(-pq.poll());
 
 
 
