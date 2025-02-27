@@ -25,30 +25,51 @@ public class Main {
         for (int i = 0; i < t; i++) {
             int m = Integer.parseInt(br.readLine());
             st = new StringTokenizer(br.readLine());
-            PriorityQueue<Integer> pq = new PriorityQueue<>();
-            int [] arr = new int[m];
-
-            for (int j = 0; j < m; j++) {
+            PriorityQueue<Integer> maxPQ = new PriorityQueue<>();
+            PriorityQueue<Integer> minPQ = new PriorityQueue<>();
+            int [] arr = new int[m+1];
+            int median = 0;
+            
+            for (int j = 1; j <= m; j++) {
                 int x = Integer.parseInt(st.nextToken());
-                pq.add(x);
                 arr[j] = x;
-
-                if (j % 2 == 0) {
-                    for (int k = j/2+1; k <= j ; k++) {
-                        pq.poll();
-                    }
-                    System.out.print(pq.poll()+" ");
-                    for (int k = j/2; k <= j ; k++) {
-                        pq.add(arr[k]);
-                    }
+                if (j == 1){
+                    median = x;
+                    System.out.print(median+" ");
+                    continue;
                 }
+
+             if (j % 2 == 0) {
+                 if (arr[j] < median)
+                     maxPQ.add(-arr[j]);
+                 else
+                     minPQ.add(arr[j]);
+             }else {
+                 int newCand;
+                 if (maxPQ.size() > minPQ.size())
+                     newCand = -maxPQ.poll();
+                 else 
+                     newCand = minPQ.poll();
+                 
+                 int [] nums = {median,newCand, arr[j]};
+                 Arrays.sort(nums);
+                 
+                 maxPQ.add(-nums[0]);
+                 median = nums[1];
+                 minPQ.add(nums[2]);
+
+                 System.out.print(median+" ");
+             }}
+             System.out.println();
             }
-            System.out.println();
+       
         }
 
 
 
     }
-}
+
+
+
 
 
