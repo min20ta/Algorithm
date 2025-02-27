@@ -49,23 +49,26 @@ public class Main {
         int wait = Integer.MIN_VALUE;
 
         while (true){
-            while (!pq2.isEmpty()) {
+            if (!pq2.isEmpty()) {
                 pair nextP = pq2.poll();
-
+             
                 if (time < nextP.a)
                     time = nextP.a + nextP.t;
                 else {
                     wait = Math.max(wait, time - nextP.a);
                     time += nextP.t;
                 }
-               // System.out.println(wait+" "+time);
-            }
-            pq2.clear();
+             //   System.out.println(time+" "+ nextP.a+" "+nextP.t);
 
-            if (pq.isEmpty())
+
+            }
+
+            if (pq.isEmpty() && pq2.isEmpty())
                 break;
 
-            if (time < pq.peek().a){
+
+            if (!pq.isEmpty() && !pq2.isEmpty() &&
+                    pq2.peek().a <=time && time < pq.peek().a){
                 pq2.add(pq.poll());
             } else {
                 while (!pq.isEmpty() && time >= pq.peek().a) {
@@ -93,6 +96,7 @@ public class Main {
 
 
     }
+
 
 
 
