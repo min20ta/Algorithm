@@ -61,10 +61,10 @@ public class Main {
              // pq2.add((long)a+b);
             }
 
-            while (i!= m-1 && pq.peek() < mArr[i+1]+nArr[0]) {
+            while (i!= m-1 && !pq.isEmpty() && pq.peek() < mArr[i+1]+nArr[0]) {
                     index++;
                     ans = pq.poll();
-               // System.out.println(ans+" "+index);
+               System.out.println(ans+" "+index);
                     if (index == k) {
                         stop = true;
                         break loop;
@@ -80,7 +80,7 @@ public class Main {
             while (!pq.isEmpty()) {
                 index++;
                 ans = pq.poll();
-                //System.out.println(ans + " " + index);
+                System.out.println(ans + " " + index);
                 if (index == k) {
                     break;
                 }
