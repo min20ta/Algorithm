@@ -25,7 +25,6 @@ public class Main {
         //각 수열에서 원소하나씩뽑아서 쌍들 구하고, 합 오름차순, k번째의 합
 
         PriorityQueue<Long> pq = new PriorityQueue<>();
-        PriorityQueue<Long> pq2 = new PriorityQueue<>();
 
         int [] nArr = new int[n];
         int [] mArr = new int[m];
@@ -46,7 +45,7 @@ public class Main {
         //조합
 
         //합은 long
-        int index = 1;
+        long index = 1;
         long ans = 0;
         loop:
         for (int i = 0; i < m; i++) {
