@@ -24,8 +24,7 @@ public class Main {
 
         //각 수열에서 원소하나씩뽑아서 쌍들 구하고, 합 오름차순, k번째의 합
 
-        PriorityQueue<Long> pq = new PriorityQueue<>();
-        PriorityQueue<Long> pq2 = new PriorityQueue<>();
+        PriorityQueue<pair> pq = new PriorityQueue<>();
 
         int [] nArr = new int[n];
         int [] mArr = new int[m];
@@ -46,61 +45,49 @@ public class Main {
         //조합
 
         //합은 long
-        //중간에 정리가 필요할듯
 
-        long index = 0;
-        long ans = 0;
-        boolean stop = false;
+        for (int i = 0; i < n; i++) {
+            pq.add(new pair((long)nArr[i]+mArr[0], i, 0));
+        }
+        //최소값찾고 버린후, 다음 최소값 후보 추가 반복
+        for (int i = 0; i < k-1; i++) {
+            pair p = pq.poll();
+            int index1 = p.index1;
+            int index2 = p.index2;
 
-        //메모리초과ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
-        loop:
-        for (int i = 0; i < m; i++) {
-            int a = mArr[i];
-            for (int j = 0; j < n; j++) {
-              int b = nArr[j];
-              pq.add((long)a+b);
-             // pq2.add((long)a+b);
-                max = Math.max(max, (long)a+b);
-            }
-
-            while (i!= m-1 && !pq.isEmpty() && pq.peek() < mArr[i+1]+nArr[0]) {
-                    index++;
-                    ans = pq.poll();
-                    if (index == k) {
-                        stop = true;
-                        break loop;
-                    }
-            }while (!pq.isEmpty() && max < mArr[i+1]+nArr[0]) {
-                index++;
-                ans = pq.poll();
-                if (index == k) {
-                    stop = true;
-                    break loop;
-                }
-            }
-
-            }
-
-        if (stop)
-            System.out.println(ans);
-        else {
-
-            while (!pq.isEmpty()) {
-                index++;
-                ans = pq.poll();
-                System.out.println(ans + " " + index);
-                if (index == k) {
-                    break;
-                }
-            }
-
-            System.out.println(ans);
+            index2++;
+            if (index2 < m)
+                pq.add(new pair((long)nArr[index1] + mArr[index2], index1, index2));
         }
 
+        System.out.println(pq.peek().sum);
+
+
+
+        }
+
+
+
+    static class pair implements Comparable<pair> {
+        long sum;
+        int index1;
+        int index2;
+
+        pair(long sum, int index1, int index2) {
+            this.sum = sum;
+            this.index1 = index1;
+            this.index2 = index2;
+        }
+
+        @Override
+        public int compareTo(pair p){
+            if (this.sum == p.sum)
+                return this.index1 - p.index1;
+            if (this.index1 == p.index1)
+                return this.index2 - p.index2;
+            return (int) (this.sum - p.sum);
+        }
     }
-
-
-
 
     }
 
