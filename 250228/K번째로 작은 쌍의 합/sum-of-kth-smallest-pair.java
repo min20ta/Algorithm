@@ -25,6 +25,7 @@ public class Main {
         //각 수열에서 원소하나씩뽑아서 쌍들 구하고, 합 오름차순, k번째의 합
 
         PriorityQueue<Long> pq = new PriorityQueue<>();
+        PriorityQueue<Long> pq2 = new PriorityQueue<>();
 
         int [] nArr = new int[n];
         int [] mArr = new int[m];
@@ -45,39 +46,52 @@ public class Main {
         //조합
 
         //합은 long
-        long index = 1;
+        //중간에 정리가 필요할듯
+
+        long index = 0;
         long ans = 0;
+        boolean stop = false;
+
         loop:
         for (int i = 0; i < m; i++) {
             int a = mArr[i];
             for (int j = 0; j < n; j++) {
               int b = nArr[j];
               pq.add((long)a+b);
+             // pq2.add((long)a+b);
             }
-            ans = pq.poll();
-            if (index == k){
-                break loop;
-            }
-            index++;
 
+            while (i!= m-1 && pq.peek() < mArr[i+1]+nArr[0]) {
+                    index++;
+                    ans = pq.poll();
+               // System.out.println(ans+" "+index);
+                    if (index == k) {
+                        stop = true;
+                        break loop;
+                    }
+            }
+
+            }
+
+        if (stop)
+            System.out.println(ans);
+        else {
+
+            while (!pq.isEmpty()) {
+                index++;
+                ans = pq.poll();
+                //System.out.println(ans + " " + index);
+                if (index == k) {
+                    break;
+                }
+            }
+
+            System.out.println(ans);
         }
-
-        System.out.println(ans);
 
     }
 
-    static class pair {
-        int a;
-        int t;
-        int index;
 
-        pair(int a, int t, int index){
-            this.a = a;
-            this.t = t;
-            this.index = index;
-        }
-
-    }
 
 
     }
