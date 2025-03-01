@@ -32,8 +32,8 @@ public class Main {
         }
 
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i < n-2; i++) {
-                int sum = dp[i+2]-dp[i];
+        for (int i = 0; i < n-k; i++) {
+                int sum = dp[i+k]-dp[i];
                 max = Math.max(max, sum);
             }
 
