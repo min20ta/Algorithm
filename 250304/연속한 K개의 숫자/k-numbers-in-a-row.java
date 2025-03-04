@@ -23,29 +23,33 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         k = Integer.parseInt(st.nextToken());
         b = Integer.parseInt(st.nextToken());
-        int [] arr= new int[b+1];
+        int [] arr= new int[b];
         int []save = new int[n+1];
 
         //st = new StringTokenizer(br.readLine());
-        for (int i = 1; i <= b; i++) {
-                arr[i]= Integer.parseInt(br.readLine());
+        for (int i = 0; i < b; i++) {
+            arr[i]= Integer.parseInt(br.readLine());
         }
         Arrays.sort(arr);
         //1~n 인데 b들 없다.
         //본인이 살았을때 경우
         //누적합 경우
         int zero = 0;
-        int zeroIdx = 1;
+        int zeroIdx = 0;
+
         for (int i = 1; i <= n ; i++) {
 
-            if (arr[zeroIdx] <= i) {
+            if (zeroIdx <b &&arr[zeroIdx] == i) {
                 zero = arr[zeroIdx];
                 zeroIdx++;
+              //  System.out.print(zero+" ");
+                //System.out.println();
             }
             save[i] = i - zero;
+          // System.out.print(save[i] +" ");
         }
 
-       //추가시
+        //추가시
         //이어붙이기
         int min = Integer.MAX_VALUE;
         for (int i = 1; i <= n - k +1; i++) {
@@ -57,14 +61,14 @@ public class Main {
             }
             min = Math.min(min,count);
 
-            }
-        System.out.println(min);
         }
+        System.out.println(min);
+    }
 
 
-        
 
-        
+
+
 
 
 
