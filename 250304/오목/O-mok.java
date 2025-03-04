@@ -113,16 +113,16 @@ public class Main {
             }
         }
 
-        if (x-4 >= 1 && x - 4 <= 19 && y-4 >= 1 && y-4 <=19) {
+        if (x+4 >= 1 && x + 4 <= 19 && y-4 >= 1 && y-4 <=19) {
             goal = true;
             for (int i = 0; i < 5; i++) {
-                if (arr[x - i][y - i] != color) {
+                if (arr[x + i][y - i] != color) {
                     goal = false;
                     break;
                 }
             }
             if (goal) {
-                middleX = x-2;
+                middleX = x+2;
                 middleY = y-2;
                 return true;
             }
