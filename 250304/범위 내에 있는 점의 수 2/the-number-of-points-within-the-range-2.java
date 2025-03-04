@@ -23,8 +23,8 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         q = Integer.parseInt(st.nextToken());
 
-        int [] arr= new int[100001];
-        int [] dp= new int[100001];
+        int [] arr= new int[1000001];
+        int [] dp= new int[1000001];
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
@@ -33,7 +33,7 @@ public class Main {
 
 
         //n개 점/q범위 내에 점 몇개 있는지
-        for (int i = 1; i <= 100000; i++) {
+        for (int i = 1; i <= 1000000; i++) {
             dp[i] = dp[i-1] + arr[i];
 
         }
