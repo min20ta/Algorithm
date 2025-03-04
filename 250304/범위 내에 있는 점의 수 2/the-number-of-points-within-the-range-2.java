@@ -43,7 +43,9 @@ public class Main {
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
 
-        //    if (dp[end] != dp[start])
+            if(start == 0)
+                System.out.println(dp[end]);
+            else
                 System.out.println(dp[end] - dp[start-1]);
           //  else
              //   System.out.println(0);
