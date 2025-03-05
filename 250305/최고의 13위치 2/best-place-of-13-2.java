@@ -38,10 +38,10 @@ public class Main {
             }
         }
 
-        for (int i = 0; i <= n - 1; i++) { //1번격자
+        for (int i = 0; i < n ; i++) { //1번격자
             for (int j = 0; j <= n - 3; j++) {
 
-                for (int l = i+1; l < n; l++) { //2번 격지
+                for (int l = 0; l < n; l++) { //2번 격지
                     for (int o = 0; o <= n -3; o++) {
 
                         max = Math.max(max,sumMax(i,j,l,o));
@@ -56,9 +56,17 @@ public class Main {
 
 
     }
+    //같은라인도
     static int sumMax(int x, int y, int x2, int y2) {
         int sum = 0;
 
+        //검사
+        if (x == x2 && y2 <= y +2)
+            return 0;
+
+        if (x == x2 && y >= y2)
+            return 0;
+        
         for (int i = y; i <y+3 ; i++) {
             sum += arr[x][i];
         }
@@ -74,6 +82,7 @@ public class Main {
 
 
     }
+
 
 
 
