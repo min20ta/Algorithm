@@ -73,15 +73,25 @@ public class Main {
 
             int newA ;
             if (!map.containsKey(a)) {
-                newA = nums.ceiling(a);
-                newA = map.get(newA);
+                if (nums.ceiling(a)!= null) {
+                    newA = nums.ceiling(a);
+                    newA = map.get(newA);
+                }else {
+                    System.out.println(0);
+                    continue;
+                }
             }else
                 newA = map.get(a);
 
             int newB ;
             if (!map.containsKey(b)) {
-                newB = nums.floor(b);
-                newB = map.get(newB);
+                if (nums.floor(b) != null) {
+                    newB = nums.floor(b);
+                    newB = map.get(newB);
+                }else{
+                    System.out.println(0);
+                    continue;
+                }
             }else
                 newB = map.get(b);
 
@@ -104,5 +114,14 @@ public class Main {
     }
 
     }
+
+
+
+
+
+
+
+
+
 
 
