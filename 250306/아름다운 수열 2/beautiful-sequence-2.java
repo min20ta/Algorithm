@@ -22,8 +22,7 @@ public class Main {
 
     static int [] a;
     static int [] b;
-    static Set<Integer> set = new HashSet<>();
-    static Set<Integer> set2 = new HashSet<>();
+    static ArrayList<Integer> list = new ArrayList<>();
 
 
 
@@ -45,12 +44,13 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < m; i++) {
-            set.add(Integer.parseInt(st.nextToken()));
+            list.add(Integer.parseInt(st.nextToken()));
         }
+
+        Collections.sort(list);
 
         int count = 0;
         for (int i = 0; i <= n-m; i++) {
-            set2 = new HashSet<>(set);
             if (findBeautiful(i)) {
                 count++;
             }
@@ -63,21 +63,24 @@ public class Main {
 
     //똑같은거 처리
     static boolean findBeautiful(int x) {
+        ArrayList<Integer> list2 = new ArrayList<>();
         for (int i = x; i <x +m ; i++) {
-            if (set2.contains(a[i])) {
-                set2.remove(a[i]);
-            }
+            list2.add(a[i]);
         }
-        if (set2.isEmpty())
-            return true;
-        else
-            return false;
+        Collections.sort(list2);
+        for (int i = 0; i < m; i++) {
+            if (list.get(i) != list2.get(i))
+                return false;
+        }
+
+        return true;
     }
 
 
 
 
     }
+
 
 
 
