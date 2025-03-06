@@ -23,6 +23,7 @@ public class Main {
     static int [] a;
     static int [] b;
     static Set<Integer> set = new HashSet<>();
+    static Set<Integer> set2 = new HashSet<>();
 
 
 
@@ -47,11 +48,12 @@ public class Main {
             set.add(Integer.parseInt(st.nextToken()));
         }
 
-
         int count = 0;
         for (int i = 0; i <= n-m; i++) {
-            if (findBeautiful(i))
+            set2 = new HashSet<>(set);
+            if (findBeautiful(i)) {
                 count++;
+            }
         }
 
         System.out.println(count);
@@ -59,18 +61,30 @@ public class Main {
 
     }
 
+    //똑같은거 처리
     static boolean findBeautiful(int x) {
         for (int i = x; i <x +m ; i++) {
-            if (!set.contains(a[i]))
-                return false;
+            if (set2.contains(a[i])) {
+                set2.remove(a[i]);
+            }
         }
-        return true;
+        if (set2.isEmpty())
+            return true;
+        else
+            return false;
     }
 
 
 
 
     }
+
+
+
+
+
+
+
 
 
 
