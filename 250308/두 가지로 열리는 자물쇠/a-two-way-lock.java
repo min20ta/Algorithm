@@ -26,11 +26,6 @@ public class Main {
     static TreeSet<Integer> nums = new TreeSet<>();
 
 
-
-    static final int MAX_NUM = 100000;
-
-
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -52,18 +47,19 @@ public class Main {
                 for (int l = 1; l <=n ;l++) {
                     boolean ans = false;
 
-                    if (Math.min(Math.abs(i-a1),Math.abs(n-(i-a1)))<=2
-                            &&Math.min(Math.abs(j-b1),Math.abs(n-(j-b1)))<=2
-                            && Math.min(Math.abs(l-c1),Math.abs(n-(l-c1)))<=2)
+                    if (Math.min(Math.abs(i-a1),n-Math.abs(i-a1))<=2
+                            &&Math.min(Math.abs(j-b1),n- Math.abs(j-b1))<=2
+                            && Math.min(Math.abs(l-c1),n- Math.abs(l-c1))<=2)
                         ans = true;
-                    else if (Math.min(Math.abs(i-a2),Math.abs(n-(i-a2)))<=2
-                            &&Math.min(Math.abs(j-b2),Math.abs(n-(j-b2)))<=2
-                            && Math.min(Math.abs(l-c2),Math.abs(n-(l-c2)))<=2)
+                   else if (Math.min(Math.abs(i-a2),n- Math.abs(i-a2))<=2
+                            &&Math.min(Math.abs(j-b2),n- Math.abs(j-b2))<=2
+                            && Math.min(Math.abs(l-c2),n- Math.abs(l-c2))<=2)
                         ans = true;
 
-                    if (ans)
+                    if (ans){
                         count++;
-
+                      //  System.out.println(i+" "+j+ " "+l);
+                    }
                 }
             }
         }
