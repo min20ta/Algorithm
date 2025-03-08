@@ -53,6 +53,9 @@ public class Main {
                 for (int l = 1; l <= 9 ; l++) {
                     for (int o = 1; o <= 9 ; o++) {
 
+                        if (!(j != l && j != o && l != o))
+                            continue;
+                        
                         boolean ans = true;
                         for (int i = 0; i < n; i++) {
                             int first = 0;
@@ -67,17 +70,19 @@ public class Main {
                             if (num.charAt(2) == (char)(o+'0'))
                                 first++;
 
-                            if (num.charAt(0) == (char)(l+'0')
-                                    ||num.charAt(0) == (char)(o+'0') )
+                            //중복처리
+
+                            if (num.charAt(0) != (char)(j+'0') &&( num.charAt(0) == (char)(l+'0')
+                                    ||num.charAt(0) == (char)(o+'0') ))
                                 second++;
-                            if (num.charAt(1) == (char)(j+'0')
-                                    ||num.charAt(1) == (char)(o+'0'))
+                            if (num.charAt(1) != (char)(l+'0') && (num.charAt(1) == (char)(j+'0')
+                                    ||num.charAt(1) == (char)(o+'0')))
                                 second++;
-                            if (num.charAt(2) == (char)(l+'0')
-                                    ||num.charAt(2) == (char)(j+'0'))
+                            if (num.charAt(2) != (char)(o+'0') && (num.charAt(2) == (char)(l+'0')
+                                    ||num.charAt(2) == (char)(j+'0')))
                                 second++;
 
-                           // System.out.println(j+""+l+""+o+" "+num +" "+ first+" "+second);
+                           //System.out.println(j+""+l+""+o+" "+num +" "+ first+" "+second);
                             if (!(first == p.a && second == p.b)) {
                                 ans = false;
                                 break;
