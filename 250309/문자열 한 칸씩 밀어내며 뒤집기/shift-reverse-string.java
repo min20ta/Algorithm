@@ -43,8 +43,9 @@ public class Main {
             if (num == 1) {
                 str = str.substring(1)+str.substring(0,1);
             }else if (num ==2) {
-                str = str.substring(str.length()-1) + str.substring(0,str.length()-1);
+                str = str.substring(str.length()-1,str.length()) + str.substring(0,str.length()-1);
             }else  {
+                sb.setLength(0);
                 sb.append(str);
                 sb.reverse();
                 str = sb.toString();
