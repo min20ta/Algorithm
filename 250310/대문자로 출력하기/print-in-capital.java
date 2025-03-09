@@ -37,10 +37,10 @@ public class Main {
         String str = br.readLine();
 
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i)<'z' && 'A' <str.charAt(i)) {
-                if (str.charAt(i)<'z' && 'a'<str.charAt(i))
+            if (str.charAt(i)<='z' && 'A' <=str.charAt(i)) {
+                if (str.charAt(i)<='z' && 'a'<=str.charAt(i))
                     System.out.print((char)(str.charAt(i) - 'a' +'A'));
-                else
+                else if(str.charAt(i)<='Z' && 'A'<=str.charAt(i))
                     System.out.print(str.charAt(i));
             }
         }
