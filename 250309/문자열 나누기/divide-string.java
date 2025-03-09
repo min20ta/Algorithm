@@ -37,7 +37,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         String str = "";
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < n; i++) {
             str += st.nextToken();
         }
 
