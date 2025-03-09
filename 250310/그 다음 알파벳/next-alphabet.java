@@ -35,7 +35,10 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
        // StringTokenizer st = new StringTokenizer(br.readLine());
         char str = br.readLine().charAt(0);
-        System.out.println((char)(str+1));
+        if(str == 'z')
+            System.out.println('a');
+        else
+            System.out.println((char)(str+1));
 
 
     }
