@@ -38,14 +38,14 @@ public class Main {
         String str2 = st.nextToken();
 
         for (int j = 0; j < str.length(); j++) {
-            if (str.charAt(j) < '9' && '0' < str.charAt(j)) {
+            if (str.charAt(j) <= '9' && '0' <= str.charAt(j)) {
                 num1 += str.charAt(j);
             }else
                 break;
         }
 
         for (int j = 0; j < str2.length(); j++) {
-            if (str2.charAt(j) < '9' && '0' < str2.charAt(j)) {
+            if (str2.charAt(j) <= '9' && '0' <= str2.charAt(j)) {
                 num2 += str2.charAt(j);
             }else
                 break;
