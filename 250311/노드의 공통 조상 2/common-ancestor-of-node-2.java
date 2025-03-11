@@ -39,7 +39,7 @@ public class Main {
             tree.get(b).add(a);
         }
 
-        parent = new int[50001][n+1];
+        parent = new int[16][n+1];
 
         root = 1;
         depth[1] = 1;
