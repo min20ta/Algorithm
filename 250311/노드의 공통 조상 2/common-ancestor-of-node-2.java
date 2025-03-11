@@ -54,7 +54,7 @@ public class Main {
             int ans1 = Integer.parseInt(st.nextToken());
             int ans2 = Integer.parseInt(st.nextToken());
 
-            if (ans1 > ans2) System.out.println(findCommonAncestor(ans1,ans2));
+            if (depth[ans1] > depth[ans2]) System.out.println(findCommonAncestor(ans1,ans2));
             else System.out.println(findCommonAncestor(ans2,ans1));
 
 
