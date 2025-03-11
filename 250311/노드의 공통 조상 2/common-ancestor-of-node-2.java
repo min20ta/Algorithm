@@ -5,9 +5,6 @@ import java.io.*;
 
 public class Main {
 
-    static int[][] dir;
-    static int[][] dir2;
-    static int time = 0;
     static int[] dx = {0, 1, 0, -1};
     static int[] dy = {1, 0, -1, 0};
     static int n;
@@ -20,7 +17,7 @@ public class Main {
     static int[] depth = new int[50001];
     static int[][] parent ;
     static int[][] dp;
-    static boolean [] visit = new boolean[10001];
+    static boolean [] visit = new boolean[50001];
     static int root;
 
     static ArrayList<ArrayList<Integer>> tree = new ArrayList<>();
@@ -42,8 +39,6 @@ public class Main {
             tree.get(b).add(a);
         }
 
-        depth = new int[50001];
-        visit = new boolean[50001];
         parent = new int[50001][n+1];
 
         root = 1;
