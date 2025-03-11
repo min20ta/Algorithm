@@ -53,7 +53,8 @@ public class Main {
 
         //선분검사
         //100개
-        int count = n;
+ 
+        boolean [] line = new boolean[n];
         for (int i = 0; i < n-1; i++) {
             boolean check = false;
 
@@ -63,12 +64,15 @@ public class Main {
                 pair p2 = xArr[j];
 
                 if (p1.x <= p2.x && p2.y <= p1.y) {
-                    count --;
-                    check = true;
+                    line[i] = true;
+                    line[j] = true;
                 }
             }
-            if (check)
-                count--;
+        }
+        int count = 0;
+        for(int i = 0 ; i < n ; i++) {
+            if(!line[i])
+            count++;
         }
         System.out.println(count);
     }
