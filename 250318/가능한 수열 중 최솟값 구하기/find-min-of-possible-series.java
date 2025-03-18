@@ -39,17 +39,16 @@ public class Main {
     static void findFirst(int idx) {
 
         if (idx == n){
-            if (isPossible()){
                 for (int a : list)
                     System.out.print(a);
                 System.exit(0);
-            }
             return;
         }
 
         for (int i = 4; i <= 6 ; i++) {
               list.add(i);
-              findFirst(idx+1);
+              if (isPossible())
+                findFirst(idx+1);
               list.remove(list.size()-1);
         }
     }
@@ -59,8 +58,8 @@ public class Main {
         //인접한수열
         //수열길이 : n/2까지
         //모두 통과해야 true
-        for (int len = 1; len <= n/2 ; len++) {
-            for (int i = 0; i < n; i++) {// 처음시작위치
+        for (int len = 1; len <= list.size()/2 ; len++) {
+            for (int i = 0; i < list.size(); i++) {// 처음시작위치
                 if (isSameList(i, len))
                     return false;
             }
@@ -75,7 +74,7 @@ public class Main {
         int start2 = x+ len;
         int end2 = start2 + len-1;
 
-        if (!(end < n && start2 < n && end2 < n))
+        if (!(end2 < list.size()))
             return false;
 
         for (int i = 0; i < len ; i++) {
