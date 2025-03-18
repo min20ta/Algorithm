@@ -19,17 +19,9 @@ public class Main {
     static int[] depth = new int[50001];
     static int[] ansArr;
     static int[][] copyArr;
-    static int ans = 0;
-    static boolean[] visit;
-    static int root;
-    static int peopleNum;
-    static int min = Integer.MAX_VALUE;
     static List<Integer> list = new ArrayList<>();
     static List<Integer> colList = new ArrayList<>();
 
-    static int rowA;
-    static int rowB;
-    static int colA;
     static int maxVal = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws Exception {
@@ -79,9 +71,9 @@ public class Main {
     }
     static boolean possible(int x1, int y1, int x2, int y2) {
 
-        if(y1 >= y2)
+        if (x1 == x2 && (y1 > y2))
             return false;
-
+            
         if (x1 == x2 && y1+(m-1) >= y2) //같은행일때
             return false;
 
