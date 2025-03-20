@@ -26,7 +26,6 @@ public class Main {
     static int min = Integer.MAX_VALUE;
     static List<Integer> list = new ArrayList<>();
     static Queue<pair> q = new LinkedList<>();
-    static int allMeltCounts = 0;
     static int meltCounts = 0;
     static int t = 0;
 
@@ -59,7 +58,6 @@ public class Main {
                 visit[j][m-1] = true;
             }
 
-            allMeltCounts = 2*m + 2*n -4;
             int x = 1; int y = 1;
 
             while(!checkAllMelt()) {
@@ -82,6 +80,14 @@ public class Main {
 
     }
     static boolean checkAllMelt() {
+        int allMeltCounts = 0;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (arr[i][j] == 0)
+                    allMeltCounts++;
+            }
+        }
         if (allMeltCounts == n*m)
             return true;
         else
@@ -110,7 +116,6 @@ public class Main {
                         //System.out.println(meltCounts);
                        //System.out.println(i+" "+nx+" "+ny);
                     }
-                    allMeltCounts++;
                 }
                 x = nx; y = ny;
             }
@@ -139,7 +144,6 @@ public class Main {
                             arr[nx][ny] = 0;
                             meltCounts++;
                         }
-                        allMeltCounts++;
                     }
                 }
             }
