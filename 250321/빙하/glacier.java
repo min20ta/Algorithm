@@ -1,0 +1,158 @@
+
+import java.util.*;
+import java.io.*;
+
+
+public class Main {
+
+    static int[][]arr;
+    static int time = 0;
+    static int[] dx = {0, 1, 0, -1};
+    static int[] dy = {1, 0, -1, 0};
+    static int n;
+    static int m;
+    static int k;
+
+    static int max = Integer.MIN_VALUE;
+    static int count = 0;
+
+
+
+
+    static int ans = 0;
+    static boolean[][] visit;
+    static int root;
+    static int peopleNum;
+    static int min = Integer.MAX_VALUE;
+    static List<Integer> list = new ArrayList<>();
+    static Queue<pair> q = new LinkedList<>();
+    static int allMeltCounts = 0;
+    static int meltCounts = 0;
+    static int t = 0;
+
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        arr = new int[n][m];
+
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < m; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+            //바깥 = 0 물 1= 빙하
+            // 1초마다 물닿은 빙하 녹음. but 물의 상하좌우 빙하면 못녹임
+            //답: 빙하전체 녹는 시간, 마지막 녹는 크기
+            visit = new boolean[n][m];
+            for (int j = 0; j < m; j++) {
+                visit[0][j] = true;
+                visit[n-1][j] = true;
+            }
+            for (int j = 0; j < n; j++) {
+                visit[j][0] = true;
+                visit[j][m-1] = true;
+            }
+
+            allMeltCounts = 2*m + 2*n -4;
+            int x = 1; int y = 1;
+
+            while(!checkAllMelt()) {
+                meltCounts = 0;
+                t++;
+                outSideMelt(x++,y++);
+                //System.out.println("1: "+ meltCounts);
+                bfs();
+                //System.out.println("2: "+ meltCounts);
+                list.add(meltCounts);
+
+            }
+
+
+            System.out.println(t + " "+ list.get(list.size()-1));
+
+
+
+
+
+    }
+    static boolean checkAllMelt() {
+        if (allMeltCounts == n*m)
+            return true;
+        else
+            return false;
+    }
+
+    static void outSideMelt(int x, int y) {
+        y--;
+        for (int i = 0; i < 4; i++) {
+
+            while (true) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+
+                if (!(nx >= t && nx < n-t && ny >= t && ny < m-t)) {
+                    break;
+                }
+
+                if (!visit[nx][ny]) {
+                    visit[nx][ny] = true;
+                    if (arr[nx][ny] == 0)
+                        q.add(new pair(nx, ny));
+                    else {
+                        arr[nx][ny] = 0;
+                        meltCounts++;
+                        //System.out.println(meltCounts);
+                       //System.out.println(i+" "+nx+" "+ny);
+                    }
+                    allMeltCounts++;
+                }
+                x = nx; y = ny;
+            }
+        }
+
+
+    }
+    static void bfs() {
+
+        while (!q.isEmpty()) {
+
+            pair p = q.poll();
+            int x = p.x;
+            int y = p.y;
+
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+
+                if (nx >= t && nx < n-t && ny >= t && ny < m-t) {
+                    if (!visit[nx][ny]) {
+                        visit[nx][ny] = true;
+                        if (arr[nx][ny] == 0){
+                            q.add(new pair(nx, ny));
+                        }else {
+                            arr[nx][ny] = 0;
+                            meltCounts++;
+                        }
+                        allMeltCounts++;
+                    }
+                }
+            }
+        }
+    }
+
+  static class pair{
+        int x;
+        int y;
+
+        pair(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+  }
+}
