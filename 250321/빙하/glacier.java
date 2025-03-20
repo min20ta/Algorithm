@@ -81,7 +81,7 @@ public class Main {
     }
     static boolean checkAllMelt() {
         int allMeltCounts = 0;
-        
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (arr[i][j] == 0)
@@ -96,13 +96,17 @@ public class Main {
 
     static void outSideMelt(int x, int y) {
         y--;
+        int row = x; int col = y+1;
         for (int i = 0; i < 4; i++) {
 
             while (true) {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
 
-                if (!(nx >= t && nx < n-t && ny >= t && ny < m-t)) {
+                if (!(nx >= row && nx < n-row && ny >= col && ny < m-col)) {
+//                    if (i == 0) {x = row; y = m-1-col;}
+//                    if (i == 1) {x = n-1-row; y = m-1-col;}
+//                    if (i == 2) {x = n-1-row; y = col;}
                     break;
                 }
 
@@ -114,7 +118,7 @@ public class Main {
                         arr[nx][ny] = 0;
                         meltCounts++;
                         //System.out.println(meltCounts);
-                       //System.out.println(i+" "+nx+" "+ny);
+                      //  System.out.println(i+" "+nx+" "+ny);
                     }
                 }
                 x = nx; y = ny;
@@ -135,7 +139,7 @@ public class Main {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
 
-                if (nx >= t && nx < n-t && ny >= t && ny < m-t) {
+                if (nx >= 0 && nx < n && ny >=0 && ny < m) {
                     if (!visit[nx][ny]) {
                         visit[nx][ny] = true;
                         if (arr[nx][ny] == 0){
