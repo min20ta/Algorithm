@@ -6,6 +6,7 @@ import java.io.*;
 public class Main {
 
     static int[] dp;
+    static boolean[] visit;
     static int time = 0;
     static int[] dx = {0, 1, 0, -1};
     static int[] dy = {1, 0, -1, 0};
@@ -19,16 +20,10 @@ public class Main {
 
 
 
-    static int ans = 0;
-    static boolean[][] visit;
-    static int root;
-    static int peopleNum;
     static int min = Integer.MAX_VALUE;
     static List<Integer> list = new ArrayList<>();
     static Queue<Integer> q = new LinkedList<>();
-    static Queue<pair> nextQ = new LinkedList<>();
-    static int meltCounts = 0;
-    static int t = 0;
+
 
 
     public static void main(String[] args) throws Exception {
@@ -44,16 +39,18 @@ public class Main {
         // 조합 -> 종료조건 : 매번 확인해야함
         // 숫자 배열에 dp min
 
-        dp = new int[1000001];
+        dp = new int[2000001];
+        visit = new boolean[2000001];
         Arrays.fill(dp,Integer.MAX_VALUE);
         q.add(n);
+        visit[n] = true;
 
 
         bfs();
-        
+
         if (dp[1] == Integer.MAX_VALUE)
             System.out.println(0);
-        else 
+        else
             System.out.println(dp[1]);
 
 
@@ -82,14 +79,16 @@ public class Main {
                         continue;
                 }
 
-                if (nx < 1)
+                if (nx < 1 && nx >= 2000000)
                     continue;
+                if (visit[nx])
+                    continue;
+
+                visit[nx] = true;
 
                 if (dp[x] == Integer.MAX_VALUE)
                     dp[x] = 0;
-
                 dp[nx] = Math.min(dp[nx], dp[x]+1);
-                //System.out.println(dp[nx]);
                 q.add(nx);
             }
 
