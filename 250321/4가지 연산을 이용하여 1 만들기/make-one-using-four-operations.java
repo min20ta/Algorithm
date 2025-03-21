@@ -50,7 +50,11 @@ public class Main {
 
 
         bfs();
-        System.out.println(dp[1]);
+        
+        if (dp[1] == Integer.MAX_VALUE)
+            System.out.println(0);
+        else 
+            System.out.println(dp[1]);
 
 
     }
