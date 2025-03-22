@@ -5,8 +5,8 @@ import java.io.*;
 
 public class Main {
 
-    static int[][] arr;
-    static int[][] copyArr;
+    static int[] arr;
+    static int[] temp;
     static boolean[] visit;
     static int time = 0;
     static int[] dx = {0, 1, 0, -1};
@@ -33,45 +33,65 @@ public class Main {
 
         //1~100 n개 폭탄
         //m 개 이상 연속으로 같은 숫자 폭탄 터짐. 아래로 내려옴
-
+        arr = new int[n];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            list.add(Integer.parseInt(st.nextToken()));
+            arr[i] =Integer.parseInt(st.nextToken());
         }
 
         //동시에 터져야함
+        // remove 하는 거는 웬만하면 list쓰지 말자
+
+        int size = n;
         while (true) {
             int count = 1;
+            temp = new int[n];
             boolean isBomb = false;
-            int size = list.size();
-            tempList = new ArrayList<>();
 
             for (int i = 1; i < size; i++) {
-                if (list.get(i) == list.get(i - 1)) {
+                if (arr[i] == 0) continue;
+
+                if (arr[i] == arr[i-1]) {
                     count++;
-                    isBomb = true;
-                } else {
-                    if (count >= m) {
-                        count = 1;
-                    }else {
-                        tempList.add(list.get(i-1));
+                }else  {
+                    if (count >= m){
+                        for (int j = i-count; j <= i-1 ; j++) {
+                            arr[j] = 0;
+                            isBomb =true;
+                        }
                     }
+                    count = 1;
                 }
-
-            }
-            if (list.size() >= 1 && count < m ) {
-                tempList.add(list.get(list.size()-1));
             }
 
-            list = new ArrayList<>(tempList);
+            if (count >= m){
+                for (int j = size-count; j <= size-1 ; j++) {
+                    arr[j] = 0;
+                    isBomb =true;
+                }
+            }
 
             if (!isBomb)
                 break;
+
+            int index = 0;
+            for (int i = 0; i < size; i++) {
+                if (arr[i] != 0)
+                    temp[index++] = arr[i];
+            }
+            size = index;
+            index = 0;
+            for (int i = 0; i < size; i++) {
+                arr[index++] = temp[i];
+            }
+
         }
 
-        System.out.println(list.size());
-        for (int a : list)
-            System.out.println(a);
+        System.out.println(size);
+        for (int i = 0; i < size; i++) {
+            if (arr[i]!= 0)
+                System.out.println(arr[i]);
+        }
 
 
 
