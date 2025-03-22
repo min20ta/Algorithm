@@ -19,6 +19,7 @@ public class Main {
 
     static int min = Integer.MAX_VALUE;
     static List<Integer> list = new ArrayList<>();
+    static List<Integer> tempList = new ArrayList<>();
 
 
 
@@ -38,30 +39,31 @@ public class Main {
             list.add(Integer.parseInt(st.nextToken()));
         }
 
+        //동시에 터져야함
         while (true) {
             int count = 1;
             boolean isBomb = false;
-            for (int i = 1; i < list.size(); i++) {
+            int size = list.size();
+            tempList = new ArrayList<>();
+
+            for (int i = 1; i < size; i++) {
                 if (list.get(i) == list.get(i - 1)) {
                     count++;
                     isBomb = true;
                 } else {
                     if (count >= m) {
-                        for (int j = i - 1; j >= i - count; j--) {
-                            list.remove(j);
-                        }
+                        count = 1;
+                    }else {
+                        tempList.add(list.get(i-1));
                     }
-                    count = 1;
                 }
 
             }
-
-            if (count >= m) {
-                int size = list.size();
-                for (int j = size-1; j >= size - count; j--) {
-                    list.remove(j);
-                }
+            if (list.size() >= 1 && count < m ) {
+                tempList.add(list.get(list.size()-1));
             }
+
+            list = new ArrayList<>(tempList);
 
             if (!isBomb)
                 break;
