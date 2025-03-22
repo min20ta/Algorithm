@@ -57,18 +57,18 @@ public class Main {
                     if (count >= m){
                         for (int j = i-count; j <= i-1 ; j++) {
                             arr[j] = 0;
-                            isBomb =true;
                         }
+                        isBomb =true;
                     }
                     count = 1;
                 }
             }
 
-            if (count >= m){
-                for (int j = size-count; j <= size-1 ; j++) {
+            if (size-count >= 0 && count >= m){
+                for (int j = size-count; j < size ; j++) {
                     arr[j] = 0;
-                    isBomb =true;
                 }
+                isBomb =true;
             }
 
             if (!isBomb)
@@ -80,9 +80,8 @@ public class Main {
                     temp[index++] = arr[i];
             }
             size = index;
-            index = 0;
             for (int i = 0; i < size; i++) {
-                arr[index++] = temp[i];
+                arr[i] = temp[i];
             }
 
         }
