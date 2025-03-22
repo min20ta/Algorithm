@@ -51,7 +51,7 @@ public class Main {
             for (int j = 0; j < n; j++) {
                 //중심점들
                 //k 최대값은 넉넉잡아 n
-                for (int k = 0; k < n ; k++) {
+                for (int k = 0; k < 2*n ; k++) {
                     max = Math.max(max, calc(i,j,k));
                 }
             }
