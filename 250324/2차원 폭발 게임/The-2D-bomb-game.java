@@ -62,7 +62,7 @@ public class Main {
             getBomb();
             push();
         }
-      
+
 
         int bomb = 0;
         for (int i = 0; i < n; i++) {
@@ -71,7 +71,9 @@ public class Main {
                     bomb++;
             }
         }
-
+    if (m== 1)
+        System.out.println(0);
+    else
         System.out.println(bomb);
 
     }
@@ -110,10 +112,11 @@ public class Main {
                         haveBomb = true;
                     }
                     row = end;
+                    System.out.println(row+" "+col);
                     count = 1;
                 }
             }
-
+            
         }
     }
 
