@@ -49,10 +49,12 @@ public class Main {
                 haveBomb = false;
                 getBomb();
                 push();
+               // print();
             }
             //2. 회전
            rotate();
             push();
+           // print();
         }
 
         //k번후에도 터질거 있다면 터트리기
@@ -63,6 +65,7 @@ public class Main {
             push();
         }
 
+        //print();
 
         int bomb = 0;
         for (int i = 0; i < n; i++) {
@@ -96,7 +99,7 @@ public class Main {
                     count++;
                     int end = n-1;
 
-                    for (int i = row; i < n; i++) {
+                    for (int i = row+1; i < n; i++) {
                         if (arr[i][col] == num){
                             count++;
                         }else{
@@ -112,10 +115,11 @@ public class Main {
                         haveBomb = true;
                     }
                     row = end;
-                                        count = 1;
+                  //  System.out.println(row+" "+col);
+                    count = 1;
                 }
             }
-            
+
         }
     }
 
