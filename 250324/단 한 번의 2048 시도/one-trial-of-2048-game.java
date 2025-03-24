@@ -197,12 +197,12 @@ public class Main {
                 int index = 0;
                 int[] temp = new int[4];
                 for (int j = 3; j > 0; j--) {
-                    if (arr[j][i] != 0 && arr[j][i] == arr[j + 1][i]) {
+                    if (arr[j][i] != 0 && arr[j][i] == arr[j - 1][i]) {
                         temp[index++] = arr[j][i] * 2;
                         j--;
                     }else
                         temp[index++] = arr[j][i];
-                }if (arr[1][i] != arr[0][i])
+                }if (temp[index-1] != arr[0][i]*2)
                     temp[index] = arr[0][i];
 
                 index = 0;
