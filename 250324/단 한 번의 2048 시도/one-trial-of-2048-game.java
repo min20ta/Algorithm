@@ -26,10 +26,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-      //  StringTokenizer st = new StringTokenizer(br.readLine());
+        //  StringTokenizer st = new StringTokenizer(br.readLine());
 //        n = Integer.parseInt(st.nextToken());
 
-     //밀어서 중력, 같은 숫자합
+        //밀어서 중력, 같은 숫자합
         //연쇄합x, 2개씩 짝
         arr = new int[4][4];
         for (int i = 0; i < 4; i++) {
@@ -49,7 +49,7 @@ public class Main {
         //1. 밀기
         push(d);
         //2. 합
-      getPlus(d);
+        getPlus(d);
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -101,7 +101,7 @@ public class Main {
                 int [] temp = new int[4];
                 for (int j = 0; j < 4; j++) {
                     if (arr[j][i] != 0)
-                        temp[index++] = arr[i][j];
+                        temp[index++] = arr[j][i];
                 }
 
                 index = 0;
@@ -116,7 +116,7 @@ public class Main {
                 int [] temp = new int[4];
                 for (int j = 3; j >= 0; j--) {
                     if (arr[j][i] != 0)
-                        temp[index++] = arr[i][j];
+                        temp[index++] = arr[j][i];
                 }
 
                 index = 0;
@@ -176,13 +176,13 @@ public class Main {
             for (int i = 0; i < 4; i++) {
                 int index = 0;
                 int[] temp = new int[4];
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 3; j++) {
                     if (arr[j][i] != 0 && arr[j][i] == arr[j + 1][i]) {
                         temp[index++] = arr[j][i] * 2;
                         j++;
                     }else
                         temp[index++] = arr[j][i];
-                }
+                }if (temp[index-1] != arr[3][i]*2)
                     temp[index] = arr[3][i];
 
                 index = 0;
