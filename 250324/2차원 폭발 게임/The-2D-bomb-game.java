@@ -112,8 +112,7 @@ public class Main {
                         haveBomb = true;
                     }
                     row = end;
-                    System.out.println(row+" "+col);
-                    count = 1;
+                                        count = 1;
                 }
             }
             
