@@ -142,8 +142,8 @@ public class Main {
                         j++;
                     }else
                         temp[index++] = arr[i][j];
-                }
-                temp[index] = arr[i][3];
+                }if (temp[index-1] != arr[i][3]+arr[i][2])
+                     temp[index] = arr[i][3];
 
                 index = 0;
                 for (int j = 0; j < 4; j++) {
@@ -163,7 +163,7 @@ public class Main {
                     }else
                         temp[index++] = arr[i][j];
                 }
-                if (arr[i][1] != arr[i][0])
+                if (temp[index-1] != arr[i][0]+arr[i][1])
                     temp[index] = arr[i][0];
 
                 index = 0;
@@ -182,7 +182,7 @@ public class Main {
                         j++;
                     }else
                         temp[index++] = arr[j][i];
-                }if (temp[index-1] != arr[3][i]*2)
+                }if (temp[index-1] != arr[3][i]+arr[2][i])
                     temp[index] = arr[3][i];
 
                 index = 0;
@@ -202,7 +202,7 @@ public class Main {
                         j--;
                     }else
                         temp[index++] = arr[j][i];
-                }if (temp[index-1] != arr[0][i]*2)
+                }if (temp[index-1] != arr[0][i]+arr[1][i])
                     temp[index] = arr[0][i];
 
                 index = 0;
