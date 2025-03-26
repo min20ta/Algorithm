@@ -56,7 +56,18 @@ public class Main {
                         map.containsKey(firstKey) &&
                         map.containsKey(secondKey) &&
                         map.containsKey(thirdKey)) {
-                    sum++;
+                    if (firstKey == secondKey && firstKey == thirdKey) {
+                        if (map.get(firstKey) >= 3)
+                            sum++;
+                    }else if ((firstKey == secondKey && firstKey!= thirdKey) ||
+                            (firstKey == thirdKey && firstKey != secondKey)) {
+                        if (map.get(firstKey) >= 2)
+                            sum++;
+                    }else if (secondKey == thirdKey && secondKey!= firstKey){
+                        if (map.get(secondKey) >= 2)
+                            sum++;
+                    }else if (firstKey!= secondKey && secondKey!= thirdKey && firstKey!= thirdKey)
+                        sum++;
                   //  System.out.println(firstKey+" "+secondKey+" "+thirdKey+ " "+sum);
                 }
 
