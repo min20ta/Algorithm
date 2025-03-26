@@ -14,10 +14,7 @@ public class Main {
     static int n;
     static int m;
     static int k;
-    static boolean haveBomb;
-
     static int max = Integer.MIN_VALUE;
-
     static int min = Integer.MAX_VALUE;
     static ArrayList<ArrayList<Integer>> list = new ArrayList<>();
 
@@ -42,6 +39,10 @@ public class Main {
         int sum = 0;
         for (Integer key : map.keySet()) {
             int otherKey = k - key;
+            if (key == otherKey && map.get(key) > 1){
+                int val = map.get(key);
+                sum += val * (val - 1) /2;
+            }
             if (map.containsKey(otherKey) && map.get(otherKey) != 0){
                 sum += map.get(key) * map.get(otherKey);
                 map.put(otherKey, 0);
@@ -54,6 +55,7 @@ public class Main {
 
         }
     }
+
 
 
 
