@@ -14,7 +14,6 @@ public class Main {
     static int n;
     static int m;
     static int k;
-    static boolean haveBomb;
 
     static int max = Integer.MIN_VALUE;
 
@@ -82,8 +81,12 @@ public class Main {
             }
 
             int under = 0;
+            
+            if (x+1 >= n)
+                return true;
+            
             for (int i = y; i < y+m ; i++) {
-                if (x < n &&arr[x+1][i] == 1)
+                if (x+1 < n && arr[x+1][i] == 1)
                     under++;
             }
 
