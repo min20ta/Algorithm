@@ -45,18 +45,17 @@ public class Main {
         //밑에서 부터 -> 위에가 뚫려있어야함
         // 아래는 하나라도 1, 위에는 전부 0
         int start = k ; int end = k+m-1; start--; end--;
-        loop:
-        for (int i = end; i >= start; i--) {
-            for (int j = 0; j < n; j++) {
-                if (arr[i][j] == 0){
+        for (int i = n-1; i >= 0 ; i--) {
+                if (arr[i][start] == 0){
                     noUnder = false;
-                    if (canDrop(i,j)){
-                        drop(i,j);
-                        break loop;
+                    if (canDrop(i,start)){
+                      //  System.out.println(i+" "+ canDrop(i,start));
+                        drop(i,start);
+                        break;
                     }
                 }
             }
-        }
+
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -85,11 +84,13 @@ public class Main {
                     return false;
                 else if (x - 1 < 0)
                     break;
-
             }
 
 
-            //아래 블럭
+            //아래 블럭, 양옆
+            if ((y-1>=0 && arr[x][y-1] == 1) || (y+m-1 < n && arr[x][y+m-1] == 1))
+                return true;
+
             int under = 0;
 
             if (x + 1 >= n) {
@@ -98,7 +99,7 @@ public class Main {
             }
 
             for (int i = y; i < y + m; i++) {
-                if (x + 1 < n && arr[x + 1][i] == 1)
+                if (x + 1 < n && arr[x + 1][i] == 1) //아래
                     under++;
             }
 
@@ -111,8 +112,23 @@ public class Main {
 
         static void drop(int x, int y) {
             if (noUnder) {
-                for (int i = y; i < y+m ; i++) {
-                    arr[n-1][i] = 1;
+                if (x+1 < n) {
+                    for (int i = x + 1; i < n; i++) {
+                        for (int j = y; j < y + m; j++) {
+                            if (arr[i][j] == 1) {
+
+                                for (int l = y; l < y + m; l++) {
+                                    arr[i - 1][l] = 1;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (x+1 >= n) {
+                    for (int i = y; i < y + m; i++) {
+                        arr[n - 1][i] = 1;
+                    }
                 }
             } else {
                 for (int i = y; i < y + m; i++) {
