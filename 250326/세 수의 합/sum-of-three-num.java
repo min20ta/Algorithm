@@ -46,37 +46,42 @@ public class Main {
         //2개 골라야 하나
       Arrays.sort(arr);
         int sum = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = i+1 ; j < n; j++) {
+      for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1; j < n - 1; j++) {
                 int firstKey = arr[i];
                 int secondKey = arr[j];
                 int thirdKey = k - firstKey - secondKey;
 
-                if (firstKey <= secondKey && secondKey<= thirdKey&&
-                        map.containsKey(firstKey) &&
-                        map.containsKey(secondKey) &&
-                        map.containsKey(thirdKey)) {
-                    if (firstKey == secondKey && firstKey == thirdKey) {
-                        if (map.get(firstKey) >= 3)
-                            sum++;
-                    }else if ((firstKey == secondKey && firstKey!= thirdKey) ||
-                            (firstKey == thirdKey && firstKey != secondKey)) {
-                        if (map.get(firstKey) >= 2)
-                            sum++;
-                    }else if (secondKey == thirdKey && secondKey!= firstKey){
-                        if (map.get(secondKey) >= 2)
-                            sum++;
-                    }else if (firstKey!= secondKey && secondKey!= thirdKey && firstKey!= thirdKey)
-                        sum++;
-                  //  System.out.println(firstKey+" "+secondKey+" "+thirdKey+ " "+sum);
+                if (thirdKey <= secondKey) {
+                    continue;
                 }
 
+                if (map.containsKey(thirdKey)) {
+                    int countFirst = map.getOrDefault(firstKey, 0);
+                    int countSecond = map.getOrDefault(secondKey, 0);
+                    int countThird = map.getOrDefault(thirdKey, 0);
+
+                    if (firstKey == secondKey && secondKey == thirdKey) {
+                        if (countFirst >= 3) {
+                            sum++;
+                        }
+                    } else if (firstKey == secondKey) {
+                        if (countFirst >= 2 && countThird >= 1) {
+                            sum++;
+                        }
+                    } else if (secondKey == thirdKey) {
+                        if (countSecond >= 2 && countFirst >= 1) {
+                            sum++;
+                        }
+                    } else {
+                        if (countFirst >= 1 && countSecond >= 1 && countThird >= 1) {
+                            sum++;
+                        }
+                    }
+                }
             }
         }
+
         System.out.println(sum);
-
-
-
-        }
     }
-
+}
