@@ -43,7 +43,7 @@ public class Main {
 
         //밑에서 부터 -> 위에가 뚫려있어야함
         // 아래는 하나라도 1, 위에는 전부 0
-        int start = k ; int end = k+m-1;
+        int start = k ; int end = k+m-1; start--; end--;
         loop:
         for (int i = end; i >= start; i--) {
             for (int j = 0; j < n; j++) {
@@ -81,10 +81,10 @@ public class Main {
             }
 
             int under = 0;
-            
+
             if (x+1 >= n)
                 return true;
-            
+
             for (int i = y; i < y+m ; i++) {
                 if (x+1 < n && arr[x+1][i] == 1)
                     under++;
