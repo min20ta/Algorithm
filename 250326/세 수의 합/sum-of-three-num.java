@@ -44,44 +44,20 @@ public class Main {
         //3개
         //같은거0개, 1개, 2개
         //2개 골라야 하나
-      Arrays.sort(arr);
-        int sum = 0;
-      for (int i = 0; i < n - 2; i++) {
-            for (int j = i + 1; j < n - 1; j++) {
-                int firstKey = arr[i];
-                int secondKey = arr[j];
-                int thirdKey = k - firstKey - secondKey;
 
-                if (thirdKey <= secondKey) {
-                    continue;
-                }
 
-                if (map.containsKey(thirdKey)) {
-                    int countFirst = map.getOrDefault(firstKey, 0);
-                    int countSecond = map.getOrDefault(secondKey, 0);
-                    int countThird = map.getOrDefault(thirdKey, 0);
+      int sum = 0;
+        for (int i = 0; i < n; i++) {
+            map.put(arr[i],map.get(arr[i])-1);
 
-                    if (firstKey == secondKey && secondKey == thirdKey) {
-                        if (countFirst >= 3) {
-                            sum++;
-                        }
-                    } else if (firstKey == secondKey) {
-                        if (countFirst >= 2 && countThird >= 1) {
-                            sum++;
-                        }
-                    } else if (secondKey == thirdKey) {
-                        if (countSecond >= 2 && countFirst >= 1) {
-                            sum++;
-                        }
-                    } else {
-                        if (countFirst >= 1 && countSecond >= 1 && countThird >= 1) {
-                            sum++;
-                        }
-                    }
-                }
+            for (int j = 0; j < i; j++) {
+                if (map.containsKey(k-arr[i]-arr[j]))
+                    sum+= map.get(k-arr[i]-arr[j]);
             }
         }
-
         System.out.println(sum);
+
+
+
     }
 }
