@@ -14,6 +14,7 @@ public class Main {
     static int n;
     static int m;
     static int k;
+    static boolean noUnder;
 
     static int max = Integer.MIN_VALUE;
 
@@ -48,6 +49,7 @@ public class Main {
         for (int i = end; i >= start; i--) {
             for (int j = 0; j < n; j++) {
                 if (arr[i][j] == 0){
+                    noUnder = false;
                     if (canDrop(i,j)){
                         drop(i,j);
                         break loop;
@@ -63,42 +65,59 @@ public class Main {
             System.out.println();
         }
 
+        //끝까지 밑으로 떨어질때
 
 
         }
 
         static boolean canDrop(int x, int y) {
 
-            if (!(y+m-1 >= 0 && y+m-1 < n))
+            if (!(y + m - 1 >= 0 && y + m - 1 < n)) //블럭이 범위 넘어갈때
                 return false;
 
-            for (int i = y; i < y + m ; i++) {
-                if (arr[x][i] != 0)
-                    return false;
-
-                if (x - 1 >= 0 && arr[x-1][y] != 0)
+            for (int i = y; i < y + m; i++) {
+                if (arr[x][i] != 0) //자리가 차있을때
                     return false;
             }
 
+            for (int i = y; i < y + m; i++) {
+                if (x - 1 >= 0 && arr[x - 1][y] != 0) //위에 블럭이 있을때
+                    return false;
+                else if (x - 1 < 0)
+                    break;
+
+            }
+
+
+            //아래 블럭
             int under = 0;
 
-            if (x+1 >= n)
+            if (x + 1 >= n) {
+                noUnder = true;
                 return true;
+            }
 
-            for (int i = y; i < y+m ; i++) {
-                if (x+1 < n && arr[x+1][i] == 1)
+            for (int i = y; i < y + m; i++) {
+                if (x + 1 < n && arr[x + 1][i] == 1)
                     under++;
             }
 
-            if (under < 1)
-                return false;
-
+            if (under == 0) {
+                noUnder = true;
+                return true;
+         }
             return true;
         }
 
         static void drop(int x, int y) {
-            for (int i = y; i < y+ m ; i++) {
-                arr[x][i] = 1;
+            if (noUnder) {
+                for (int i = y; i < y+m ; i++) {
+                    arr[n-1][i] = 1;
+                }
+            } else {
+                for (int i = y; i < y + m; i++) {
+                    arr[x][i] = 1;
+                }
             }
         }
     }
