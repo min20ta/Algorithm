@@ -89,7 +89,6 @@ public class Main {
 
     //가장 큰게 2개 이상일때, 상하좌우 우선순위
     static void roll() {
-        System.out.println(nextQ.size());
         q = new LinkedList<>(nextQ);
         nextQ = new LinkedList<>();
 
