@@ -60,7 +60,8 @@ public class Main {
             roll();
 //            for (int i = 0; i < n; i++) {
 //                for (int j = 0; j < n; j++) {
-//                    System.out.print(diceArr[i][j]+" ");
+//                    //if (diceArr[i][j] == 1)
+//                        System.out.print(diceArr[i][j]+" ");
 //                }
 //                System.out.println();
 //            }
@@ -68,7 +69,8 @@ public class Main {
             bomb();
 //            for (int i = 0; i < n; i++) {
 //                for (int j = 0; j < n; j++) {
-//                    System.out.print(diceArr[i][j]+" ");
+//                   // if (diceArr[i][j] == 1)
+//                        System.out.print(diceArr[i][j]+" ");
 //                }
 //                System.out.println();
 //            }
@@ -98,21 +100,20 @@ public class Main {
             int y = p.y;
             int nx; int ny;
             mx = 0; my = 0;
-            ArrayList<Integer> list = new ArrayList<>();
+            int max = Integer.MIN_VALUE;
 
             for (int i = 0; i < 4; i++) {
                 nx = x + dx[i];
                 ny = y + dy[i];
 
                 if (nx >= 0 && nx < n && ny >= 0 && ny< n) {
-                    list.add(arr[nx][ny]);
+                    if (max < arr[nx][ny]) {
+                        max = arr[nx][ny];
+                        mx = nx;
+                        my = ny;
+                    }
                 }
             }
-            Collections.sort(list, Collections.reverseOrder());
-            if (list.get(0) == list.get(1))
-                doOrder(x,y);
-            else
-                doMax(x,y);
 
             diceArr[mx][my]++;
 
@@ -123,44 +124,12 @@ public class Main {
     static void bomb() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (diceArr[i][j] >= 2) {
-                    diceArr[i][j] = 0;
-                }
                 if (diceArr[i][j] == 1)
                     nextQ.add(new pair(i,j));
             }
         }
     }
 
-    static void doOrder(int x, int y) {
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            if (nx >= 0 && nx < n && ny >= 0 && ny< n) {
-                mx = nx; my = ny;
-                return;
-            }
-        }
-    }
-
-    static void doMax(int x, int y) {
-        int max = Integer.MIN_VALUE;
-
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            if (nx >= 0 && nx < n && ny >= 0 && ny< n) {
-                if (max < arr[nx][ny]) {
-                    max = arr[nx][ny];
-                    mx = nx;
-                    my = ny;
-                }
-
-            }
-        }
-    }
     static class pair {
         int x;
         int y;
