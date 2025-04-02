@@ -39,7 +39,7 @@ public class Main {
 
         //큰값 여러개일때 : 상하좌우 우선순위
         arr = new int[n][n];
-
+        diceArr = new int[n][n];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -54,8 +54,9 @@ public class Main {
             nextQ.add(new pair(r,c));
 
         }
+
         while (t-- > 0) {
-            diceArr = new int[n][n];
+            diceArr = new int[n][n]; //초기화가 안된듯?
             roll();
 //            for (int i = 0; i < n; i++) {
 //                for (int j = 0; j < n; j++) {
@@ -63,7 +64,7 @@ public class Main {
 //                }
 //                System.out.println();
 //            }
-  //          System.out.println();
+//            System.out.println();
             bomb();
 //            for (int i = 0; i < n; i++) {
 //                for (int j = 0; j < n; j++) {
@@ -88,6 +89,7 @@ public class Main {
 
     //가장 큰게 2개 이상일때, 상하좌우 우선순위
     static void roll() {
+        System.out.println(nextQ.size());
         q = new LinkedList<>(nextQ);
         nextQ = new LinkedList<>();
 
@@ -114,7 +116,7 @@ public class Main {
                 doMax(x,y);
 
             diceArr[mx][my]++;
-            nextQ.add(new pair(mx,my));
+
         }
 
     }
@@ -125,6 +127,8 @@ public class Main {
                 if (diceArr[i][j] >= 2) {
                     diceArr[i][j] = 0;
                 }
+                if (diceArr[i][j] == 1)
+                    nextQ.add(new pair(i,j));
             }
         }
     }
@@ -168,7 +172,7 @@ public class Main {
             this.x = x;
             this.y = y;
         }
-        
+
     }
 }
 
