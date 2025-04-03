@@ -16,12 +16,6 @@ public class Main {
     static int n;
     static int m;
     static int t;
-    static int c;
-    static int u = 1;
-    static int s = 3;
-    static int f = 2;
-    static int mx ;
-    static int my;
 
     static int max = Integer.MIN_VALUE;
 
@@ -40,7 +34,8 @@ public class Main {
             m = Integer.parseInt(st.nextToken());
 
             arr = new int[n][n];
-
+            q = new LinkedList<>();
+            nextQ = new LinkedList<>();
 
             for (int i = 0; i < m; i++) {
                 st = new StringTokenizer(br.readLine());
@@ -102,7 +97,7 @@ public class Main {
     }
 
     static void bomb() {
-       // System.out.println();
+        //System.out.println();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 //System.out.print(arr[i][j]+" ");
@@ -112,7 +107,7 @@ public class Main {
                     nextQ.add(new pair(i, j, infoArr[i][j].d));
                 }
             }
-           // System.out.println();
+            //System.out.println();
         }
     }
 
