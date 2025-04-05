@@ -49,7 +49,7 @@ public class Main {
             }
         }
 
-        int prev = 0;
+      
         int count = 1;
         q.add(1);
         while (!q.isEmpty()) {
@@ -62,11 +62,10 @@ public class Main {
 
                 if (groups[group].size() == 1) {
                     for (int person : groups[group]){
-                        if(prev != person) {
+                        if(!q.contains(person)) {
                             q.add(person);
                             count++;
                         }
-                    prev = person;
                     }
                 
                 }
