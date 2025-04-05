@@ -45,9 +45,11 @@ public class Main {
                 int p = Integer.parseInt(st.nextToken());
                 groups[i].add(p);
                 peoples[p].add(i);
+
             }
         }
 
+        int prev = 0;
         int count = 1;
         q.add(1);
         while (!q.isEmpty()) {
@@ -55,13 +57,18 @@ public class Main {
 
             for (int i = 0; i < peoples[who].size(); i++) {
                 int group = peoples[who].get(i);
-                groups[group].remove(who);
+                if(groups[group].contains(who))
+                    groups[group].remove(who);
 
                 if (groups[group].size() == 1) {
-                    for (int next : groups[group]){
-                        q.add(next);
-                        count++;
+                    for (int person : groups[group]){
+                        if(prev != person) {
+                            q.add(person);
+                            count++;
+                        }
+                    prev = person;
                     }
+                
                 }
             }
         }
