@@ -57,7 +57,9 @@ public class Main {
             else if (arr[i] > h && i-prev == 1){
                 prev = i;
                 count--;
-            }
+            }else {
+                prev = i;
+                }
         }
         return count;
     }
