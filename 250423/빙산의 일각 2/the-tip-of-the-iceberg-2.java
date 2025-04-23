@@ -32,9 +32,10 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         arr = new int[n];
         for (int i = 0; i < n; i++) {
-             arr[i]= Integer.parseInt(br.readLine());
-             max = Math.max(max,arr[i]);
+            arr[i]= Integer.parseInt(br.readLine());
+            max = Math.max(max,arr[i]);
         }
+
 
         for (int h = 1; h <= max ; h++) {
             hmax = Math.max(hmax,findGroup(h));
@@ -45,25 +46,31 @@ public class Main {
         //높이-> 빙상최대(물에 잠기지 않은 것 한덩이)
     }
 
+    //제일 처음 해당안될때 prev 문제가 됨
     static int findGroup(int h) {
         int prev = 0;
         int count = 0;
 
-        for (int i = 0; i < n; i++) {
+        if (arr[0] > h)
+            count = 1;
+
+        for (int i = 1; i < n; i++) {
             count++;
 
             if (arr[i] <= h)
                 count--;
-            else if (arr[i] > h && i-prev == 1){
+            else if (arr[i] > h && arr[i-1] >h){
                 prev = i;
                 count--;
-            }else {
+            }else if (arr[i] > h){
                 prev = i;
-                }
+
+            }
         }
         return count;
     }
 
 }
+
 
 
