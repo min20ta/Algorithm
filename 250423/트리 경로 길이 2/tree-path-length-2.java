@@ -49,7 +49,6 @@ public class Main {
 
         visit = new boolean[n+1];
         depth = new int[n+1];
-        val = new int[n+1];
         parent = new int[18][n+1];
         visit[1] = true;
         depth[1] = 1;
@@ -58,15 +57,22 @@ public class Main {
 
         q = Integer.parseInt(br.readLine());
 
+        visit = new boolean[n+1];
+        visit[1] = true;
+        val = new int[n+1];
+        getValue(1);
+
         //공통노드구해서, 각 노드~공통 가중치 합들
+        //root~a + root~b - root~p
         for (int i = 0; i < q; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
             int p = findAncestor(a,b);
+            int ans = val[a] + val[b] - 2*val[p];
 
-            System.out.println(findAncestor(a,b));
+            System.out.println(ans);
         }
     }
 
@@ -97,27 +103,15 @@ public class Main {
             b = temp;
         }
 
-        int curA = a;
-        int curB = b;
-
         for (int h = 17; h >= 0 ; h--) {  //두 노드의 높이를 맞춰줌
             if (depth[a] - depth[b] >= (1<<h)) {
                 a = parent[h][a];
             }
         }
 
-
         if (a==b){
-            visit = new boolean[n+1];
-            visit[a] = true;
-            val = new int[n+1];
-
-            getValue(a);
-
-            return val[curA];
+            return a;
         }
-
-
 
         for (int h = 17; h >=0 ; h--) {
             if (parent[h][a] != parent[h][b]) {
@@ -126,12 +120,7 @@ public class Main {
             }
         }
 
-        visit = new boolean[n+1];
-        visit[parent[0][a]] = true;
-        val = new int[n+1];
-
-        getValue(parent[0][a]);
-        return val[curA]+val[curB];
+        return parent[0][a];
     }
 
     static void getValue(int p) {
