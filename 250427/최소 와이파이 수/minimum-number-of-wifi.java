@@ -44,13 +44,17 @@ public class Main {
         int wifi = 0;
         int count = -1;
 
-        for (int i = 0; i < n; i++) {
-            if (arr[i] == 1) count++;
+        if (n <= m)
+            wifi = 1;
+        else {
+            for (int i = 0; i < n; i++) {
+                if (arr[i] == 1) count++;
 
-            if (count == m) {
-                wifi++;
-                count = -1;
-                i += m;
+                if (count == m) {
+                    wifi++;
+                    count = -1;
+                    i += m;
+                }
             }
         }
         System.out.println(wifi);
@@ -65,6 +69,9 @@ public class Main {
 
 
 }
+
+
+
 
 
 
