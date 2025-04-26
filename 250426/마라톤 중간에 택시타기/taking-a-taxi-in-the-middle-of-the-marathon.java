@@ -37,7 +37,7 @@ public class Main {
         x = new int[n];
         y = new int[n];
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             x[i] = Integer.parseInt(st.nextToken());
             y[i] = Integer.parseInt(st.nextToken());
@@ -52,7 +52,7 @@ public class Main {
              L[i] = L[i-1] + Math.abs(x[i]-x[i-1]) + Math.abs(y[i] - y[i-1]);
         }
 
-        for (int i = 1; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             R[i] = L[n-1] - L[i];
         }
 
@@ -66,5 +66,3 @@ public class Main {
 
 
 }
-
-
