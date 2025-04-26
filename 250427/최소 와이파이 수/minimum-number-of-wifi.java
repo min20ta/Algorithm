@@ -44,8 +44,14 @@ public class Main {
         int wifi = 0;
         int count = -1;
 
-        if (n <= m)
-            wifi = 1;
+        if (n <= m) {
+            for (int i = 0; i < n; i++) {
+                if (arr[i] == 1){
+                    wifi = 1;
+                    break;
+                }
+            }
+        }
         else {
             for (int i = 0; i < n; i++) {
                 if (arr[i] == 1) count++;
@@ -69,7 +75,6 @@ public class Main {
 
 
 }
-
 
 
 
