@@ -54,7 +54,10 @@ public class Main {
         }
         else {
             for (int i = 0; i < n; i++) {
-                if (arr[i] == 1) count++;
+                if (arr[i] == 0 && count == -1)
+                    continue;
+
+                count++;
 
                 if (count == m) {
                     wifi++;
@@ -62,6 +65,9 @@ public class Main {
                     i += m;
                 }
             }
+
+            if (count != -1)
+                wifi++;
         }
         System.out.println(wifi);
 
