@@ -49,7 +49,7 @@ public class Main {
         for (int i = n-2; i >= 0; i--) { //삭제 k구하기
             pq.add(arr[i]);
             sum += arr[i];
-            max = Math.max(max, (sum-pq.peek())/(count++));
+            max = Math.max(max, (double)(sum-pq.peek())/(count++));
         }
 
         System.out.println(String.format("%.2f", max));
