@@ -77,7 +77,7 @@ public class Main {
                     makeOdd--;
                     bundle++;
                 }else {
-                    bundle--;
+                
                     break;
                 }
 
