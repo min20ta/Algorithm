@@ -51,7 +51,7 @@ public class Main {
 
             for (int j = 2; j < n ; j++) {
                 int diff = Math.abs(num - list.get(j));
-                if (min > diff){
+                if (min >= diff){
                     location = j;
                     min = diff;
                 }
