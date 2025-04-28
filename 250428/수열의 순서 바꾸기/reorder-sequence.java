@@ -44,7 +44,7 @@ public class Main {
 
         int count = 0;
 
-        for (int i = 0; i < n; i++) {
+        while (!checkEnd()){
             int num = list.get(0);
             int location = 0;
             min = Integer.MAX_VALUE;
@@ -65,10 +65,6 @@ public class Main {
             list.remove(0);
 
             count++;
-
-            if (checkEnd())
-                break;
-
         }
 
         System.out.println(count);
