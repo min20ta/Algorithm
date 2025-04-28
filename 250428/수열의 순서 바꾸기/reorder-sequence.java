@@ -42,45 +42,21 @@ public class Main {
         }
 
 
-        int count = 0;
-
-        while (!checkEnd()){
-            int num = list.get(0);
-            int location = 0;
-            min = Integer.MAX_VALUE;
-
-            for (int j = 2; j < n ; j++) {
-                int diff = Math.abs(num - list.get(j));
-                if (min >= diff){
-                    location = j;
-                    min = diff;
-                }
+        int ans =0;
+        for (int i = n-1; i > 0 ; i--) {
+            if (list.get(i) < list.get(i-1)){
+                ans = i;
+                break;
             }
-
-            if (list.get(location) < num) {
-                list.add(location+1,num);
-            }else {
-                list.add(location,num);
-            }
-            list.remove(0);
-
-            count++;
         }
 
-        System.out.println(count);
-
+        System.out.println(ans);
 
     }
 
 
-    static boolean checkEnd() {
-        for (int i = 0; i < n; i++) {
-            if (list.get(i) != i+1)
-                return false;
-        }
 
-        return true;
-    }
+
 
 }
 
