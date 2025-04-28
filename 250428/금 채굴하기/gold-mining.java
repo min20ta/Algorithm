@@ -44,6 +44,7 @@ public class Main {
 
         //m*금개수 - 비용 >= 0 일때 금개수 최대
 
+        max = 0;
         for (int k = 0; k <= n ; k++) {  //k
             for (int i = 0; i < n; i++) { //중심점 위치
                 for (int j = 0; j < n; j++) {
