@@ -55,7 +55,7 @@ public class Main {
             R[i] = count;
         }
 
-        int ans = 0;
+        long ans = 0;
         for (int i = 0; i < n; i++) {
             if (arr[i] == 'O'){
                 ans += (L[i-1] * R[i+1]);
