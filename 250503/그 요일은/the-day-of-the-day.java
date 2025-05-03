@@ -61,7 +61,7 @@ public class Main {
 
         for (int i = 0; i < 7; i++) {
             if (a.equals(days[i])){
-                if (day <= i)
+                if (day >= i)
                     count++;
             }
         }
