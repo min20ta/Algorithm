@@ -16,7 +16,7 @@ public class Main {
 //    static int[] dy = {-1, 0, 0, 1};
     static int n;
     static int m;
-    static int k;
+    static int index;
     static int ans;
     static int [] arr;
     static int[] tempArr;
@@ -37,6 +37,7 @@ public class Main {
 
         arr = new int[n];
         tempArr = new int[n];
+        index = n;
 
         for (int i = 0; i <n; i++) {
             arr[i] = Integer.parseInt(br.readLine());
@@ -73,7 +74,7 @@ public class Main {
            first = i;
 
             if(num == 0){
-                return;
+                continue;
             }
 
             for (int j = i; j < n ; j++) {
@@ -92,15 +93,17 @@ public class Main {
             i = end;
         }
 
-        int index = 0;
+        int endTemp = 0;
         for (int i = 0; i < n; i++) {
             if (arr[i] != 0)
-                tempArr[index++] = arr[i];
+                tempArr[endTemp++] = arr[i];
         }
 
-        for (int i = 0; i < n; i++) {
+        arr = new int[n];
+        for (int i = 0; i < endTemp; i++) {
             arr[i] = tempArr[i];
         }
+      
     }
 }
 
