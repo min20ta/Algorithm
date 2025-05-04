@@ -82,7 +82,7 @@ public class Main {
             int y = p.y;
 
             if (num == 1){
-                dx = new int []{0,1,-2,1,2};
+                dx = new int []{0,-1,-2,1,2};
                 dy = new int[] {0,0,0,0,0};
             }else if (num == 2) {
                 dx = new int []{0,0,1,0,-1};
