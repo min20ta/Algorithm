@@ -100,8 +100,8 @@ public class Main {
         @Override
         public int compareTo(pair p) {
             if (p.x == this.x)
-                return p.y - this.y;
-            return p.x - this.x;
+                return this.y - p.y;
+            return this.x - p.x;
         }
     }
 
