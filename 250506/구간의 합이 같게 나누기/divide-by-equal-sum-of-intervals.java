@@ -18,7 +18,7 @@ public class Main {
     static int n;
     static int m;
     static int k;
-    static int ans;
+    static long ans;
     static long [] arr;
     static boolean[][] visit;
     static int[] L;
