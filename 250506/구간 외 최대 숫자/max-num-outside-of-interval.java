@@ -51,14 +51,14 @@ public class Main {
 
         for (int i = 1; i < n; i++) {
             if (L[i-1] < arr[i])
-                L[i] = L[i-1] + 1;
+                L[i] = arr[i];
             else
                 L[i] = L[i-1];
         }
 
         for (int i = n-2; i >= 0 ; i--) {
             if (R[i+1] < arr[i])
-                R[i] = R[i+1] + 1;
+                R[i] = arr[i];
             else
                 R[i] = R[i+1];
         }
@@ -74,7 +74,7 @@ public class Main {
                 ans =R[b+1];
             else
                 ans = L[a-1];
-                            
+
             System.out.println(ans);
         }
     }
