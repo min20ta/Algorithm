@@ -54,46 +54,38 @@ public class Main {
             }
         }
 
-        pickLine(0);
+        for (int x1 = 0; x1 < n; x1++) {
+            for (int x2 = 0; x2 < n; x2++) {
+
+                if (x1 == x2) {
+                    ans = getSameLineVal(x1);
+                }else {
+                    ans =getDiffLineVal(x1,x2);
+                }
+                max = Math.max(max, ans);
+            }
+        }
         System.out.println(max);
     }
 
-    static void pickLine(int index) {
-        if (index == 2){
-            int firstLine = list.get(0);
-            int secondLine = list.get(1);
-            if (firstLine == secondLine)
-                max = Math.max(max, getSameLineVal(firstLine));
-            else
-                max = Math.max(max, getDiffLineVal(firstLine, secondLine));
-            return;
-
-        }
-
-        for (int i = 0; i < n; i++) {
-            list.add(i);
-            pickLine(index+1);
-            list.remove(list.size()-1);
-        }
-    }
 
     static int getSameLineVal(int line) {
 
-        int sum = 0;
+        int sum1 = 0;
+        int sum2 = 0;
         int ansVal = Integer.MIN_VALUE;
         //열 고르기
-        for (int i = 0; i < n-m-1; i++) {
+        for (int i = 0; i <= n-2*m; i++) {
             maxVal = Integer.MIN_VALUE;
             getWeight(line,i, 0,0,0);
-            sum += maxVal;
+            sum1 = maxVal;
 
             for (int j = i+m; j <= n-m; j++) {
                 maxVal = Integer.MIN_VALUE;
                 getWeight(line,j, 0,0,0);
-                sum += maxVal;
+                sum2 = maxVal;
 
-                ansVal = Math.max(ansVal, sum);
-                sum = 0;
+                ansVal = Math.max(ansVal, sum1 + sum2);
             }
         }
 
@@ -102,24 +94,23 @@ public class Main {
 
     static int getDiffLineVal(int x1, int x2) {
 
-        int sum = 0;
+        int sum1 = 0;
+        int sum2 = 0;
         int ansVal = Integer.MIN_VALUE;
         //열 고르기
         for (int i = 0; i <= n-m; i++) {
             maxVal = Integer.MIN_VALUE;
             getWeight(x1,i, 0,0,0);
-            sum += maxVal;
+            sum1 = maxVal;
 
             for (int j = 0; j <= n-m; j++) {
                 maxVal = Integer.MIN_VALUE;
                 getWeight(x2,j, 0,0,0);
-                sum += maxVal;
+                sum2 = maxVal;
 
-                ansVal = Math.max(ansVal, sum);
-                sum = 0;
+                ansVal = Math.max(ansVal, sum1+sum2);
             }
         }
-
         return ansVal;
     }
 
@@ -152,3 +143,6 @@ public class Main {
     }
 
 }
+
+
+
