@@ -48,9 +48,9 @@ public class Main {
         for (int i = 1; i < n; i++) {
             if (arr[i-1] == 0){
                 arr[i-1] = 1;
-                arr[i] = 1-arr[i+1];
+                arr[i] = 1-arr[i];
                 if (i+1 < n)
-                    arr[i+1] = 1- arr[i+2];
+                    arr[i+1] = 1- arr[i+1];
                 count++;
             }
         }
