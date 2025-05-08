@@ -49,7 +49,8 @@ public class Main {
             if (c1[i] != c2[i]) {
                 count++;
             }
-            if (count > 4 || (i>=1 && c1[i-1] != c2[i-1] && c1[i] == c2[i])) {
+            if (count >= 4 || (i>=1 && c1[i-1] != c2[i-1] && c1[i] == c2[i])
+                    || (i == n-1 && count > 0)) {
                 ans++;
                 count -= 4;
             }
@@ -64,7 +65,6 @@ public class Main {
 
 
 }
-
 
 
 
