@@ -43,12 +43,13 @@ public class Main {
         q.add(new pair(n, 0));
         visit = new boolean[2*n+1];
         visit[n] = true;
-        bfs();
+     
         if(n == 1)
             System.out.println(0);
-        else
-             System.out.println(ans);
-
+        else{
+            bfs();
+            System.out.println(ans);
+        }
     }
 
     static void bfs() {
@@ -70,7 +71,7 @@ public class Main {
 
                 if(!visit[nx]) {
                     visit[nx] = true;
-                    
+
                     if (nx == 1){
                         ans = p.count+1;
                         return;
