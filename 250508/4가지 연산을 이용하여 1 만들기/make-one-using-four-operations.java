@@ -42,7 +42,10 @@ public class Main {
         //+1, -1, /2, /3
         q.add(new pair(n, 0));
         bfs();
-        System.out.println(ans);
+        if(n == 1)
+            System.out.println(0);
+        else
+             System.out.println(ans);
 
     }
 
