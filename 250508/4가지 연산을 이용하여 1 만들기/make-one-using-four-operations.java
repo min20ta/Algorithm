@@ -20,7 +20,7 @@ public class Main {
     static int c;
     static int ans = 0;
     static int [] arr;
-    static boolean[][] visit;
+    static boolean[] visit;
     static int[] L;
     static int[] R;
     static int size = 0;
@@ -41,6 +41,8 @@ public class Main {
 
         //+1, -1, /2, /3
         q.add(new pair(n, 0));
+        visit = new boolean[2*n+1];
+        visit[n] = true;
         bfs();
         if(n == 1)
             System.out.println(0);
@@ -66,11 +68,15 @@ public class Main {
                 else if (i == 3 && n % 3 == 0)
                     nx = n / 3;
 
-                if (nx == 1){
-                    ans = p.count+1;
-                    return;
-                }else if (nx > 0) {
-                    q.add(new pair(nx, p.count+1));
+                if(!visit[nx]) {
+                    visit[nx] = true;
+                    
+                    if (nx == 1){
+                        ans = p.count+1;
+                        return;
+                    }else if (nx > 0) {
+                        q.add(new pair(nx, p.count+1));
+                    }
                 }
             }
         }
