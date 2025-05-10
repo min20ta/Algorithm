@@ -88,7 +88,10 @@ public class Main {
         }
 
         for (int i = 1; i <= n ; i++) {
-            System.out.println(distance[i]);
+            if(distance[i] == (int)1e9)
+                System.out.println(-1);
+            else
+                System.out.println(distance[i]);
         }
     }
     static class Node {
