@@ -3,8 +3,6 @@
 
 import java.util.*;
 import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Main {
@@ -45,14 +43,17 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int num = 0;
-        for (int i = 0; i < n; i++) {
+        int num = arr[0];
+        max = num;
+        
+        for (int i = 1; i < n; i++) {
 
-            if (num < num+arr[i])
+            if (num < num+arr[i] && num > 0)
                 num += arr[i];
+            else if (num < arr[i])
+                num = arr[i];
             else {
                 num = 0;
-                continue;
             }
             max = Math.max(max,num);
         }
