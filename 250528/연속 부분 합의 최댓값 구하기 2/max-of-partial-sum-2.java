@@ -43,19 +43,17 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int num = arr[0];
-        max = num;
-        
-        for (int i = 1; i < n; i++) {
+        int sum = 0;
 
-            if (num < num+arr[i] && num > 0)
-                num += arr[i];
-            else if (num < arr[i])
-                num = arr[i];
-            else {
-                num = 0;
-            }
-            max = Math.max(max,num);
+
+        for (int i = 0; i < n; i++) {
+
+            if (sum < 0)
+                sum = arr[i];
+            else
+                sum += arr[i];
+
+            max = Math.max(max,sum);
         }
 
         System.out.println(max);
@@ -64,6 +62,7 @@ public class Main {
 
     }
 }
+
 
 
 
