@@ -50,6 +50,8 @@ public class Main {
             }
             else {
                 ans--;
+                if (ans == -1)
+                    break;
                 num = num + 5;
             }
         }
