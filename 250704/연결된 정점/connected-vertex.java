@@ -78,8 +78,11 @@ public class Main {
         int x = find(a);
         int y = find(b);
 
+
+        if(x != y) {
         arr[x] = y;
         num[y]+= num[x];
+        }
        // System.out.println(x+" "+y+" "+num[y]);
     }
 
