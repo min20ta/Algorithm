@@ -47,6 +47,7 @@ public class Main {
 
         for (int i = 1; i <= n ; i++) {
             arr[i] = i;
+            num[i] = 1;
         }
 
         for (int i = 0; i < m; i++) {
@@ -60,7 +61,7 @@ public class Main {
                 union(a,b);
             }else {
                 int a = Integer.parseInt(st.nextToken());
-                System.out.println(num[find(a)]+1);
+                System.out.println(num[find(a)]);
 
             }
         }
@@ -78,7 +79,7 @@ public class Main {
         int y = find(b);
 
         arr[x] = y;
-        num[y]++;
+        num[y]+= num[x];
        // System.out.println(x+" "+y+" "+num[y]);
     }
 
