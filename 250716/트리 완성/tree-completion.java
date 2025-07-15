@@ -64,8 +64,10 @@ public class Main {
         Set<Integer> set = new HashSet<>();
 
         for (int i = 1; i <= n ; i++) {
-            if (!set.contains(find(arr[i]))) {
-                set.add(arr[i]);
+            int x = find(arr[i]);
+
+            if (!set.contains(x)) {
+                set.add(x);
             }
         }
         
