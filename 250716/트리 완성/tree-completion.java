@@ -31,6 +31,12 @@ public class Main {
     static int minCar = Integer.MAX_VALUE;
     static int diffMin = Integer.MAX_VALUE;
 
+    static HashMap<String, PriorityQueue<String>> graph = new HashMap<>();
+    static Deque<String> stack = new LinkedList<>();
+
+    static boolean cycle ;
+    static int ans = -1;
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -43,24 +49,26 @@ public class Main {
         }
 
         //그룹이 총 몇개인지
-
+        
+        
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            union(a,b);
+            if (find(a) != find(b))
+                union(a,b);
         }
 
 
         Set<Integer> set = new HashSet<>();
 
         for (int i = 1; i <= n ; i++) {
-            int x = find(arr[i]);
-            if (!set.contains(x)) {
-                set.add(x);
+            if (!set.contains(find(arr[i]))) {
+                set.add(arr[i]);
             }
         }
+        
 
         System.out.println(set.size()-1);
     }
@@ -83,4 +91,7 @@ public class Main {
 
 
 }
+
+
+
 
