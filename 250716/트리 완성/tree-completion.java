@@ -50,29 +50,20 @@ public class Main {
 
         //그룹이 총 몇개인지
         
-        
+        int ans = 0;
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            if (find(a) != find(b))
+            if (find(a) != find(b)) {
+                ans++;
                 union(a,b);
-        }
-
-
-        Set<Integer> set = new HashSet<>();
-
-        for (int i = 1; i <= n ; i++) {
-            int x = find(arr[i]);
-
-            if (!set.contains(x)) {
-                set.add(x);
             }
         }
-        
+    
 
-        System.out.println(set.size()-1);
+        System.out.println(n-1-ans+m - ans);
     }
 
 
