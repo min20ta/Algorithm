@@ -58,11 +58,11 @@ public class Main {
             union(a,b);
         }
 
-        int ans = 0;
+
         Set<Integer> set = new HashSet<>();
 
-        for (int i = 1; i < n ; i++) {
-            if (!set.contains(find(i))) {
+        for (int i = 1; i <= n ; i++) {
+            if (!set.contains(find(arr[i]))) {
                 set.add(arr[i]);
             }
         }
@@ -88,7 +88,4 @@ public class Main {
 
 
 }
-
-
-
 
