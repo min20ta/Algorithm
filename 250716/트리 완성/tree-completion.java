@@ -31,12 +31,6 @@ public class Main {
     static int minCar = Integer.MAX_VALUE;
     static int diffMin = Integer.MAX_VALUE;
 
-    static HashMap<String, PriorityQueue<String>> graph = new HashMap<>();
-    static Deque<String> stack = new LinkedList<>();
-
-    static boolean cycle ;
-    static int ans = -1;
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -62,8 +56,9 @@ public class Main {
         Set<Integer> set = new HashSet<>();
 
         for (int i = 1; i <= n ; i++) {
-            if (!set.contains(find(arr[i]))) {
-                set.add(arr[i]);
+            int x = find(arr[i]);
+            if (!set.contains(x)) {
+                set.add(x);
             }
         }
 
