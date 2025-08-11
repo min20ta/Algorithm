@@ -46,7 +46,7 @@ public class Main {
             }
         }
 
-        System.out.println(Math.max(dp[n-1][n-2],dp[n-2][n-1]));
+        System.out.println(dp[n-1][n-1]);
 
 
     }
