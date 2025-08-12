@@ -44,11 +44,8 @@ public class Main {
         Collections.sort(list);
         list.add(0,new pair(first, 0,0));
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                dp[i][j] = 1;
-            }
-        }
+        dp[0][0] = 1;
+       
 
         for (int i = 0; i < list.size(); i++) {
             int x = list.get(i).x;
@@ -57,6 +54,9 @@ public class Main {
 
             for (int j = 0; j <= x; j++) {
                 for (int k = 0; k <= y; k++) {
+                    if(dp[j][k] == 0)
+                        continue;
+                        
                     if (arr[j][k] < num && x-j >= 1 && y - k >= 1)
                         dp[x][y] = Math.max(dp[j][k]+1, dp[x][y]);
                 }
