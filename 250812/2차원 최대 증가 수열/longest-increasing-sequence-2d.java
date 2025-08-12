@@ -56,7 +56,7 @@ public class Main {
                 for (int k = 0; k <= y; k++) {
                     if(dp[j][k] == 0)
                         continue;
-                        
+
                     if (arr[j][k] < num && x-j >= 1 && y - k >= 1)
                         dp[x][y] = Math.max(dp[j][k]+1, dp[x][y]);
                 }
@@ -66,7 +66,7 @@ public class Main {
         int ans = 0;
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < m; j++) {
                 ans = Math.max(ans, dp[i][j]);
             }
         }
