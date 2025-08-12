@@ -25,15 +25,24 @@ public class Main {
         int [][] dp = new int[n][m];
         List<pair> list = new ArrayList<>();
 
+        //(0,0)에서 시작해야함!
+        int first = 0;
+
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < m; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
-                list.add(new pair(arr[i][j], i,j));
+
+                if (i == 0 && j == 0)
+                    first = arr[i][j];
+
+                if (first < arr[i][j])
+                    list.add(new pair(arr[i][j], i,j));
             }
         }
 
         Collections.sort(list);
+        list.add(0,new pair(first, 0,0));
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
