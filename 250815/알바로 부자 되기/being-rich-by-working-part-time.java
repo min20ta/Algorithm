@@ -36,7 +36,9 @@ public class Main {
 
 
         int [] dp = new int[n];
-        dp[0] = p[0];
+        for (int i = 0; i < n; i++) {
+            dp[i] = p[i];
+        }
 
         for (int i = 1; i < n; i++) {
             int start = s[i];
@@ -46,10 +48,8 @@ public class Main {
                 int pstart = s[j];
                 int pend = e[j];
 
-                if (end < pstart) {
+                if (pend < start) {
                     dp[i] = Math.max(dp[i], dp[j] + p[i]);
-                } else {
-                    dp[i] = p[i];
                 }
             }
         }
@@ -66,6 +66,7 @@ public class Main {
 
 
 }
+
 
 
 
