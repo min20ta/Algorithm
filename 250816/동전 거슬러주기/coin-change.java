@@ -22,7 +22,7 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
 
         int [] coin = new int[n];
-        int [] dp = new int[m+1];
+        int [] dp = new int[10001];
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
@@ -30,7 +30,7 @@ public class Main {
         }
 
         for (int i = 0; i <=m; i++) {
-            dp[i] = 10001;
+            dp[i] = 10002;
         }
 
         for (int i = 0; i < n; i++) {
@@ -47,7 +47,7 @@ public class Main {
         }
 
 
-        if (dp[m] == 10001)
+        if (dp[m] == 10002)
             System.out.println(-1);
         else
             System.out.println(dp[m]);
