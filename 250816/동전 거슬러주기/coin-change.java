@@ -30,7 +30,7 @@ public class Main {
         }
 
         for (int i = 0; i <=m; i++) {
-            dp[i] = 101;
+            dp[i] = 10001;
         }
 
         for (int i = 0; i < n; i++) {
