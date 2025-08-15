@@ -47,7 +47,7 @@ public class Main {
         }
 
 
-        if (dp[m] == Integer.MAX_VALUE)
+        if (dp[m] == 10001)
             System.out.println(-1);
         else
             System.out.println(dp[m]);
